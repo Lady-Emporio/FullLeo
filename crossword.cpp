@@ -105,6 +105,9 @@ void Crossword::clearToNextPound(){
     Table *newTable=new Table;
     tableWord=*newTable;
     UsingWordList->clear();
+    SecectInUsingWordList.clear();
+    LastSelectInMainTable.clear();
+    InMainSelect.clear();
 }
 
 void Crossword::seeAll(){
@@ -141,13 +144,10 @@ void Crossword::verifyAll(){
 }
 
 void Crossword::SelectCell(){
-//    if(UsingWordList->count()>1){
-//    if(SecectInUsingWordList!=Q_NULLPTR){
-//            SecectInUsingWordList->setBackground(QBrush(QColor(255, 255, 255)));
-//    }
     for(int i=0;i!=SecectInUsingWordList.size();++i){
         SecectInUsingWordList[i]->setBackground(QBrush(QColor(255, 255, 255)));
     };
+    SecectInUsingWordList.clear();
     for(int i=0;i!=InMainSelect.size();++i){
         InMainSelect[i]->setBackground(QBrush(QColor(255, 255, 255)));
     };
