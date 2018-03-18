@@ -6,13 +6,12 @@
 Crossword::Crossword(QWidget *parent) : QWidget(parent)
 {
 //    tableWord=new Table;
-
-
     QHBoxLayout *MainLayout=new QHBoxLayout(this);
     QVBoxLayout *SettingLauout=new QVBoxLayout;
     ErrorLabel=new QLabel("Все в порядке");
-    QPushButton *buttom1=new QPushButton("We are");
-    QPushButton *buttom2=new QPushButton("update");
+    QPushButton *buttomVerify=new QPushButton("verify");
+    QPushButton *buttomSeeAll=new QPushButton("Look,see all");
+    QPushButton *buttomUpdate=new QPushButton("update");
     MainTable=new QTableWidget(TABLE_ROW,TABLE_COL);
 //    UsingWordList=new QListWidget;
     UsingWordList=new QListWidget;
@@ -26,15 +25,20 @@ Crossword::Crossword(QWidget *parent) : QWidget(parent)
 
     MainLayout->addLayout(SettingLauout);
     SettingLauout->addWidget(ErrorLabel);
-    SettingLauout->addWidget(buttom1);
-    SettingLauout->addWidget(buttom2);
+    SettingLauout->addWidget(buttomUpdate);
+    SettingLauout->addWidget(buttomVerify);
+    SettingLauout->addWidget(buttomSeeAll);
     MainLayout->addWidget(MainTable);
     MainLayout->addWidget(UsingWordList);
     this->setLayout(MainLayout);
 
-    connect(buttom2, SIGNAL(clicked()), this, SLOT(slotUpdate()));
+    connect(buttomUpdate, SIGNAL(clicked()), this, SLOT(slotUpdate()));
+    connect(buttomSeeAll, SIGNAL(clicked()), this, SLOT(seeAll()));
+    connect(buttomVerify, SIGNAL(clicked()), this, SLOT(verifyAll()));
 
     connect(UsingWordList, SIGNAL(currentRowChanged(int)), this, SLOT(SelectWordRight(int)));
+    connect(MainTable, SIGNAL(itemSelectionChanged()), this, SLOT(SelectCell()));
+
 }
 void Crossword::SelectWordRight(int x){
     for(int i=0;i!=LastSelectInMainTable.size();++i){
@@ -49,8 +53,8 @@ void Crossword::SelectWordRight(int x){
         for(int column = 0; column !=MainTable->columnCount(); column++){
             Word MyCelectFirstWord=tableWord.table[row][column].FirstWord();
             Word MyCelectSecondWord=tableWord.table[row][column].SecondWord();
-            QString engFirstWord=MyCelectFirstWord.eng.c_str();
-            QString engSecondWord=MyCelectSecondWord.eng.c_str();
+            QString engFirstWord=MyCelectFirstWord.ru.c_str();
+            QString engSecondWord=MyCelectSecondWord.ru.c_str();
             if(selected==engFirstWord || selected==engSecondWord){
 //                    qDebug()<<MyCelect.ru.c_str();
                     QTableWidgetItem *itemNow=MainTable->item(row,column);
@@ -77,13 +81,14 @@ void Crossword::UpdateMainTable(){
                 item->setBackground(QBrush(QColor(255, 0, 0)));
             }
             else{
-                item->setText(QString(word));
+//                item->setText(QString(word));
+                item->setText("");
             }
             MainTable->setItem(row, column, item);
         };
     };
     for(int i=0;i!=tableWord.Using_Word.size();++i){
-        new QListWidgetItem(tableWord.Using_Word[i].eng.c_str(), UsingWordList);
+        new QListWidgetItem(tableWord.Using_Word[i].ru.c_str(), UsingWordList);
     };
 }
 
@@ -100,4 +105,77 @@ void Crossword::clearToNextPound(){
     Table *newTable=new Table;
     tableWord=*newTable;
     UsingWordList->clear();
+}
+
+void Crossword::seeAll(){
+    for(int row = 0; row != MainTable->rowCount(); ++row){
+        for(int column = 0; column !=MainTable->columnCount(); ++column){
+                char word=tableWord.table[row][column].Value();
+                if(word=='#' || word=='@'){continue;}
+                QTableWidgetItem *item =MainTable->item(row,column);
+                if(item->text()!=QString(word)){
+                    item->setBackground(QBrush(QColor(89, 0, 7)));
+                    item->setText(QString(word));
+                }
+                else{
+                    item->setBackground(QBrush(QColor(238, 255, 0)));
+                }
+        };
+    };
+}
+
+void Crossword::verifyAll(){
+    for(int row = 0; row != MainTable->rowCount(); ++row){
+        for(int column = 0; column !=MainTable->columnCount(); ++column){
+                char word=tableWord.table[row][column].Value();
+                if(word=='#' || word=='@'){continue;}
+                QTableWidgetItem *item =MainTable->item(row,column);
+                if(item->text()!=QString(word)){
+                    item->setBackground(QBrush(QColor(89, 0, 7)));
+                }
+                else{
+                    item->setBackground(QBrush(QColor(238, 255, 0)));
+                }
+        };
+    };
+}
+
+void Crossword::SelectCell(){
+//    if(UsingWordList->count()>1){
+//    if(SecectInUsingWordList!=Q_NULLPTR){
+//            SecectInUsingWordList->setBackground(QBrush(QColor(255, 255, 255)));
+//    }
+    for(int i=0;i!=SecectInUsingWordList.size();++i){
+        SecectInUsingWordList[i]->setBackground(QBrush(QColor(255, 255, 255)));
+    };
+    for(int i=0;i!=InMainSelect.size();++i){
+        InMainSelect[i]->setBackground(QBrush(QColor(255, 255, 255)));
+    };
+    InMainSelect.clear();
+    QList<QTableWidgetItem *> SelectItem=MainTable->selectedItems();
+    if(SelectItem.isEmpty()){
+        return;
+    }
+    QTableWidgetItem *item=SelectItem[0];
+    int row=MainTable->row(item);
+    int col=MainTable->column(item);
+    Word selectFirstWord=tableWord.table[row][col].FirstWord();
+    //QString find=QString(selectFirstWord.ru.c_str());
+    for(int row = 0; row != MainTable->rowCount(); ++row){
+        for(int column = 0; column !=MainTable->columnCount(); ++column){
+            if(tableWord.table[row][column].FirstWord().eng==selectFirstWord.eng || tableWord.table[row][column].SecondWord().eng==selectFirstWord.eng){
+                QTableWidgetItem *goodItem=MainTable->item(row,column);
+                goodItem->setBackground(QBrush(QColor(150, 150, 150)));
+                InMainSelect.push_back(goodItem);
+            }
+        }
+    };
+
+    for(int i=0;i!=UsingWordList->count();++i){
+        QListWidgetItem * QListItem=UsingWordList->item(i);
+        if(QListItem->text()==QString(selectFirstWord.ru.c_str())){
+            QListItem->setBackground(QBrush(QColor(150, 150, 150)));
+            SecectInUsingWordList.push_back(UsingWordList->item(i));
+        }
+    };
 }
