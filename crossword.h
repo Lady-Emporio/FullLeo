@@ -17,7 +17,7 @@ class Crossword : public QWidget
 public:
     explicit Crossword(QWidget *parent = 0);
     QTableWidget *MainTable;
-    Table tableWord;
+    Table *tableWord;
     QLabel *ErrorLabel;
     QListWidget *UsingWordList;
     std::vector<QListWidgetItem *>SecectInUsingWordList;

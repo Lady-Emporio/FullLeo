@@ -5,6 +5,7 @@
 #include <QDebug>
 Crossword::Crossword(QWidget *parent) : QWidget(parent)
 {
+    tableWord=new Table;
     QHBoxLayout *MainLayout=new QHBoxLayout(this);
     QVBoxLayout *SettingLauout=new QVBoxLayout;
     ErrorLabel=new QLabel("Все в порядке");
@@ -50,8 +51,8 @@ void Crossword::SelectWordRight(int x){
     ErrorLabel->setText(selected);
     for(int row = 0; row != MainTable->rowCount(); row++){
         for(int column = 0; column !=MainTable->columnCount(); column++){
-            Word MyCelectFirstWord=tableWord.table[row][column].FirstWord();
-            Word MyCelectSecondWord=tableWord.table[row][column].SecondWord();
+            Word MyCelectFirstWord=tableWord->table[row][column].FirstWord();
+            Word MyCelectSecondWord=tableWord->table[row][column].SecondWord();
             QString engFirstWord=MyCelectFirstWord.ru.c_str();
             QString engSecondWord=MyCelectSecondWord.ru.c_str();
             if(selected==engFirstWord || selected==engSecondWord){
@@ -67,7 +68,7 @@ void Crossword::UpdateMainTable(){
     for(int row = 0; row != MainTable->rowCount(); row++){
         for(int column = 0; column !=MainTable->columnCount(); column++){
             QTableWidgetItem *item = new QTableWidgetItem; // выделяем память под ячейку
-            char word=tableWord.table[row][column].Value();
+            char word=tableWord->table[row][column].Value();
             if(word=='@'){
                 item->setText(" ");
                 item->setFlags(Qt::NoItemFlags);
@@ -84,40 +85,34 @@ void Crossword::UpdateMainTable(){
             MainTable->setItem(row, column, item);
         };
     };
-    for(int i=0;i!=tableWord.Using_Word.size();++i){
-        new QListWidgetItem(tableWord.Using_Word[i].ru.c_str(), UsingWordList);
+    for(int i=0;i!=tableWord->Using_Word.size();++i){
+        new QListWidgetItem(tableWord->Using_Word[i].ru.c_str(), UsingWordList);
     };
 }
 
 void Crossword::slotUpdate(){
     clearToNextPound();
     std::string error;
-    if(!tableWord.run(&error)){
+    if(!tableWord->run(&error)){
         ErrorLabel->setText(error.c_str());
     }
     UpdateMainTable();
 }
 
 void Crossword::clearToNextPound(){
-    UsingWordList=new QListWidget;
-    Table *newTable=new Table;
-    tableWord=*newTable;
+    delete tableWord;
+    tableWord=new Table;
+    MainTable->clear();
     UsingWordList->clear();
     SecectInUsingWordList.clear();
     LastSelectInMainTable.clear();
     InMainSelect.clear();
-
-    for(int row = 0; row != MainTable->rowCount(); ++row){
-        for(int column = 0; column !=MainTable->columnCount(); ++column){
-            delete MainTable->item(row,column);
-        };
-    };
 }
 
 void Crossword::seeAll(){
     for(int row = 0; row != MainTable->rowCount(); ++row){
         for(int column = 0; column !=MainTable->columnCount(); ++column){
-                char word=tableWord.table[row][column].Value();
+                char word=tableWord->table[row][column].Value();
                 if(word=='#' || word=='@'){continue;}
                 QTableWidgetItem *item =MainTable->item(row,column);
                 if(item->text()!=QString(word)){
@@ -134,7 +129,7 @@ void Crossword::seeAll(){
 void Crossword::verifyAll(){
     for(int row = 0; row != MainTable->rowCount(); ++row){
         for(int column = 0; column !=MainTable->columnCount(); ++column){
-                char word=tableWord.table[row][column].Value();
+                char word=tableWord->table[row][column].Value();
                 if(word=='#' || word=='@'){continue;}
                 QTableWidgetItem *item =MainTable->item(row,column);
                 if(item->text()!=QString(word)){
@@ -163,10 +158,10 @@ void Crossword::SelectCell(){
     QTableWidgetItem *item=SelectItem[0];
     int row=MainTable->row(item);
     int col=MainTable->column(item);
-    Word selectFirstWord=tableWord.table[row][col].FirstWord();
+    Word selectFirstWord=tableWord->table[row][col].FirstWord();
     for(int row = 0; row != MainTable->rowCount(); ++row){
         for(int column = 0; column !=MainTable->columnCount(); ++column){
-            if(tableWord.table[row][column].FirstWord().eng==selectFirstWord.eng || tableWord.table[row][column].SecondWord().eng==selectFirstWord.eng){
+            if(tableWord->table[row][column].FirstWord().eng==selectFirstWord.eng || tableWord->table[row][column].SecondWord().eng==selectFirstWord.eng){
                 QTableWidgetItem *goodItem=MainTable->item(row,column);
                 goodItem->setBackground(QBrush(QColor(150, 150, 150)));
                 InMainSelect.push_back(goodItem);

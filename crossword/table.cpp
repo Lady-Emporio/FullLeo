@@ -29,7 +29,6 @@ Table::Table()
     for(int i=0;i!=TABLE_ROW;++i){
         table[i]=new Cell[TABLE_COL];
     };
-    qDebug("bad");
 }
 
 Table::~Table(){
@@ -37,7 +36,6 @@ Table::~Table(){
         delete [] table[i];
     };
     delete [] table;
-    qDebug("happy");
 }
 
 bool Table::run(string *Error){
