@@ -1,8 +1,8 @@
 #include "crossword.h"
 #include <QBrush>
-
 #include <QString>
 #include <QDebug>
+#include <QRegExpValidator>
 Crossword::Crossword(QWidget *parent) : QWidget(parent)
 {
     tableWord=new Table;
@@ -12,7 +12,10 @@ Crossword::Crossword(QWidget *parent) : QWidget(parent)
     QPushButton *buttomVerify=new QPushButton("verify");
     QPushButton *buttomSeeAll=new QPushButton("Look,see all");
     QPushButton *buttomUpdate=new QPushButton("update");
-    MainTable=new QTableWidget(TABLE_ROW,TABLE_COL);
+//    MainTable=new TableGui(TABLE_ROW,TABLE_COL);
+    MainTable=new TableGui;
+    MainTable->setColumnCount(TABLE_COL);
+    MainTable->setRowCount(TABLE_ROW);
     UsingWordList=new QListWidget;
     UsingWordList->setMaximumWidth(100);
     //UsingWordList-> setFixedSize(QSize(100, (TABLE_COL*COLUMNWIDTH)+MARGIN1));
@@ -187,4 +190,42 @@ void Crossword::SelectCell(){
             UsingWordList->scrollToItem(UsingWordList->item(i),QAbstractItemView::PositionAtCenter );
         }
     };
+}
+
+
+void TableGui::keyPressEvent(QKeyEvent * event){
+    if(event->type()==QEvent::KeyPress){
+        QString text=event->text();
+        QList<QTableWidgetItem *> IselectItem=this->selectedItems();
+        if(IselectItem.size()!=0){
+            QTableWidgetItem * item=IselectItem[0];
+            if(text.count()!=0){
+                QRegExpValidator r(QRegExp ("[a-z]"), 0);
+                int pos = 0;
+                if(r.validate(text,pos)==QValidator::Acceptable){
+                    item->setText(text);
+                }
+            }
+            int column=this->column(item);
+            int row=this->row(item);
+            switch(event->key()){
+                case Qt::Key_Left:
+//                    int col=column-1;
+//                    if(this->item(row,column-1)->flags()==Qt::NoItemFlags){
+//                        qDebug()<<item->flags();
+//                    }
+                    this->setCurrentIndex(this->model()->index(row,column-1));
+                    break;
+                case Qt::Key_Right:
+                    this->setCurrentIndex(this->model()->index(row,column+1));
+                    break;
+                case Qt::Key_Up:
+                    this->setCurrentIndex(this->model()->index(row-1,column));
+                    break;
+                case Qt::Key_Down:
+                    this->setCurrentIndex(this->model()->index(row+1,column));
+                    break;
+            }
+        }
+    }
 }

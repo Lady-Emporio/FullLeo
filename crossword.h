@@ -10,13 +10,23 @@
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QListWidget>
+#include <QKeyEvent>
+
+
+
+class TableGui: public QTableWidget{
+    Q_OBJECT
+public:
+//    explicit TableGui(QTableWidget *parent = 0);
+    void keyPressEvent(QKeyEvent * event);
+};
 
 class Crossword : public QWidget
 {
     Q_OBJECT
 public:
     explicit Crossword(QWidget *parent = 0);
-    QTableWidget *MainTable;
+    TableGui *MainTable;
     Table *tableWord;
     QLabel *ErrorLabel;
     QListWidget *UsingWordList;
@@ -35,5 +45,4 @@ private slots:
     void verifyAll();
     void seeAll();
 };
-
 #endif // CROSSWORD_H
