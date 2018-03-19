@@ -33,6 +33,7 @@ class Table
 {
 public:
     Table();
+    ~Table();
     Cell **table;
     bool run(std::string*);
     std::vector<Word> Using_Word;

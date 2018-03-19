@@ -1,5 +1,6 @@
 #ifndef CONST_H
 #define CONST_H
+#include <QBrush>
 int const TABLE_ROW=40;
 int const TABLE_COL=40;
 int const ROWHEIGHT=20;

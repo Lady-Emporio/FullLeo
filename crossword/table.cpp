@@ -29,6 +29,15 @@ Table::Table()
     for(int i=0;i!=TABLE_ROW;++i){
         table[i]=new Cell[TABLE_COL];
     };
+    qDebug("bad");
+}
+
+Table::~Table(){
+    for(int i=0;i!=TABLE_ROW;++i){
+        delete [] table[i];
+    };
+    delete [] table;
+    qDebug("happy");
 }
 
 bool Table::run(string *Error){
@@ -57,7 +66,6 @@ bool Table::run(string *Error){
             return false;
     }
     //############EndRegion вставляю первое слово
-
     int row,col,indexCollaps;
     pos WordPos;
 //    for(int i=ListWord.size()-1;i!=ListWord.size()-4;--i){
@@ -72,8 +80,6 @@ bool Table::run(string *Error){
 
     return true;
 }
-
-
 
 bool Table::FindIndexCollaps(int *row,int *col,std::string word,pos *WordPos,int *indexCollaps){
     for(int i_row=0;i_row!=TABLE_ROW;++i_row){
@@ -219,7 +225,6 @@ void Table::SetInTable(int row,int col,std::string word,pos WordPos,int indexCol
         };
     }
 }
-
 
 void Table::IfNeedBlock(){
     for(int row=0;row!=TABLE_ROW;++row){

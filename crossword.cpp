@@ -5,7 +5,6 @@
 #include <QDebug>
 Crossword::Crossword(QWidget *parent) : QWidget(parent)
 {
-//    tableWord=new Table;
     QHBoxLayout *MainLayout=new QHBoxLayout(this);
     QVBoxLayout *SettingLauout=new QVBoxLayout;
     ErrorLabel=new QLabel("Все в порядке");
@@ -13,7 +12,6 @@ Crossword::Crossword(QWidget *parent) : QWidget(parent)
     QPushButton *buttomSeeAll=new QPushButton("Look,see all");
     QPushButton *buttomUpdate=new QPushButton("update");
     MainTable=new QTableWidget(TABLE_ROW,TABLE_COL);
-//    UsingWordList=new QListWidget;
     UsingWordList=new QListWidget;
     UsingWordList-> setFixedSize(QSize(100, (TABLE_COL*COLUMNWIDTH)+MARGIN1));
     for(int i=0;i!=TABLE_ROW;++i){
@@ -40,6 +38,7 @@ Crossword::Crossword(QWidget *parent) : QWidget(parent)
     connect(MainTable, SIGNAL(itemSelectionChanged()), this, SLOT(SelectCell()));
 
 }
+
 void Crossword::SelectWordRight(int x){
     for(int i=0;i!=LastSelectInMainTable.size();++i){
         LastSelectInMainTable[i]->setBackground(QBrush(QColor(255, 255, 255)));
@@ -56,7 +55,6 @@ void Crossword::SelectWordRight(int x){
             QString engFirstWord=MyCelectFirstWord.ru.c_str();
             QString engSecondWord=MyCelectSecondWord.ru.c_str();
             if(selected==engFirstWord || selected==engSecondWord){
-//                    qDebug()<<MyCelect.ru.c_str();
                     QTableWidgetItem *itemNow=MainTable->item(row,column);
                     itemNow->setBackground(QBrush(QColor(0, 255, 17)));
                     LastSelectInMainTable.push_back(itemNow);
@@ -68,7 +66,7 @@ void Crossword::SelectWordRight(int x){
 void Crossword::UpdateMainTable(){
     for(int row = 0; row != MainTable->rowCount(); row++){
         for(int column = 0; column !=MainTable->columnCount(); column++){
-            QTableWidgetItem *item = new QTableWidgetItem(); // выделяем память под ячейку
+            QTableWidgetItem *item = new QTableWidgetItem; // выделяем память под ячейку
             char word=tableWord.table[row][column].Value();
             if(word=='@'){
                 item->setText(" ");
@@ -81,7 +79,6 @@ void Crossword::UpdateMainTable(){
                 item->setBackground(QBrush(QColor(255, 0, 0)));
             }
             else{
-//                item->setText(QString(word));
                 item->setText("");
             }
             MainTable->setItem(row, column, item);
@@ -92,7 +89,6 @@ void Crossword::UpdateMainTable(){
     };
 }
 
-
 void Crossword::slotUpdate(){
     clearToNextPound();
     std::string error;
@@ -101,13 +97,21 @@ void Crossword::slotUpdate(){
     }
     UpdateMainTable();
 }
+
 void Crossword::clearToNextPound(){
+    UsingWordList=new QListWidget;
     Table *newTable=new Table;
     tableWord=*newTable;
     UsingWordList->clear();
     SecectInUsingWordList.clear();
     LastSelectInMainTable.clear();
     InMainSelect.clear();
+
+    for(int row = 0; row != MainTable->rowCount(); ++row){
+        for(int column = 0; column !=MainTable->columnCount(); ++column){
+            delete MainTable->item(row,column);
+        };
+    };
 }
 
 void Crossword::seeAll(){
@@ -160,7 +164,6 @@ void Crossword::SelectCell(){
     int row=MainTable->row(item);
     int col=MainTable->column(item);
     Word selectFirstWord=tableWord.table[row][col].FirstWord();
-    //QString find=QString(selectFirstWord.ru.c_str());
     for(int row = 0; row != MainTable->rowCount(); ++row){
         for(int column = 0; column !=MainTable->columnCount(); ++column){
             if(tableWord.table[row][column].FirstWord().eng==selectFirstWord.eng || tableWord.table[row][column].SecondWord().eng==selectFirstWord.eng){
@@ -170,7 +173,6 @@ void Crossword::SelectCell(){
             }
         }
     };
-
     for(int i=0;i!=UsingWordList->count();++i){
         QListWidgetItem * QListItem=UsingWordList->item(i);
         if(QListItem->text()==QString(selectFirstWord.ru.c_str())){
