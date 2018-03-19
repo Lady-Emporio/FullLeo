@@ -14,7 +14,8 @@ Crossword::Crossword(QWidget *parent) : QWidget(parent)
     QPushButton *buttomUpdate=new QPushButton("update");
     MainTable=new QTableWidget(TABLE_ROW,TABLE_COL);
     UsingWordList=new QListWidget;
-    UsingWordList-> setFixedSize(QSize(100, (TABLE_COL*COLUMNWIDTH)+MARGIN1));
+    UsingWordList->setMaximumWidth(100);
+    //UsingWordList-> setFixedSize(QSize(100, (TABLE_COL*COLUMNWIDTH)+MARGIN1));
     for(int i=0;i!=TABLE_ROW;++i){
         MainTable->setColumnWidth(i,20);
         MainTable->setRowHeight(i,20);
@@ -38,11 +39,17 @@ Crossword::Crossword(QWidget *parent) : QWidget(parent)
     connect(UsingWordList, SIGNAL(currentRowChanged(int)), this, SLOT(SelectWordRight(int)));
     connect(MainTable, SIGNAL(itemSelectionChanged()), this, SLOT(SelectCell()));
 
+    MainTable->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
+    MainTable->setSelectionMode(QAbstractItemView::SingleSelection);//выделяем только один элемент
 }
 
 void Crossword::SelectWordRight(int x){
+    for(int i=0;i!=InMainSelect.size();++i){
+        InMainSelect[i]->setBackground(DEFAULTQB);
+    };
+    InMainSelect.clear();
     for(int i=0;i!=LastSelectInMainTable.size();++i){
-        LastSelectInMainTable[i]->setBackground(QBrush(QColor(255, 255, 255)));
+        LastSelectInMainTable[i]->setBackground(DEFAULTQB);
     };
     LastSelectInMainTable.clear();
 
@@ -57,7 +64,7 @@ void Crossword::SelectWordRight(int x){
             QString engSecondWord=MyCelectSecondWord.ru.c_str();
             if(selected==engFirstWord || selected==engSecondWord){
                     QTableWidgetItem *itemNow=MainTable->item(row,column);
-                    itemNow->setBackground(QBrush(QColor(0, 255, 17)));
+                    itemNow->setBackground(ACTIVEINTABLEQB);
                     LastSelectInMainTable.push_back(itemNow);
             }
         };
@@ -72,12 +79,12 @@ void Crossword::UpdateMainTable(){
             if(word=='@'){
                 item->setText(" ");
                 item->setFlags(Qt::NoItemFlags);
-                item->setBackground(QBrush(QColor(74, 247, 239)));
+                item->setBackground(NOTUSEQB);
             }
             else if(word=='#'){
                 item->setFlags(Qt::NoItemFlags);
                 item->setText(QString(word));
-                item->setBackground(QBrush(QColor(255, 0, 0)));
+                item->setBackground(GRIDQB);
             }
             else{
                 item->setText("");
@@ -116,11 +123,11 @@ void Crossword::seeAll(){
                 if(word=='#' || word=='@'){continue;}
                 QTableWidgetItem *item =MainTable->item(row,column);
                 if(item->text()!=QString(word)){
-                    item->setBackground(QBrush(QColor(89, 0, 7)));
+                    item->setBackground(FALSEQB);
                     item->setText(QString(word));
                 }
                 else{
-                    item->setBackground(QBrush(QColor(238, 255, 0)));
+                    item->setBackground(TRUEQB);
                 }
         };
     };
@@ -133,10 +140,10 @@ void Crossword::verifyAll(){
                 if(word=='#' || word=='@'){continue;}
                 QTableWidgetItem *item =MainTable->item(row,column);
                 if(item->text()!=QString(word)){
-                    item->setBackground(QBrush(QColor(89, 0, 7)));
+                    item->setBackground(FALSEQB);
                 }
                 else{
-                    item->setBackground(QBrush(QColor(238, 255, 0)));
+                    item->setBackground(TRUEQB);
                 }
         };
     };
@@ -144,13 +151,17 @@ void Crossword::verifyAll(){
 
 void Crossword::SelectCell(){
     for(int i=0;i!=SecectInUsingWordList.size();++i){
-        SecectInUsingWordList[i]->setBackground(QBrush(QColor(255, 255, 255)));
+        SecectInUsingWordList[i]->setBackground(DEFAULTQB);
     };
     SecectInUsingWordList.clear();
     for(int i=0;i!=InMainSelect.size();++i){
-        InMainSelect[i]->setBackground(QBrush(QColor(255, 255, 255)));
+        InMainSelect[i]->setBackground(DEFAULTQB);
     };
     InMainSelect.clear();
+    for(int i=0;i!=LastSelectInMainTable.size();++i){
+        LastSelectInMainTable[i]->setBackground(DEFAULTQB);
+    };
+    LastSelectInMainTable.clear();
     QList<QTableWidgetItem *> SelectItem=MainTable->selectedItems();
     if(SelectItem.isEmpty()){
         return;
@@ -163,7 +174,7 @@ void Crossword::SelectCell(){
         for(int column = 0; column !=MainTable->columnCount(); ++column){
             if(tableWord->table[row][column].FirstWord().eng==selectFirstWord.eng || tableWord->table[row][column].SecondWord().eng==selectFirstWord.eng){
                 QTableWidgetItem *goodItem=MainTable->item(row,column);
-                goodItem->setBackground(QBrush(QColor(150, 150, 150)));
+                goodItem->setBackground(ACTIVEINTABLEQB);
                 InMainSelect.push_back(goodItem);
             }
         }
@@ -171,8 +182,9 @@ void Crossword::SelectCell(){
     for(int i=0;i!=UsingWordList->count();++i){
         QListWidgetItem * QListItem=UsingWordList->item(i);
         if(QListItem->text()==QString(selectFirstWord.ru.c_str())){
-            QListItem->setBackground(QBrush(QColor(150, 150, 150)));
+            QListItem->setBackground(ACTIVELISTQB);
             SecectInUsingWordList.push_back(UsingWordList->item(i));
+            UsingWordList->scrollToItem(UsingWordList->item(i),QAbstractItemView::PositionAtCenter );
         }
     };
 }
