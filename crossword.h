@@ -17,7 +17,6 @@
 class TableGui: public QTableWidget{
     Q_OBJECT
 public:
-//    explicit TableGui(QTableWidget *parent = 0);
     void keyPressEvent(QKeyEvent * event);
 };
 
@@ -39,8 +38,8 @@ signals:
 
 public slots:
     void slotUpdate();
-private slots:
     void SelectWordRight(int);
+private slots:
     void SelectCell();
     void verifyAll();
     void seeAll();

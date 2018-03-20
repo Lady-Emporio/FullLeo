@@ -39,6 +39,7 @@ Table::~Table(){
 }
 
 bool Table::run(string *Error){
+    Using_Word.clear();
     vector<Word> ListWord=getWord();
     if (ListWord.size()<=15){
             *Error="Small size: "+to_string(ListWord.size());
@@ -75,7 +76,6 @@ bool Table::run(string *Error){
             IfNeedBlock();
         }
     }
-
     return true;
 }
 
@@ -139,6 +139,13 @@ bool Table::CanISetWord(int row,int col,std::string word,pos WordPos,int indexCo
                 if(cell.Value()!=word[i]){return false;}
             }
         };
+        //Error vertical collaps
+        //Правее конца слова не должно быть ничего если indexCollaps не конец слова.
+        //и вокруг начала слова не должно быть ничего, если indexCollaps не начало слова.
+        if(!NotInTableIndexError(col+1)){if(table[row+word.size()-1][col+1].Status()!=freely && indexCollaps!=word.size()-1){return false;}}
+        if(!NotInTableIndexError(col-1)){if(table[row+word.size()-1][col-1].Status()!=freely && indexCollaps!=word.size()-1){return false;}}
+        if(!NotInTableIndexError(col+1)){if(table[row+0][col+1].Status()!=freely && indexCollaps!=0){return false;}}
+        if(!NotInTableIndexError(col-1)){if(table[row+0][col-1].Status()!=freely && indexCollaps!=0){return false;}}
     }
     if(WordPos==horizontal){
         for(int i=-1;i!=word.size()+1;++i){
@@ -160,6 +167,13 @@ bool Table::CanISetWord(int row,int col,std::string word,pos WordPos,int indexCo
                 if(cell.Value()!=word[i]){return false;}
             }
         };
+        //Error horizontal collaps
+        //выше конца слова не должно быть ничего если indexCollaps не конец слова.
+        //и ниже выше начала слова не должно быть ничего, если indexCollaps не начало слова.
+        if(!NotInTableIndexError(row+1)){if(table[row+1][col+word.size()-1].Status()!=freely && indexCollaps!=word.size()-1){return false;}}
+        if(!NotInTableIndexError(row-1)){if(table[row-1][col+word.size()-1].Status()!=freely && indexCollaps!=word.size()-1){return false;}}
+        if(!NotInTableIndexError(row+1)){if(table[row+1][col+0].Status()!=freely && indexCollaps!=0){return false;}}
+        if(!NotInTableIndexError(row-1)){if(table[row-1][col+0].Status()!=freely && indexCollaps!=0){return false;}}
     }
     return true;
  }

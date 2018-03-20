@@ -126,7 +126,7 @@ static const uint qt_meta_data_Crossword[] = {
 
  // slots: name, argc, parameters, tag, flags
        1,    0,   39,    2, 0x0a /* Public */,
-       3,    1,   40,    2, 0x08 /* Private */,
+       3,    1,   40,    2, 0x0a /* Public */,
        4,    0,   43,    2, 0x08 /* Private */,
        5,    0,   44,    2, 0x08 /* Private */,
        6,    0,   45,    2, 0x08 /* Private */,

@@ -21,7 +21,6 @@ if (sqlite3_prepare(db, "SELECT * FROM 'MainTable';", -1, &pStmt, NULL)){
 
 
 while((sqlite3_step(pStmt)) == SQLITE_ROW){
-//    int coln = sqlite3_data_count(pStmt);
     Word next;
     std::string id=reinterpret_cast<const char *>(sqlite3_column_text(pStmt, 0));
     next.id=stoi(id);
@@ -31,6 +30,8 @@ while((sqlite3_step(pStmt)) == SQLITE_ROW){
     next.image=reinterpret_cast<const char *>(sqlite3_column_text(pStmt, 4));
     List_word.push_back(next);
 };
+sqlite3_finalize(pStmt);
+sqlite3_close(db);
 return List_word;
 }
 #endif // BD_H

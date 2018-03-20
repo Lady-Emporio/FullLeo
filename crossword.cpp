@@ -12,13 +12,13 @@ Crossword::Crossword(QWidget *parent) : QWidget(parent)
     QPushButton *buttomVerify=new QPushButton("verify");
     QPushButton *buttomSeeAll=new QPushButton("Look,see all");
     QPushButton *buttomUpdate=new QPushButton("update");
-//    MainTable=new TableGui(TABLE_ROW,TABLE_COL);
+
     MainTable=new TableGui;
     MainTable->setColumnCount(TABLE_COL);
     MainTable->setRowCount(TABLE_ROW);
     UsingWordList=new QListWidget;
     UsingWordList->setMaximumWidth(100);
-    //UsingWordList-> setFixedSize(QSize(100, (TABLE_COL*COLUMNWIDTH)+MARGIN1));
+
     for(int i=0;i!=TABLE_ROW;++i){
         MainTable->setColumnWidth(i,20);
         MainTable->setRowHeight(i,20);
@@ -47,6 +47,11 @@ Crossword::Crossword(QWidget *parent) : QWidget(parent)
 }
 
 void Crossword::SelectWordRight(int x){
+    if(x==-1){
+        LastSelectInMainTable.clear();
+        InMainSelect.clear();
+        return;
+    }
     for(int i=0;i!=InMainSelect.size();++i){
         InMainSelect[i]->setBackground(DEFAULTQB);
     };
@@ -55,7 +60,6 @@ void Crossword::SelectWordRight(int x){
         LastSelectInMainTable[i]->setBackground(DEFAULTQB);
     };
     LastSelectInMainTable.clear();
-
 
     QString selected=UsingWordList->item(x)->text();
     ErrorLabel->setText(selected);
@@ -115,8 +119,6 @@ void Crossword::clearToNextPound(){
     MainTable->clear();
     UsingWordList->clear();
     SecectInUsingWordList.clear();
-    LastSelectInMainTable.clear();
-    InMainSelect.clear();
 }
 
 void Crossword::seeAll(){
@@ -192,7 +194,6 @@ void Crossword::SelectCell(){
     };
 }
 
-
 void TableGui::keyPressEvent(QKeyEvent * event){
     if(event->type()==QEvent::KeyPress){
         QString text=event->text();
@@ -209,22 +210,29 @@ void TableGui::keyPressEvent(QKeyEvent * event){
             int column=this->column(item);
             int row=this->row(item);
             switch(event->key()){
-                case Qt::Key_Left:
-//                    int col=column-1;
+                case Qt::Key_Left:{
+                    int left=column-1;
+                    if(NotInTableIndexError(left)){break;}
 //                    if(this->item(row,column-1)->flags()==Qt::NoItemFlags){
 //                        qDebug()<<item->flags();
 //                    }
-                    this->setCurrentIndex(this->model()->index(row,column-1));
+                    this->setCurrentIndex(this->model()->index(row,left));
                     break;
-                case Qt::Key_Right:
-                    this->setCurrentIndex(this->model()->index(row,column+1));
+                }case Qt::Key_Right:{
+                    int right=column+1;
+                    if(NotInTableIndexError(right)){break;}
+                    this->setCurrentIndex(this->model()->index(row,right));
                     break;
-                case Qt::Key_Up:
-                    this->setCurrentIndex(this->model()->index(row-1,column));
+                }case Qt::Key_Up:{
+                    int up=row-1;
+                    if(NotInTableIndexError(up)){break;}
+                    this->setCurrentIndex(this->model()->index(up,column));
                     break;
-                case Qt::Key_Down:
-                    this->setCurrentIndex(this->model()->index(row+1,column));
-                    break;
+                }case Qt::Key_Down:{
+                    int down=row+1;
+                    if(NotInTableIndexError(down)){break;}
+                    this->setCurrentIndex(this->model()->index(down,column));
+                    break;}
             }
         }
     }
