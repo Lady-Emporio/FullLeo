@@ -3,7 +3,7 @@
 #include <QColor>
 #include <QBrush>
 int const TABLE_ROW=40;
-int const TABLE_COL=40;
+int const TABLE_COL=TABLE_ROW;
 int const ROWHEIGHT=20;
 int const COLUMNWIDTH=20;
 int const MARGIN1=65;

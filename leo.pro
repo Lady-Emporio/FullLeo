@@ -14,11 +14,13 @@ LIBS+=-L. -lsqlite3
 
 SOURCES += main.cpp\
     crossword/table.cpp \
-    crossword.cpp
+    crossword.cpp \
+    mainwindows.cpp
 
 HEADERS  += \
     crossword/table.h \
     const.h \
     word.h \
     bd.h \
-    crossword.h
+    crossword.h \
+    mainwindows.h
