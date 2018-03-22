@@ -15,7 +15,9 @@ LIBS+=-L. -lsqlite3
 SOURCES += main.cpp\
     crossword/table.cpp \
     crossword.cpp \
-    mainwindows.cpp
+    mainwindows.cpp \
+    const.cpp \
+    settings.cpp
 
 HEADERS  += \
     crossword/table.h \
@@ -23,4 +25,5 @@ HEADERS  += \
     word.h \
     bd.h \
     crossword.h \
-    mainwindows.h
+    mainwindows.h \
+    settings.h

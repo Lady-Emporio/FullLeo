@@ -25,14 +25,14 @@ void Cell::setSecondWord(Word x){this->secondWord_=x;}
 //#############################table#########
 Table::Table()
 {
-    table=new Cell*[TABLE_ROW];
-    for(int i=0;i!=TABLE_ROW;++i){
-        table[i]=new Cell[TABLE_COL];
+    table=new Cell*[CONST->TABLE_ROW()];
+    for(int i=0;i!=CONST->TABLE_ROW();++i){
+        table[i]=new Cell[CONST->TABLE_COL()];
     };
 }
 
 Table::~Table(){
-    for(int i=0;i!=TABLE_ROW;++i){
+    for(int i=0;i!=CONST->TABLE_ROW();++i){
         delete [] table[i];
     };
     delete [] table;
@@ -57,9 +57,9 @@ bool Table::run(string *Error){
     Word fword=ListWord.back();
     string FirstWord=fword.eng;
     ListWord.pop_back();
-    if(CanISetWord(TABLE_ROW/2,(TABLE_COL/2)-(FirstWord.size()/2),FirstWord,horizontal,-1)){
+    if(CanISetWord(CONST->TABLE_ROW()/2,(CONST->TABLE_COL()/2)-(FirstWord.size()/2),FirstWord,horizontal,-1)){
         Using_Word.push_back(fword);
-        SetInTable(TABLE_ROW/2,(TABLE_COL/2)-(FirstWord.size()/2),FirstWord,horizontal,-1,fword);
+        SetInTable(CONST->TABLE_ROW()/2,(CONST->TABLE_COL()/2)-(FirstWord.size()/2),FirstWord,horizontal,-1,fword);
     }else{
             *Error="First word error can`t set in table";
             return false;
@@ -80,8 +80,8 @@ bool Table::run(string *Error){
 }
 
 bool Table::FindIndexCollaps(int *row,int *col,std::string word,pos *WordPos,int *indexCollaps){
-    for(int i_row=0;i_row!=TABLE_ROW;++i_row){
-        for(int i_col=0;i_col!=TABLE_COL;++i_col){
+    for(int i_row=0;i_row!=CONST->TABLE_ROW();++i_row){
+        for(int i_col=0;i_col!=CONST->TABLE_COL();++i_col){
             for(int i=0;i!=word.size();++i){
                 if(table[i_row][i_col].Value()==word[i]){
                     if(table[i_row][i_col].Pos()==vertical){
@@ -239,8 +239,8 @@ void Table::SetInTable(int row,int col,std::string word,pos WordPos,int indexCol
 }
 
 void Table::IfNeedBlock(){
-    for(int row=0;row!=TABLE_ROW;++row){
-        for(int col=0;col!=TABLE_COL;++col){
+    for(int row=0;row!=CONST->TABLE_ROW();++row){
+        for(int col=0;col!=CONST->TABLE_COL();++col){
             Cell *cell=&table[row][col];
             if(cell->Status()!=block && cell->Status()!=wordHere){
                 int sum=0;

@@ -14,17 +14,17 @@ Crossword::Crossword(QWidget *parent) : QWidget(parent)
     QPushButton *buttomUpdate=new QPushButton("update");
 
     MainTable=new TableGui;
-    MainTable->setColumnCount(TABLE_COL);
-    MainTable->setRowCount(TABLE_ROW);
+    MainTable->setColumnCount(CONST->TABLE_COL());
+    MainTable->setRowCount(CONST->TABLE_ROW());
     UsingWordList=new QListWidget;
     UsingWordList->setMaximumWidth(100);
 
-    for(int i=0;i!=TABLE_ROW;++i){
+    for(int i=0;i!=CONST->TABLE_ROW();++i){
         MainTable->setColumnWidth(i,20);
         MainTable->setRowHeight(i,20);
     };
 
-    this->resize(TABLE_ROW*ROWHEIGHT+(MARGIN1*3)+UsingWordList->width(),(TABLE_COL*COLUMNWIDTH)+MARGIN1);
+    this->resize(CONST->TABLE_ROW()*CONST->ROWHEIGHT()+(CONST->MARGIN1()*3)+UsingWordList->width(),(CONST->TABLE_COL()*CONST->COLUMNWIDTH())+CONST->MARGIN1());
 
     MainLayout->addLayout(SettingLauout);
     SettingLauout->addWidget(ErrorLabel);
@@ -79,8 +79,8 @@ void Crossword::SelectWordRight(int x){
 }
 
 void Crossword::UpdateMainTable(){
-    for(int row = 0; row != MainTable->rowCount(); row++){
-        for(int column = 0; column !=MainTable->columnCount(); column++){
+    for(int row = 0; row != CONST->TABLE_ROW(); ++row){
+        for(int column = 0; column !=CONST->TABLE_COL(); ++column){
             QTableWidgetItem *item = new QTableWidgetItem; // выделяем память под ячейку
             char word=tableWord->table[row][column].Value();
             if(word=='@'){

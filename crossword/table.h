@@ -46,7 +46,7 @@ private:
 
 
 inline bool NotInTableIndexError(int x){
-    if(x>=TABLE_ROW){return true;}//всего 40х40, он не может быть больше или равен 40.
+    if(x>=CONST->TABLE_ROW()){return true;}//всего 40х40, он не может быть больше или равен 40.
     else if(x<0){return true;}
     else 		{return false;}
 }

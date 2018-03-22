@@ -22,6 +22,7 @@ private:
     QMenuBar *highTopMenu;
 private slots:
     void on_actionAddCrossword_triggered();
+    void on_actionOpenSettingstriggered();
 };
 
 #endif // MAINWINDOWS_H

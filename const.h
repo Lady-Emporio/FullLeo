@@ -2,11 +2,33 @@
 #define CONST_H
 #include <QColor>
 #include <QBrush>
-int const TABLE_ROW=40;
-int const TABLE_COL=TABLE_ROW;
-int const ROWHEIGHT=20;
-int const COLUMNWIDTH=20;
-int const MARGIN1=65;
+enum styleWindow{defaults,as1C,low};
+#define CONST Const::getConst()
+class Const{
+public:
+    int TABLE_ROW(){return TABLE_ROW_;}
+    int TABLE_COL(){return TABLE_COL_;}
+    int ROWHEIGHT(){return ROWHEIGHT_;}
+    int COLUMNWIDTH(){return COLUMNWIDTH_;}
+    int MARGIN1(){return MARGIN1_;}
+    void setSize(styleWindow x=defaults);
+    void setStyle();
+    static Const * getConst();
+private:
+    int TABLE_ROW_;
+    int TABLE_COL_;
+    int ROWHEIGHT_;
+    int COLUMNWIDTH_;
+    int MARGIN1_;
+    QBrush const DEFAULTQB;
+    QBrush const NOTUSEQB;
+    QBrush const TRUEQB;
+    QBrush const FALSEQB;
+    QBrush const GRIDQB;
+    QBrush const ACTIVEINTABLEQB;
+    QBrush const ACTIVELISTQB;
+    Const();
+};
 enum status{freely,block,wordHere};
 enum pos{vertical,horizontal,zero};
 
