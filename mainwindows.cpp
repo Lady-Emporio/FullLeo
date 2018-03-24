@@ -1,6 +1,18 @@
 #include "mainwindows.h"
 #include "settings.h"
-#include "QMdiSubWindow"
+
+#include <QDebug>
+
+saveMdiSub::saveMdiSub(QWidget *parent) :QMdiSubWindow(parent){
+
+}
+void saveMdiSub::closeEvent(QCloseEvent *event){
+        //work but i not know;
+}
+
+
+
+
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
     mdiArea = new QMdiArea(this);  // инициализируем QMdiArea
@@ -27,8 +39,21 @@ void MainWindow::on_actionAddCrossword_triggered(){
 }
 
 void MainWindow::on_actionOpenSettingstriggered(){
-    Settings *settings =new Settings;
-    settings->setParent(mdiArea);
-    mdiArea->addSubWindow(settings);
-    settings->show();
+    static Settings *settings =Settings::getSettings();
+    static bool firstCreate=true;
+    if (firstCreate){
+        saveMdiSub *subWindow1 = new saveMdiSub;
+        subWindow1->setWidget(settings);
+        mdiArea->addSubWindow(subWindow1);
+        firstCreate=false;
+        subWindow1->show();
+    }
+    else{
+        QList<QMdiSubWindow *>	allSub=mdiArea->subWindowList();
+        for(auto x:allSub){
+            if(x->widget()==settings && x->isHidden()){
+                    x->show();
+            }
+        };
+    }
 }

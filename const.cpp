@@ -5,6 +5,9 @@ Const * Const::getConst(){
 }
 
 Const::Const(){
+    alg_=fast;
+    jump_=false;
+    autoCompletion_=false;
     this->setSize();
 
 }
@@ -18,7 +21,6 @@ void Const::setSize(styleWindow x){
             MARGIN1_=65;
             break;
         case low:
-            qDebug("low");
             TABLE_ROW_=10;
             TABLE_COL_=10;
             ROWHEIGHT_=20;

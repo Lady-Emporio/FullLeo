@@ -427,6 +427,8 @@ release/moc_mainwindows.cpp: crossword.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qactiongroup.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QMenu \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QAction \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QMdiSubWindow \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qmdisubwindow.h \
 		mainwindows.h
 	'C:\Qt\Qt5.6.3\5.6.3\mingw49_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/win32-g++ -IC:/Users/User/Desktop/C++/fullLeo/leo -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtANGLE -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore mainwindows.h -o release/moc_mainwindows.cpp
 
@@ -552,6 +554,14 @@ release/moc_settings.cpp: C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComb
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLineEdit \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlineedit.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextcursor.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextformat.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpen.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextoption.h \
 		settings.h
 	'C:\Qt\Qt5.6.3\5.6.3\mingw49_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/win32-g++ -IC:/Users/User/Desktop/C++/fullLeo/leo -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtANGLE -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore settings.h -o release/moc_settings.cpp
 
@@ -732,6 +742,8 @@ release/main.o: main.cpp mainwindows.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qactiongroup.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QMenu \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QAction \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QMdiSubWindow \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qmdisubwindow.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QApplication \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qapplication.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qcoreapplication.h \
@@ -829,7 +841,15 @@ release/table.o: crossword/table.cpp crossword/table.h \
 		word.h \
 		bd.h \
 		sqlite3.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QString
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QString \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qdebug.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qmap.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qtextstream.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qlocale.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qvariant.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qset.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qcontiguouscache.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/table.o crossword/table.cpp
 
 release/crossword.o: crossword.cpp crossword.h \
@@ -1146,11 +1166,20 @@ release/mainwindows.o: mainwindows.cpp mainwindows.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qactiongroup.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QMenu \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QAction \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QMdiSubWindow \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qmdisubwindow.h \
 		settings.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qcombobox.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QMdiSubWindow \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qmdisubwindow.h
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLineEdit \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlineedit.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextcursor.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextformat.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpen.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextoption.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/mainwindows.o mainwindows.cpp
 
 release/const.o: const.cpp const.h \
@@ -1362,16 +1391,30 @@ release/settings.o: settings.cpp settings.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLineEdit \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlineedit.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextcursor.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextformat.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpen.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextoption.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QVBoxLayout \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHBoxLayout \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QString \
 		const.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QColor \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QBrush
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QBrush \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QPushButton \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qpushbutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QRadioButton \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qradiobutton.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/settings.o settings.cpp
 
 release/moc_crossword.o: release/moc_crossword.cpp 

@@ -14,17 +14,20 @@ Crossword::Crossword(QWidget *parent) : QWidget(parent)
     QPushButton *buttomUpdate=new QPushButton("update");
 
     MainTable=new TableGui;
-    MainTable->setColumnCount(CONST->TABLE_COL());
-    MainTable->setRowCount(CONST->TABLE_ROW());
+    inCrosswordTableRowMax=CONST->TABLE_ROW();
+    inCrosswordTableColMax=CONST->TABLE_COL();
+    MainTable->setColumnCount(inCrosswordTableColMax);
+    MainTable->setRowCount(inCrosswordTableRowMax);
     UsingWordList=new QListWidget;
     UsingWordList->setMaximumWidth(100);
 
-    for(int i=0;i!=CONST->TABLE_ROW();++i){
-        MainTable->setColumnWidth(i,20);
+    for(int i=0;i!=inCrosswordTableRowMax;++i){
         MainTable->setRowHeight(i,20);
+    }
+    for(int i=0;i!=inCrosswordTableColMax;++i){
+        MainTable->setColumnWidth(i,20);
     };
-
-    this->resize(CONST->TABLE_ROW()*CONST->ROWHEIGHT()+(CONST->MARGIN1()*3)+UsingWordList->width(),(CONST->TABLE_COL()*CONST->COLUMNWIDTH())+CONST->MARGIN1());
+    this->resize(inCrosswordTableRowMax*CONST->ROWHEIGHT()+(CONST->MARGIN1()*3)+UsingWordList->width(),(inCrosswordTableColMax*CONST->COLUMNWIDTH())+CONST->MARGIN1());
 
     MainLayout->addLayout(SettingLauout);
     SettingLauout->addWidget(ErrorLabel);
@@ -79,8 +82,8 @@ void Crossword::SelectWordRight(int x){
 }
 
 void Crossword::UpdateMainTable(){
-    for(int row = 0; row != CONST->TABLE_ROW(); ++row){
-        for(int column = 0; column !=CONST->TABLE_COL(); ++column){
+    for(int row = 0; row != inCrosswordTableRowMax; ++row){
+        for(int column = 0; column !=inCrosswordTableColMax; ++column){
             QTableWidgetItem *item = new QTableWidgetItem; // выделяем память под ячейку
             char word=tableWord->table[row][column].Value();
             if(word=='@'){
@@ -105,9 +108,11 @@ void Crossword::UpdateMainTable(){
 }
 
 void Crossword::slotUpdate(){
+    inCrosswordTableColMax=CONST->TABLE_COL();
+    inCrosswordTableRowMax=CONST->TABLE_ROW();
     clearToNextPound();
     std::string error;
-    if(!tableWord->run(&error)){
+    if(!tableWord->run(&error,CONST->ALGORITMH())){
         ErrorLabel->setText(error.c_str());
     }
     UpdateMainTable();
@@ -117,11 +122,26 @@ void Crossword::clearToNextPound(){
     delete tableWord;
     tableWord=new Table;
     MainTable->clear();
+    MainTable->tableForQKeyEvent=tableWord;
+    if(MainTable->columnCount()!=inCrosswordTableColMax){
+        MainTable->setColumnCount(inCrosswordTableColMax);
+    }
+    for(int i=0;i!=inCrosswordTableColMax;++i){
+        MainTable->setColumnWidth(i,20);
+    };
+    if(MainTable->rowCount()!=inCrosswordTableRowMax){
+        MainTable->setRowCount(inCrosswordTableRowMax);
+    }
+    for(int i=0;i!=inCrosswordTableRowMax;++i){
+        MainTable->setRowHeight(i,20);
+    }
     UsingWordList->clear();
     SecectInUsingWordList.clear();
+
 }
 
 void Crossword::seeAll(){
+    MainTable->selectionModel()->clearSelection();//clear background now focus element
     for(int row = 0; row != MainTable->rowCount(); ++row){
         for(int column = 0; column !=MainTable->columnCount(); ++column){
                 char word=tableWord->table[row][column].Value();
@@ -139,8 +159,12 @@ void Crossword::seeAll(){
 }
 
 void Crossword::verifyAll(){
-    for(int row = 0; row != MainTable->rowCount(); ++row){
-        for(int column = 0; column !=MainTable->columnCount(); ++column){
+    MainTable->selectionModel()->clearSelection();//clear background now focus element
+
+    int maxRow=inCrosswordTableRowMax;
+    int maxCol=inCrosswordTableColMax;
+    for(int row = 0; row != maxRow; ++row){
+        for(int column = 0; column !=maxCol; ++column){
                 char word=tableWord->table[row][column].Value();
                 if(word=='#' || word=='@'){continue;}
                 QTableWidgetItem *item =MainTable->item(row,column);
@@ -205,6 +229,39 @@ void TableGui::keyPressEvent(QKeyEvent * event){
                 int pos = 0;
                 if(r.validate(text,pos)==QValidator::Acceptable){
                     item->setText(text);
+                    if(CONST->AUTOCOMPLETION()){
+                        int column=this->column(item);
+                        int row=this->row(item);
+                        //word can be vertical (up to-> down) or horizontal (left to-> right)
+                        static bool GateToNewWord=true;
+                        static Word selectFirstWord;
+                        if(GateToNewWord){
+                            selectFirstWord=tableForQKeyEvent->table[row][column].FirstWord();
+                            GateToNewWord=false;
+                        }
+                        int sumIfNeedNewWord=0;
+                        int down=row+1;
+                        if(!NotInTableIndexError(down,vertical)){
+                            if(tableForQKeyEvent->table[down][column].FirstWord().eng==selectFirstWord.eng || tableForQKeyEvent->table[down][column].SecondWord().eng==selectFirstWord.eng){
+                                this->setCurrentIndex(this->model()->index(down,column));
+                                return;
+                            }else{
+                                sumIfNeedNewWord+=1;
+                            }
+                        }
+                        int right=column+1;
+                        if(!NotInTableIndexError(right,horizontal)){
+                            if(tableForQKeyEvent->table[row][right].FirstWord().eng==selectFirstWord.eng || tableForQKeyEvent->table[row][right].SecondWord().eng==selectFirstWord.eng){
+                                this->setCurrentIndex(this->model()->index(row,right));
+                                return;
+                            }else{
+                                sumIfNeedNewWord+=1;
+                            }
+                        }
+                        if(sumIfNeedNewWord=2){
+                            GateToNewWord=true;
+                        }
+                    }
                 }
             }
             int column=this->column(item);
@@ -212,27 +269,68 @@ void TableGui::keyPressEvent(QKeyEvent * event){
             switch(event->key()){
                 case Qt::Key_Left:{
                     int left=column-1;
-                    if(NotInTableIndexError(left)){break;}
-//                    if(this->item(row,column-1)->flags()==Qt::NoItemFlags){
-//                        qDebug()<<item->flags();
-//                    }
+                    if(NotInTableIndexError(left,horizontal)){break;}
+                        if(CONST->JUMP()){
+                            if(this->item(row,left)->flags()==Qt::NoItemFlags){
+                                for(int i=left;i!=0;--i){
+                                    if(this->item(row,i)->flags()!=Qt::NoItemFlags){
+                                        this->setCurrentIndex(this->model()->index(row,i));
+                                        return;
+                                    }
+                                }
+                            }
+                        }
                     this->setCurrentIndex(this->model()->index(row,left));
                     break;
                 }case Qt::Key_Right:{
                     int right=column+1;
-                    if(NotInTableIndexError(right)){break;}
+                    if(NotInTableIndexError(right,horizontal)){break;}
+                    if(CONST->JUMP()){
+                        if(this->item(row,right)->flags()==Qt::NoItemFlags){
+                            for(int i=right;i!=this->columnCount();++i){
+                                if(this->item(row,i)->flags()!=Qt::NoItemFlags){
+                                    this->setCurrentIndex(this->model()->index(row,i));
+                                    return;
+                                }
+                            }
+                        }
+                    }
                     this->setCurrentIndex(this->model()->index(row,right));
                     break;
                 }case Qt::Key_Up:{
                     int up=row-1;
-                    if(NotInTableIndexError(up)){break;}
+                    if(NotInTableIndexError(up,vertical)){break;}
+                    if(CONST->JUMP()){
+                        if(this->item(up,column)->flags()==Qt::NoItemFlags){
+                            for(int i=up;i!=0;--i){
+                                if(this->item(i,column)->flags()!=Qt::NoItemFlags){
+                                    this->setCurrentIndex(this->model()->index(i,column));
+                                    return;
+                                }
+                            }
+                        }
+                    }
                     this->setCurrentIndex(this->model()->index(up,column));
                     break;
                 }case Qt::Key_Down:{
                     int down=row+1;
-                    if(NotInTableIndexError(down)){break;}
+                    if(NotInTableIndexError(down,vertical)){break;}
+                    if(CONST->JUMP()){
+                        if(this->item(down,column)->flags()==Qt::NoItemFlags){
+                            for(int i=down;i!=this->rowCount();++i){
+                                if(this->item(i,column)->flags()!=Qt::NoItemFlags){
+                                    this->setCurrentIndex(this->model()->index(i,column));
+                                    return;
+                                }
+                            }
+                        }
+                    }
                     this->setCurrentIndex(this->model()->index(down,column));
                     break;}
+            case Qt::Key_Backspace:
+            case Qt::Key_Delete:
+                    this->item(row,column)->setText("");
+                    break;
             }
         }
     }

@@ -17,6 +17,7 @@
 class TableGui: public QTableWidget{
     Q_OBJECT
 public:
+    Table *tableForQKeyEvent;
     void keyPressEvent(QKeyEvent * event);
 };
 
@@ -35,7 +36,9 @@ public:
     void UpdateMainTable();
     void clearToNextPound();
 signals:
-
+private:
+    int inCrosswordTableRowMax;
+    int inCrosswordTableColMax;
 public slots:
     void slotUpdate();
     void SelectWordRight(int);

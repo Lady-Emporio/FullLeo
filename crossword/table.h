@@ -35,19 +35,28 @@ public:
     Table();
     ~Table();
     Cell **table;
-    bool run(std::string*);
+    bool run(std::string*,algTable);
     std::vector<Word> Using_Word;
 private:
     bool FindIndexCollaps(int *row,int *col,std::string word,pos *pos,int *indexCollaps);
     bool CanISetWord(int row,int col,std::string word,pos pos,int indexCollaps);
     void SetInTable(int row,int col,std::string word,pos pos,int indexCollaps,Word ClassWord);
     void IfNeedBlock();
+    int maxRowInThisTableNow;
+    int maxColInThisTableNow;
+    bool runFast(std::string *);
+    bool runFull(std::string *);
 };
 
 
-inline bool NotInTableIndexError(int x){
-    if(x>=CONST->TABLE_ROW()){return true;}//всего 40х40, он не может быть больше или равен 40.
-    else if(x<0){return true;}
+inline bool NotInTableIndexError(int x,pos position){
+    if(position==vertical){
+        if(x>=CONST->TABLE_ROW()){return true;}
+    }
+    else if(position==horizontal){
+        if(x>=CONST->TABLE_COL()){return true;}
+    }
+    if(x<0){return true;}
     else 		{return false;}
 }
 
