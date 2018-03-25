@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_Settings_t {
-    QByteArrayData data[7];
-    char stringdata0[134];
+    QByteArrayData data[9];
+    char stringdata0[180];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,12 +35,15 @@ QT_MOC_LITERAL(2, 39, 0), // ""
 QT_MOC_LITERAL(3, 40, 18), // "connectALG_trigger"
 QT_MOC_LITERAL(4, 59, 24), // "connectSetRowAndColCount"
 QT_MOC_LITERAL(5, 84, 19), // "connectJUMP_trigger"
-QT_MOC_LITERAL(6, 104, 29) // "connectAUTOCOMPLETION_trigger"
+QT_MOC_LITERAL(6, 104, 29), // "connectAUTOCOMPLETION_trigger"
+QT_MOC_LITERAL(7, 134, 24), // "connectGRIDTABLE_trigger"
+QT_MOC_LITERAL(8, 159, 20) // "connectStyle_trigger"
 
     },
     "Settings\0connectSelectNewStyle_trigger\0"
     "\0connectALG_trigger\0connectSetRowAndColCount\0"
-    "connectJUMP_trigger\0connectAUTOCOMPLETION_trigger"
+    "connectJUMP_trigger\0connectAUTOCOMPLETION_trigger\0"
+    "connectGRIDTABLE_trigger\0connectStyle_trigger"
 };
 #undef QT_MOC_LITERAL
 
@@ -50,7 +53,7 @@ static const uint qt_meta_data_Settings[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -58,15 +61,19 @@ static const uint qt_meta_data_Settings[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    1,   39,    2, 0x0a /* Public */,
-       3,    1,   42,    2, 0x0a /* Public */,
-       4,    0,   45,    2, 0x0a /* Public */,
-       5,    0,   46,    2, 0x0a /* Public */,
-       6,    0,   47,    2, 0x0a /* Public */,
+       1,    1,   49,    2, 0x0a /* Public */,
+       3,    1,   52,    2, 0x0a /* Public */,
+       4,    0,   55,    2, 0x0a /* Public */,
+       5,    0,   56,    2, 0x0a /* Public */,
+       6,    0,   57,    2, 0x0a /* Public */,
+       7,    0,   58,    2, 0x0a /* Public */,
+       8,    0,   59,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    2,
     QMetaType::Void, QMetaType::Int,    2,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -85,6 +92,8 @@ void Settings::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         case 2: _t->connectSetRowAndColCount(); break;
         case 3: _t->connectJUMP_trigger(); break;
         case 4: _t->connectAUTOCOMPLETION_trigger(); break;
+        case 5: _t->connectGRIDTABLE_trigger(); break;
+        case 6: _t->connectStyle_trigger(); break;
         default: ;
         }
     }
@@ -115,13 +124,13 @@ int Settings::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 7;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 5)
+        if (_id < 7)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 5;
+        _id -= 7;
     }
     return _id;
 }

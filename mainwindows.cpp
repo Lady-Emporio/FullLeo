@@ -1,6 +1,6 @@
 #include "mainwindows.h"
 #include "settings.h"
-
+#include "eng_rus.h"
 #include <QDebug>
 
 saveMdiSub::saveMdiSub(QWidget *parent) :QMdiSubWindow(parent){
@@ -24,12 +24,18 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
     highTopMenu=new QMenuBar;
 
-    QMenu*  add   = new QMenu("Add");
-    highTopMenu->addMenu(add);
+    QMenu*  addMenu   = new QMenu("Add");
+    highTopMenu->addMenu(addMenu);
     this->setMenuBar(highTopMenu);
 
-    QAction* pCheckableAction = add->addAction("New crossword",this,SLOT(on_actionAddCrossword_triggered()));
+    addMenu->addAction("New crossword",this,SLOT(on_actionAddCrossword_triggered()));
+    addMenu->addAction("New EngRus4x1",this,SLOT(on_actionAddEngRus4x1_triggered()));
     highTopMenu->addAction("Settings",this,SLOT(on_actionOpenSettingstriggered()));
+
+    QMenu*  windowMenu   = new QMenu("Window");
+    highTopMenu->addMenu(windowMenu);
+    windowMenu->addAction("Cascade sub windows",this,SLOT(on_actionCascadeSubWindows()));
+    windowMenu->addAction("Tile sub windows",this,SLOT(on_actionTileSubWindows()));
 }
 
 void MainWindow::on_actionAddCrossword_triggered(){
@@ -57,3 +63,27 @@ void MainWindow::on_actionOpenSettingstriggered(){
         };
     }
 }
+
+void MainWindow::on_actionCascadeSubWindows(){
+    mdiArea->cascadeSubWindows();
+}
+
+void MainWindow::on_actionTileSubWindows(){
+    mdiArea->tileSubWindows();
+}
+
+void MainWindow::on_actionAddEngRus4x1_triggered(){
+//    EngRus *eng_rus_leo=new EngRus;
+//    QMdiSubWindow *subWindow1 = new QMdiSubWindow;
+//    subWindow1->setWidget(eng_rus_leo);
+//    subWindow1->setAttribute(Qt::WA_DeleteOnClose);
+//    mdiArea->addSubWindow(subWindow1);
+}
+
+
+
+
+
+
+
+

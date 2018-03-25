@@ -23,6 +23,9 @@ private:
 private slots:
     void on_actionAddCrossword_triggered();
     void on_actionOpenSettingstriggered();
+    void on_actionCascadeSubWindows();
+    void on_actionTileSubWindows();
+    void on_actionAddEngRus4x1_triggered();
 };
 
 #endif // MAINWINDOWS_H

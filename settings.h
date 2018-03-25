@@ -11,12 +11,15 @@ class Settings : public QWidget
     Q_OBJECT
 public:
     QComboBox *comboStyle;
+    QComboBox *ConstStyleSelect;
     QComboBox *comboAlg;
     QLineEdit *countRow;
     QLineEdit *countColumn;
     QLabel *nowRow;
     QLabel *nowCol;
-
+    QLineEdit *redEdit;
+    QLineEdit *greenEdit;
+    QLineEdit *blueEdit;
     static Settings * getSettings();
 signals:
 
@@ -26,6 +29,8 @@ public slots:
     void connectSetRowAndColCount();
     void connectJUMP_trigger();
     void connectAUTOCOMPLETION_trigger();
+    void connectGRIDTABLE_trigger();
+    void connectStyle_trigger();
 
 private:
     void closeEvent(QCloseEvent *);

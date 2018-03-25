@@ -17,7 +17,8 @@ SOURCES += main.cpp\
     crossword.cpp \
     mainwindows.cpp \
     const.cpp \
-    settings.cpp
+    settings.cpp \
+    eng_rus.cpp
 
 HEADERS  += \
     crossword/table.h \
@@ -26,4 +27,5 @@ HEADERS  += \
     bd.h \
     crossword.h \
     mainwindows.h \
-    settings.h
+    settings.h \
+    eng_rus.h
