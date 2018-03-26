@@ -32,7 +32,8 @@ public:
     QBrush GRIDQB;
     QBrush ACTIVEINTABLEQB;
     QBrush ACTIVELISTQB;
-
+    int COUNT_BUTTOM(){return button_;}
+    void setBUTTON(int x){button_=x;}
     void setGRID(bool x){gridTable=x;};
     bool GRID(){return gridTable;};
 private:
@@ -45,6 +46,7 @@ private:
     bool jump_;
     bool autoCompletion_;
     algTable alg_;
+    int button_;
 
     Const();
 };

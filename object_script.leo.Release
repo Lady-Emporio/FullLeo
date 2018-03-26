@@ -9,4 +9,5 @@ INPUT(
 ./release/moc_crossword.o
 ./release/moc_mainwindows.o
 ./release/moc_settings.o
+./release/moc_eng_rus.o
 );

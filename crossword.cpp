@@ -239,31 +239,43 @@ void TableGui::keyPressEvent(QKeyEvent * event){
                         //word can be vertical (up to-> down) or horizontal (left to-> right)
                         static bool GateToNewWord=true;
                         static Word selectFirstWord;
+
                         if(GateToNewWord){
                             selectFirstWord=tableForQKeyEvent->table[row][column].FirstWord();
                             GateToNewWord=false;
                         }
                         int sumIfNeedNewWord=0;
                         int down=row+1;
+                        int right=column+1;
+
+                        if(!NotInTableIndexError(down,vertical)){
+                            if(!(tableForQKeyEvent->table[down][column].FirstWord().eng==selectFirstWord.eng || tableForQKeyEvent->table[down][column].SecondWord().eng==selectFirstWord.eng)){
+                                sumIfNeedNewWord+=1;
+                            }
+                        }
+
+                        if(!NotInTableIndexError(right,horizontal)){
+                            if(!(tableForQKeyEvent->table[row][right].FirstWord().eng==selectFirstWord.eng || tableForQKeyEvent->table[row][right].SecondWord().eng==selectFirstWord.eng)){
+                                sumIfNeedNewWord+=1;
+                            }
+                        }
+                        if(sumIfNeedNewWord==2){
+                            GateToNewWord=true;
+                        }
+
+
+
                         if(!NotInTableIndexError(down,vertical)){
                             if(tableForQKeyEvent->table[down][column].FirstWord().eng==selectFirstWord.eng || tableForQKeyEvent->table[down][column].SecondWord().eng==selectFirstWord.eng){
                                 this->setCurrentIndex(this->model()->index(down,column));
                                 return;
-                            }else{
-                                sumIfNeedNewWord+=1;
                             }
                         }
-                        int right=column+1;
                         if(!NotInTableIndexError(right,horizontal)){
                             if(tableForQKeyEvent->table[row][right].FirstWord().eng==selectFirstWord.eng || tableForQKeyEvent->table[row][right].SecondWord().eng==selectFirstWord.eng){
                                 this->setCurrentIndex(this->model()->index(row,right));
                                 return;
-                            }else{
-                                sumIfNeedNewWord+=1;
                             }
-                        }
-                        if(sumIfNeedNewWord=2){
-                            GateToNewWord=true;
                         }
                     }
                 }
@@ -274,21 +286,46 @@ void TableGui::keyPressEvent(QKeyEvent * event){
                 case Qt::Key_Left:{
                     int left=column-1;
                     if(NotInTableIndexError(left,horizontal)){break;}
-                        if(CONST->JUMP()){
-                            if(this->item(row,left)->flags()==Qt::NoItemFlags){
-                                for(int i=left;i!=0;--i){
-                                    if(this->item(row,i)->flags()!=Qt::NoItemFlags){
-                                        this->setCurrentIndex(this->model()->index(row,i));
-                                        return;
-                                    }
+                    if(event->modifiers()==Qt::ControlModifier){
+                        for(int i=left;i!=-1;--i){
+                            if(this->item(row,i)->flags()==Qt::NoItemFlags || i==0){
+                                if(i==0 && this->item(row,i)->flags()!=Qt::NoItemFlags){
+                                    this->setCurrentIndex(this->model()->index(row,i+1));
+                                }else{
+                                    this->setCurrentIndex(this->model()->index(row,i));
+                                }
+                                return;
+                            }
+                        }
+                    }
+                    if(CONST->JUMP()){
+                        if(this->item(row,left)->flags()==Qt::NoItemFlags){
+                            for(int i=left;i!=-1;--i){
+                                if(this->item(row,i)->flags()!=Qt::NoItemFlags){
+                                    this->setCurrentIndex(this->model()->index(row,i));
+                                    return;
                                 }
                             }
                         }
+                    }
                     this->setCurrentIndex(this->model()->index(row,left));
                     break;
                 }case Qt::Key_Right:{
                     int right=column+1;
                     if(NotInTableIndexError(right,horizontal)){break;}
+                    if(event->modifiers()==Qt::ControlModifier){
+                        for(int i=right;i!=this->columnCount();++i){
+                            if(this->item(row,i)->flags()==Qt::NoItemFlags || i==this->columnCount()-1){
+                                if(i==this->columnCount()-1 && this->item(row,i)->flags()!=Qt::NoItemFlags){
+                                    this->setCurrentIndex(this->model()->index(row,i-1));
+                                }else{
+                                    this->setCurrentIndex(this->model()->index(row,i));
+                                }
+                                return;
+                            }
+                        }
+
+                    }
                     if(CONST->JUMP()){
                         if(this->item(row,right)->flags()==Qt::NoItemFlags){
                             for(int i=right;i!=this->columnCount();++i){
@@ -304,9 +341,21 @@ void TableGui::keyPressEvent(QKeyEvent * event){
                 }case Qt::Key_Up:{
                     int up=row-1;
                     if(NotInTableIndexError(up,vertical)){break;}
+                    if(event->modifiers()==Qt::ControlModifier){
+                        for(int i=up;i!=-1;--i){
+                            if(this->item(i,column)->flags()==Qt::NoItemFlags || i==0){
+                                if(i==0 && this->item(i,column)->flags()!=Qt::NoItemFlags){
+                                    this->setCurrentIndex(this->model()->index(i+1,column));
+                                }else{
+                                    this->setCurrentIndex(this->model()->index(i,column));
+                                }
+                                return;
+                            }
+                        }
+                    }
                     if(CONST->JUMP()){
                         if(this->item(up,column)->flags()==Qt::NoItemFlags){
-                            for(int i=up;i!=0;--i){
+                            for(int i=up;i!=-1;--i){
                                 if(this->item(i,column)->flags()!=Qt::NoItemFlags){
                                     this->setCurrentIndex(this->model()->index(i,column));
                                     return;
@@ -319,6 +368,19 @@ void TableGui::keyPressEvent(QKeyEvent * event){
                 }case Qt::Key_Down:{
                     int down=row+1;
                     if(NotInTableIndexError(down,vertical)){break;}
+                    if(event->modifiers()==Qt::ControlModifier){
+                        for(int i=down;i!=this->rowCount();++i){
+                            if(this->item(i,column)->flags()==Qt::NoItemFlags || i==this->rowCount()-1){
+                                if(i==this->rowCount()-1 && this->item(i,column)->flags()!=Qt::NoItemFlags){
+                                    this->setCurrentIndex(this->model()->index(i-1,column));
+                                }else{
+                                    this->setCurrentIndex(this->model()->index(i,column));
+
+                                }
+                                return;
+                            }
+                        }
+                    }
                     if(CONST->JUMP()){
                         if(this->item(down,column)->flags()==Qt::NoItemFlags){
                             for(int i=down;i!=this->rowCount();++i){

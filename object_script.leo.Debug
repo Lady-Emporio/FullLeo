@@ -9,4 +9,5 @@ INPUT(
 ./debug/moc_crossword.o
 ./debug/moc_mainwindows.o
 ./debug/moc_settings.o
+./debug/moc_eng_rus.o
 );

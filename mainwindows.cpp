@@ -11,8 +11,6 @@ void saveMdiSub::closeEvent(QCloseEvent *event){
 }
 
 
-
-
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
     mdiArea = new QMdiArea(this);  // инициализируем QMdiArea
@@ -73,11 +71,12 @@ void MainWindow::on_actionTileSubWindows(){
 }
 
 void MainWindow::on_actionAddEngRus4x1_triggered(){
-//    EngRus *eng_rus_leo=new EngRus;
-//    QMdiSubWindow *subWindow1 = new QMdiSubWindow;
-//    subWindow1->setWidget(eng_rus_leo);
-//    subWindow1->setAttribute(Qt::WA_DeleteOnClose);
-//    mdiArea->addSubWindow(subWindow1);
+    EngRus *eng_rus_leo=new EngRus;
+    QMdiSubWindow *subWindow1 = new QMdiSubWindow;
+    subWindow1->setWidget(eng_rus_leo);
+    subWindow1->setAttribute(Qt::WA_DeleteOnClose);
+    mdiArea->addSubWindow(subWindow1);
+    subWindow1->show();
 }
 
 

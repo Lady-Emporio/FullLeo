@@ -94,6 +94,14 @@ Settings::Settings(QWidget *parent) : QWidget(parent)
     QPushButton * updateStyle=new QPushButton("Accept the change");
     updateStyle->setToolTip("commit style\nUpdate table");
     styleLayout->addWidget(updateStyle,5,0,1,2);
+
+    QGroupBox *groupEngRus = new QGroupBox(tr("EngRus"),this);
+    groupEngRus->setStyleSheet("QGroupBox{border: 4px solid black;}");
+    QCheckBox * ButtomAudioPlay=new QCheckBox("AudioPlay",this);
+    QVBoxLayout *regionEngRus=new QVBoxLayout;
+    regionEngRus->addWidget(ButtomAudioPlay);
+    groupEngRus->setLayout(regionEngRus);
+
     connect(comboStyle, SIGNAL(currentIndexChanged(int)), this, SLOT(connectSelectNewStyle_trigger(int)));
     connect(comboAlg, SIGNAL(currentIndexChanged(int)), this, SLOT(connectALG_trigger(int)));
     connect(updateRowAndCol, SIGNAL(clicked()), this, SLOT(connectSetRowAndColCount()));
@@ -101,11 +109,16 @@ Settings::Settings(QWidget *parent) : QWidget(parent)
     connect(buttomAutoCompletion, SIGNAL(clicked()), this, SLOT(connectAUTOCOMPLETION_trigger()));
     connect(ButtomGrin, SIGNAL(clicked()), this, SLOT(connectGRIDTABLE_trigger()));
     connect(updateStyle, SIGNAL(clicked()), this, SLOT(connectStyle_trigger()));
+    connect(ButtomAudioPlay, SIGNAL(clicked()), this, SLOT(connectAudioPlay()));
 
     groupCrossword->setLayout(mainCrosswordLayout);
     mainLayout->addWidget(groupCrossword);
     mainLayout->addWidget(groupStyle);
+    mainLayout->addWidget(groupEngRus);
     this->setLayout(mainLayout);
+}
+void Settings::connectAudioPlay(){
+
 }
 
 void Settings::connectStyle_trigger(){

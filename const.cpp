@@ -14,6 +14,7 @@ Const::Const(){
     COLUMNWIDTH_=20;
     MARGIN1_=65;
     gridTable=true;
+    button_=4;
     setStyle(defaults);
 
 }

@@ -31,7 +31,7 @@ public slots:
     void connectAUTOCOMPLETION_trigger();
     void connectGRIDTABLE_trigger();
     void connectStyle_trigger();
-
+    void connectAudioPlay();
 private:
     void closeEvent(QCloseEvent *);
     explicit Settings(QWidget *parent = 0);
