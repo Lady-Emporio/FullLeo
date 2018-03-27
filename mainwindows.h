@@ -7,18 +7,19 @@
 #include <QMenu>
 #include <QAction>
 #include "QMdiSubWindow"
+#include "updown/up_down.h"
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 public:
     explicit MainWindow(QWidget *parent = 0);
-
+    QMdiArea * mdiArea;  // Область, в которую будут добавляться окна  //пока тест пусть будет публик. Отлаживать легче.
 signals:
 
 public slots:
 
 private:
-    QMdiArea * mdiArea;  // Область, в которую будут добавляться окна
+
     QMenuBar *highTopMenu;
 private slots:
     void on_actionAddCrossword_triggered();

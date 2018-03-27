@@ -88,7 +88,7 @@ void EngRus::connectSelectWord(){
     }
 //            if(runAudio){
 //                static QMediaPlayer *player = new QMediaPlayer;
-//                player->setMedia(QUrl::fromLocalFile(QDir::toNativeSeparators("content\\"+ChooseWord[0]+".mp3")));
+//                player->setMedia(QUrl::fromLocalFile(QDir::toNativeSeparators("content\\"+TrueWord.eng+".mp3")));
 //                player->play();
 
 //            }

@@ -2,7 +2,6 @@
 #include "settings.h"
 #include "eng_rus.h"
 #include <QDebug>
-
 saveMdiSub::saveMdiSub(QWidget *parent) :QMdiSubWindow(parent){
 
 }

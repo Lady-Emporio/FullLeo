@@ -6,8 +6,12 @@ INPUT(
 ./debug/const.o
 ./debug/settings.o
 ./debug/eng_rus.o
+./debug/up_down.o
+./debug/rectdown.o
 ./debug/moc_crossword.o
 ./debug/moc_mainwindows.o
 ./debug/moc_settings.o
 ./debug/moc_eng_rus.o
+./debug/moc_up_down.o
+./debug/moc_rectdown.o
 );

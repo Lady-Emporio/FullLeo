@@ -10,5 +10,8 @@ int main(int argc, char *argv[])
 //    w.show();
     MainWindow w;
     w.show();
+    UpDown *up=new UpDown;
+    w.mdiArea->addSubWindow(up);
+    up->show();
     return a.exec();
 }
