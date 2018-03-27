@@ -244,6 +244,7 @@ void TableGui::keyPressEvent(QKeyEvent * event){
                             selectFirstWord=tableForQKeyEvent->table[row][column].FirstWord();
                             GateToNewWord=false;
                         }
+
                         int sumIfNeedNewWord=0;
                         int down=row+1;
                         int right=column+1;
@@ -252,17 +253,23 @@ void TableGui::keyPressEvent(QKeyEvent * event){
                             if(!(tableForQKeyEvent->table[down][column].FirstWord().eng==selectFirstWord.eng || tableForQKeyEvent->table[down][column].SecondWord().eng==selectFirstWord.eng)){
                                 sumIfNeedNewWord+=1;
                             }
+                        }else{
+                            sumIfNeedNewWord+=1;
                         }
 
                         if(!NotInTableIndexError(right,horizontal)){
                             if(!(tableForQKeyEvent->table[row][right].FirstWord().eng==selectFirstWord.eng || tableForQKeyEvent->table[row][right].SecondWord().eng==selectFirstWord.eng)){
                                 sumIfNeedNewWord+=1;
                             }
+                        }else{
+                            sumIfNeedNewWord+=1;
                         }
                         if(sumIfNeedNewWord==2){
-                            GateToNewWord=true;
+                            selectFirstWord=tableForQKeyEvent->table[row][column].FirstWord();
                         }
-
+                        if(tableForQKeyEvent->table[row][column].FirstWord().eng!=selectFirstWord.eng && tableForQKeyEvent->table[row][column].SecondWord().eng!=selectFirstWord.eng){
+                            selectFirstWord=tableForQKeyEvent->table[row][column].FirstWord();
+                        }
 
 
                         if(!NotInTableIndexError(down,vertical)){
@@ -290,9 +297,9 @@ void TableGui::keyPressEvent(QKeyEvent * event){
                         for(int i=left;i!=-1;--i){
                             if(this->item(row,i)->flags()==Qt::NoItemFlags || i==0){
                                 if(i==0 && this->item(row,i)->flags()!=Qt::NoItemFlags){
-                                    this->setCurrentIndex(this->model()->index(row,i+1));
-                                }else{
                                     this->setCurrentIndex(this->model()->index(row,i));
+                                }else{
+                                    this->setCurrentIndex(this->model()->index(row,i+1));
                                 }
                                 return;
                             }
@@ -317,9 +324,9 @@ void TableGui::keyPressEvent(QKeyEvent * event){
                         for(int i=right;i!=this->columnCount();++i){
                             if(this->item(row,i)->flags()==Qt::NoItemFlags || i==this->columnCount()-1){
                                 if(i==this->columnCount()-1 && this->item(row,i)->flags()!=Qt::NoItemFlags){
-                                    this->setCurrentIndex(this->model()->index(row,i-1));
-                                }else{
                                     this->setCurrentIndex(this->model()->index(row,i));
+                                }else{
+                                    this->setCurrentIndex(this->model()->index(row,i-1));
                                 }
                                 return;
                             }
@@ -345,9 +352,9 @@ void TableGui::keyPressEvent(QKeyEvent * event){
                         for(int i=up;i!=-1;--i){
                             if(this->item(i,column)->flags()==Qt::NoItemFlags || i==0){
                                 if(i==0 && this->item(i,column)->flags()!=Qt::NoItemFlags){
-                                    this->setCurrentIndex(this->model()->index(i+1,column));
-                                }else{
                                     this->setCurrentIndex(this->model()->index(i,column));
+                                }else{
+                                    this->setCurrentIndex(this->model()->index(i+1,column));
                                 }
                                 return;
                             }
@@ -372,9 +379,9 @@ void TableGui::keyPressEvent(QKeyEvent * event){
                         for(int i=down;i!=this->rowCount();++i){
                             if(this->item(i,column)->flags()==Qt::NoItemFlags || i==this->rowCount()-1){
                                 if(i==this->rowCount()-1 && this->item(i,column)->flags()!=Qt::NoItemFlags){
-                                    this->setCurrentIndex(this->model()->index(i-1,column));
-                                }else{
                                     this->setCurrentIndex(this->model()->index(i,column));
+                                }else{
+                                    this->setCurrentIndex(this->model()->index(i-1,column));
 
                                 }
                                 return;
