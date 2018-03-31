@@ -15,8 +15,26 @@ Const::Const(){
     MARGIN1_=65;
     gridTable=true;
     button_=4;
+    runAudio=false;
     setStyle("defaults");
-
+    TRUE_ANSWER_COLOR="Button {\
+            background-color: rgb(0, 200, 0);\
+            border: 4px solid red;\
+            border-radius: 5px;\
+       }";
+    FALSE_ANSWER_COLOR="Button {\
+            background-color: rgb(255, 0, 0);\
+            border: 4px solid red;\
+            border-radius: 5px;\
+       }";
+    DEFAULT_BUTTOM_COLOR="Button:pressed{\
+            background-color: rgb(0, 0, 255);\
+        }\
+        Button {\
+             background-color: rgb(170, 170, 127);\
+             border: 4px solid red;\
+             border-radius: 5px;\
+        }";
 }
 bool Const::setStyle(QString x){
     QStringList NotUseListBadArchitectureAppForRunFunc;
@@ -130,12 +148,11 @@ int getStyle(QStringList * ListStyle,QString style,QString subStyl,int *r,int *g
     // Забираем из документа корневой объект
     QJsonObject root = document.object();
 
-//    qDebug()<<root.keys().at(0);//style
-    if(!(root.contains("style") && root["style"].isObject())){
-        qDebug()<<"Problem with style"<<endl;
+    if(!(root.contains("crossword") && root["crossword"].isObject())){
+        qDebug()<<"Problem with crossword"<<endl;
         return 1;
     }
-    QJsonObject mainStyle=root["style"].toObject();
+    QJsonObject mainStyle=root["crossword"].toObject();
     *ListStyle=mainStyle.keys();
     if(ListStyle->count()==0){
         qDebug()<<"not style"<<endl;

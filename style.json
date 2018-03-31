@@ -1,5 +1,5 @@
 {
-	"style":{
+	"crossword":{
 		"default":{
 			"DEFAULTQB":{"red":"255","green":"255","blue":"255"},
 			"NOTUSEQB":{"red":"0","green":"255","blue":"255"},

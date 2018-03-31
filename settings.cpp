@@ -133,7 +133,7 @@ Settings::Settings(QWidget *parent) : QWidget(parent)
     this->setLayout(mainLayout);
 }
 void Settings::connectAudioPlay(){
-
+    CONST->runAudio=!CONST->runAudio;
 }
 
 void Settings::connectStyle_trigger(){

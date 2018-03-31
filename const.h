@@ -44,6 +44,10 @@ public:
     void setBUTTON(int x){button_=x;}
     void setGRID(bool x){gridTable=x;};
     bool GRID(){return gridTable;};
+    bool runAudio;
+    QString TRUE_ANSWER_COLOR;
+    QString FALSE_ANSWER_COLOR;
+    QString DEFAULT_BUTTOM_COLOR;
 private:
     bool gridTable;
     int TABLE_ROW_;

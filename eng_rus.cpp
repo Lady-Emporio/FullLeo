@@ -4,6 +4,8 @@
 #include <QVBoxLayout>
 #include <QDebug>
 #include <ctime>
+#include <QMediaPlayer>
+#include <QDir>
 Button::Button(QWidget  *parent): QPushButton (parent){
     //font and start text
     {
@@ -14,16 +16,7 @@ Button::Button(QWidget  *parent): QPushButton (parent){
     this->setText("MyClassButtom");
     }
 
-    this->setStyleSheet(
-        "QPushButton:pressed{\
-                            background-color: rgb(0, 0, 255);\
-                        }\
-                        QPushButton {\
-                             background-color: rgb(170, 170, 127);\
-                             border: 4px solid red;\
-                             border-radius: 5px;\
-                        }");
-    this->setStyleSheet("");
+    this->setStyleSheet(CONST->DEFAULT_BUTTOM_COLOR);
     QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     this->setSizePolicy(sizePolicy);
 }
@@ -62,6 +55,9 @@ EngRus::EngRus(QWidget *parent) : QWidget(parent)
 }
 
 void EngRus::nextRound(){
+    for(int i=0;i!=listButton.size();++i){
+        listButton[i]->setStyleSheet(CONST->DEFAULT_BUTTOM_COLOR);
+    }
     if (ListWord.size()<=5){
             main_Label->setText(QString("Small size: ").setNum(ListWord.size()));
             return;
@@ -75,36 +71,53 @@ void EngRus::nextRound(){
     };
     random_shuffle ( listButton.begin(), listButton.end(),[](int i) {return std::rand()%i;});
     main_Label->setText(QString(TrueWord.eng.c_str()));
+
 }
 
 void EngRus::connectSelectWord(){
     if(main_Label->text()=="We are"){
         nextRound();
+        return;
     }
     QObject* obj = sender();
     Button *buttom=findChild<Button*>(obj->objectName());
     if(buttom->text()==QString(TrueWord.ru.c_str())){
-        nextRound();
+        if(CONST->runAudio){
+            static QMediaPlayer *player = new QMediaPlayer;
+            player->setMedia(QUrl::fromLocalFile(QDir::toNativeSeparators("content\\"+QString(TrueWord.eng.c_str())+".mp3")));
+            player->play();
+        };
+        static bool go_next=false;
+         if (!go_next){
+             buttom->setStyleSheet(CONST->TRUE_ANSWER_COLOR);
+             go_next=true;
+         }
+         else{
+             go_next=false;
+             nextRound();
+        }
+    }else{
+        buttom->setStyleSheet(CONST->FALSE_ANSWER_COLOR);
     }
-//            if(runAudio){
-//                static QMediaPlayer *player = new QMediaPlayer;
-//                player->setMedia(QUrl::fromLocalFile(QDir::toNativeSeparators("content\\"+ChooseWord[0]+".mp3")));
-//                player->play();
 
-//            }
-
-
-//            if (!go_next){
-//                        buttom->setStyleSheet(TRUE_ANSWER_COLOR);
-//                        go_next=true;
-//            }
-//            else{
-//                        go_next=false;
-//                        nextRound();
-//                }
-//        }
-//        else{
-//            buttom->setStyleSheet(FALSE_ANSWER_COLOR);
-//        }
 
 }
+
+EngRus::~EngRus(){}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

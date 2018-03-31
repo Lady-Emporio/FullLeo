@@ -16,6 +16,8 @@ public:
 class EngRus : public QWidget
 {
     Q_OBJECT
+private:
+    ~EngRus();
 public:
     QLabel *main_Label;
     std::vector<Button*>listButton;
