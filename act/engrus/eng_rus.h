@@ -24,6 +24,7 @@ private:
 public:
     QLabel *main_Label;
     std::vector<Button*>listButton;
+    std::vector<QLabel*>listImage;
     explicit EngRus(QWidget *parent = 0);
     void nextRound();
     std::vector<Word> ListWord;

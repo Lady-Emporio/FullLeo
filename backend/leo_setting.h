@@ -51,6 +51,7 @@ private slots:
     void connectJUMP_trigger();
     void connectAudio_trigger();
     void connectGRIDTABLE_trigger();
+    void connectImage_trigger();
 };
 
 #endif // LEOSETTING_H

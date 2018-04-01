@@ -125,8 +125,8 @@ bool Table::runFull(string *Error){
             SecondTry.push_back(ListWord[i]);
         }
     };
-    for(int round=0;round!=10;++round){
-        for(int i=0;i!=SecondTry.size();++i){
+    for(size_t round=0;round!=10;++round){
+        for(size_t i=0;i!=SecondTry.size();++i){
             string next=SecondTry[i].eng.toStdString();
             if(FindIndexCollaps(&row,&col,next,&WordPos,&indexCollaps)){
                 Using_Word.push_back(SecondTry[i]);
@@ -137,7 +137,7 @@ bool Table::runFull(string *Error){
             }
         };
         SecondTry.clear();
-        for(int i=0;i!=ThirdTry.size();++i){
+        for(size_t i=0;i!=ThirdTry.size();++i){
             string next=ThirdTry[i].eng.toStdString();
             if(FindIndexCollaps(&row,&col,next,&WordPos,&indexCollaps)){
                 Using_Word.push_back(ThirdTry[i]);
@@ -159,12 +159,17 @@ bool Table::run(string *Error,algTable alg){
     else if(alg==full){
         this->runFull(Error);
     }
+    if(Error->size()!=0){
+        return false;
+    }else{
+        return true;
+    }
 }
 
 bool Table::FindIndexCollaps(int *row,int *col,std::string word,pos *WordPos,int *indexCollaps){
-    for(int i_row=0;i_row!=maxRowInThisTableNow;++i_row){
-        for(int i_col=0;i_col!=maxColInThisTableNow;++i_col){
-            for(int i=0;i!=word.size();++i){
+    for(size_t i_row=0;i_row!=maxRowInThisTableNow;++i_row){
+        for(size_t i_col=0;i_col!=maxColInThisTableNow;++i_col){
+            for(size_t i=0;i!=word.size();++i){
                 if(table[i_row][i_col].Value()==word[i]){
                     if(table[i_row][i_col].Pos()==vertical){
                         //Если нашли символ в слове, которое написано по вертикале, то по горизонтале вставляем.
@@ -202,7 +207,7 @@ bool Table::FindIndexCollaps(int *row,int *col,std::string word,pos *WordPos,int
 
 bool Table::CanISetWord(int row,int col,std::string word,pos WordPos,int indexCollaps){
     if(WordPos==vertical){
-        for(int i=-1;i!=word.size()+1;++i){
+        for(size_t i=-1;i!=word.size()+1;++i){
             if(i==-1){
                 if(NotInTableIndexError(row+i,vertical)){ continue;} //перед словом блок не поставить-за границу выходит.
                 if(table[row+i][col].Status()==wordHere){return false;}//если перед словом блок, то порядок,а если слово то плохо.
@@ -230,7 +235,7 @@ bool Table::CanISetWord(int row,int col,std::string word,pos WordPos,int indexCo
         if(!NotInTableIndexError(col-1,horizontal)){if(table[row+0][col-1].Status()!=freely && indexCollaps!=0){return false;}}
     }
     if(WordPos==horizontal){
-        for(int i=-1;i!=word.size()+1;++i){
+        for(size_t i=-1;i!=word.size()+1;++i){
             if(i==-1){
                 if(NotInTableIndexError(col+i,horizontal)){ continue;} //перед словом блок не поставить-за границу выходит.
                 if(table[row][col+i].Status()==wordHere){return false;}//если перед словом блок, то порядок,а если слово то плохо.
@@ -262,7 +267,7 @@ bool Table::CanISetWord(int row,int col,std::string word,pos WordPos,int indexCo
 
 void Table::SetInTable(int row,int col,std::string word,pos WordPos,int indexCollaps,Word ClassWord){
     if(WordPos==vertical){
-        for(int i=-1;i!=word.size()+1;++i){
+        for(size_t i=-1;i!=word.size()+1;++i){
             int now_row=row+i;
             if(i==-1){
                 if(NotInTableIndexError(now_row,WordPos)){ continue;} //перед словом блок не поставить-за границу выходит.
@@ -291,7 +296,7 @@ void Table::SetInTable(int row,int col,std::string word,pos WordPos,int indexCol
         };
     }
     if(WordPos==horizontal){
-        for(int i=-1;i!=word.size()+1;++i){
+        for(size_t i=-1;i!=word.size()+1;++i){
             if(i==-1){
                 if(NotInTableIndexError(col-1,WordPos)){ continue;} //перед словом блок не поставить-за границу выходит.
                 else{

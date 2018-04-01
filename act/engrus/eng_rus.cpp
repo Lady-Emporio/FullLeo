@@ -24,20 +24,36 @@ Button::Button(QWidget  *parent): QPushButton (parent){
 EngRus::EngRus(QWidget *parent) : QWidget(parent)
 {
     QVBoxLayout *mainLayout=new QVBoxLayout;
+    QVBoxLayout *ImageAndButtonLayout=new QVBoxLayout;
+    QHBoxLayout *imageLayout=new QHBoxLayout;
     QHBoxLayout *buttonLayout=new QHBoxLayout;
+    ImageAndButtonLayout->addLayout(imageLayout);
+    ImageAndButtonLayout->addLayout(buttonLayout);
     main_Label=new QLabel("We are",this);
     main_Label->setAlignment(Qt::AlignCenter);
     main_Label->setCursor(QCursor(Qt::CrossCursor));
+
+//    QLabel *imageLabel = new QLabel;
+//    imageLabel->setBackgroundRole(QPalette::Base);
+
+//    QImage image("./content/write.png");
+//    imageLabel->setPixmap(QPixmap::fromImage(image));
+
+
     for(int i=0;i!=LeoConst::CONST()->COUNT_BUTTOM;++i){
         Button *newButton=new Button(this);
         newButton->setText(QString("We are: ").setNum(i));
         newButton->setObjectName(QString("WeAreButtonMy25/03/2018").setNum(i));
         listButton.push_back(newButton);
+        QLabel *imageLabel = new QLabel;
+        imageLabel->setBackgroundRole(QPalette::Base);
+        listImage.push_back(imageLabel);
+        imageLayout->addWidget(imageLabel);
         buttonLayout->addWidget(newButton);
         connect(newButton, SIGNAL(clicked()), this, SLOT(connectSelectWord()));
     }
     mainLayout->addWidget(main_Label);
-    mainLayout->addLayout(buttonLayout);
+    mainLayout->addLayout(ImageAndButtonLayout);
     this->setLayout(mainLayout);
 
     ListWord=LeoConst::CONST()->ListWithWordConst;
@@ -63,13 +79,30 @@ void EngRus::nextRound(){
     random_shuffle ( ListWord.begin(), ListWord.end(),[](int i) {return std::rand()%i;});
     TrueWord=ListWord.back();
     ListWord.pop_back();
-    listButton[0]->setText(QString(TrueWord.ru));
+    QString pathToImage[listButton.size()][2];//zero-ru one-eng
+    listButton[0]->setText(TrueWord.ru);
+    pathToImage[0][0]=TrueWord.ru;
+    pathToImage[0][1]=TrueWord.eng;
     for(size_t i=1;i!=listButton.size();++i){
         listButton[i]->setText(ListWord[ListWord.size()-i].ru);
+        pathToImage[i][0]=ListWord[ListWord.size()-i].ru;
+        pathToImage[i][1]=ListWord[ListWord.size()-i].eng;
     };
     random_shuffle ( listButton.begin(), listButton.end(),[](int i) {return std::rand()%i;});
     main_Label->setText(QString(TrueWord.eng));
-
+    if(LeoConst::CONST()->runImage){
+        for(size_t i=0;i!=listButton.size();++i){
+            QString ruName=listButton[i]->text();
+            for(auto x:pathToImage){
+                if(ruName==x[0]){
+                    QString fileName="./content/"+x[1]+".png";
+                    QImage image(fileName);
+                    listImage[i]->setPixmap(QPixmap::fromImage(image));
+                    break;
+                }
+            }
+        }
+    }
 }
 
 void EngRus::connectSelectWord(){

@@ -56,11 +56,11 @@ void Crossword::SelectWordRight(int x){
         InMainSelect.clear();
         return;
     }
-    for(auto i=0;i!=InMainSelect.size();++i){
+    for(size_t i=0;i!=InMainSelect.size();++i){
         InMainSelect[i]->setBackground(LeoConst::CONST()->DEFAULTQB);
     };
     InMainSelect.clear();
-    for(int i=0;i!=LastSelectInMainTable.size();++i){
+    for(size_t i=0;i!=LastSelectInMainTable.size();++i){
         LastSelectInMainTable[i]->setBackground(LeoConst::CONST()->DEFAULTQB);
     };
     LastSelectInMainTable.clear();
@@ -107,7 +107,7 @@ void Crossword::UpdateMainTable(){
             MainTable->setItem(row, column, item);
         };
     };
-    for(int i=0;i!=tableWord->Using_Word.size();++i){
+    for(size_t i=0;i!=tableWord->Using_Word.size();++i){
         new QListWidgetItem(tableWord->Using_Word[i].ru, UsingWordList);
     };
 }
@@ -184,15 +184,15 @@ void Crossword::verifyAll(){
 }
 
 void Crossword::SelectCell(){
-    for(int i=0;i!=SecectInUsingWordList.size();++i){
+    for(size_t i=0;i!=SecectInUsingWordList.size();++i){
         SecectInUsingWordList[i]->setBackground(LeoConst::CONST()->DEFAULTQB);
     };
     SecectInUsingWordList.clear();
-    for(int i=0;i!=InMainSelect.size();++i){
+    for(size_t i=0;i!=InMainSelect.size();++i){
         InMainSelect[i]->setBackground(LeoConst::CONST()->DEFAULTQB);
     };
     InMainSelect.clear();
-    for(int i=0;i!=LastSelectInMainTable.size();++i){
+    for(size_t i=0;i!=LastSelectInMainTable.size();++i){
         LastSelectInMainTable[i]->setBackground(LeoConst::CONST()->DEFAULTQB);
     };
     LastSelectInMainTable.clear();

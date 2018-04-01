@@ -57,7 +57,7 @@ QGroupBox * Settings::groupDB(){
     QHBoxLayout *hl3=new QHBoxLayout();
     QListWidget *listWord=new QListWidget(this);
     setFontToWidget(listWord);
-    for(int i=0;i!=LeoConst::CONST()->ListWithWordConst.size();++i){
+    for(size_t i=0;i!=LeoConst::CONST()->ListWithWordConst.size();++i){
         QListWidgetItem *next=new QListWidgetItem(listWord);
         QString Qeng=LeoConst::CONST()->ListWithWordConst[i].eng;
         QString Qru=LeoConst::CONST()->ListWithWordConst[i].ru;
@@ -256,14 +256,19 @@ QGroupBox * Settings::groupEngRus(){
     }
     group_eng_rus->setLayout(mainLayout);
     QCheckBox * ButtomAudio=new QCheckBox("audio?",this);
+    QCheckBox * ButtonImage=new QCheckBox("image?",this);
     mainLayout->addWidget(ButtomAudio);
+    mainLayout->addWidget(ButtonImage);
     connect(ButtomAudio, SIGNAL(clicked()), this, SLOT(connectAudio_trigger()));
+    connect(ButtonImage, SIGNAL(clicked()), this, SLOT(connectImage_trigger()));
     return group_eng_rus;
 }
 void Settings::connectAudio_trigger(){
     LeoConst::CONST()->runAudio=!LeoConst::CONST()->runAudio;
 }
-
+void Settings::connectImage_trigger(){
+    LeoConst::CONST()->runImage=!LeoConst::CONST()->runImage;
+}
 //QGroupBox * Settings::groupEngRus(){
 //    QGroupBox *group_eng_rus = new QGroupBox("Eng rus",this);
 //    group_eng_rus->setStyleSheet("QGroupBox{border: 4px solid rgb(255, 0, 0);}");

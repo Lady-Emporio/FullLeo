@@ -48,6 +48,7 @@ public:
     QString DEFAULT_BUTTOM_COLOR;
     int COUNT_BUTTOM;
     bool runAudio;
+    bool runImage;
 private:
     LeoConst();
 };

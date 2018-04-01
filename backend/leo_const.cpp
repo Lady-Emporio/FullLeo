@@ -103,6 +103,7 @@ LeoConst::LeoConst()
         COUNT_BUTTOM=Error.toInt();
     }
     runAudio=false;
+    runImage=false;
 }
 
 LeoConst *LeoConst::CONST(){
