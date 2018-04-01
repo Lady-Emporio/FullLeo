@@ -24,11 +24,8 @@ Button::Button(QWidget  *parent): QPushButton (parent){
 EngRus::EngRus(QWidget *parent) : QWidget(parent)
 {
     QVBoxLayout *mainLayout=new QVBoxLayout;
-    QVBoxLayout *ImageAndButtonLayout=new QVBoxLayout;
-    QHBoxLayout *imageLayout=new QHBoxLayout;
-    QHBoxLayout *buttonLayout=new QHBoxLayout;
-    ImageAndButtonLayout->addLayout(imageLayout);
-    ImageAndButtonLayout->addLayout(buttonLayout);
+    QHBoxLayout *ImageAndButtonLayout=new QHBoxLayout;
+
     main_Label=new QLabel("We are",this);
     setFontToWidget(main_Label);
     main_Label->setAlignment(Qt::AlignCenter);
@@ -41,10 +38,14 @@ EngRus::EngRus(QWidget *parent) : QWidget(parent)
         listButton.push_back(newButton);
         QLabel *imageLabel = new QLabel;
         imageLabel->setBackgroundRole(QPalette::Base);
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        imageLabel->setSizePolicy(sizePolicy);
         listImage.push_back(imageLabel);
-        imageLayout->addWidget(imageLabel);
-        buttonLayout->addWidget(newButton);
         connect(newButton, SIGNAL(clicked()), this, SLOT(connectSelectWord()));
+        QVBoxLayout *newLayout=new QVBoxLayout;
+        newLayout->addWidget(imageLabel);
+        newLayout->addWidget(newButton);
+        ImageAndButtonLayout->addLayout(newLayout);
     }
     mainLayout->addWidget(main_Label);
     mainLayout->addLayout(ImageAndButtonLayout);
