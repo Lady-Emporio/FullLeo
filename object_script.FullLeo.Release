@@ -1,0 +1,13 @@
+INPUT(
+./release/main.o
+./release/mainwindow.o
+./release/leo_const.o
+./release/leo_setting.o
+./release/crossword.o
+./release/table.o
+./release/eng_rus.o
+./release/moc_mainwindow.o
+./release/moc_leo_setting.o
+./release/moc_crossword.o
+./release/moc_eng_rus.o
+);
