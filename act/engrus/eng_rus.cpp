@@ -36,14 +36,19 @@ EngRus::EngRus(QWidget *parent) : QWidget(parent)
         newButton->setObjectName(QString("WeAreButtonMy25/03/2018").setNum(i));
         setFontToWidget(newButton);
         listButton.push_back(newButton);
-        QLabel *imageLabel = new QLabel;
-        imageLabel->setBackgroundRole(QPalette::Base);
-        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        imageLabel->setSizePolicy(sizePolicy);
-        listImage.push_back(imageLabel);
+
+//        QLabel *imageLabel = new QLabel;
+//        imageLabel->setBackgroundRole(QPalette::Base);
+//        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+//        imageLabel->setSizePolicy(sizePolicy);
+        QPushButton *newImage=new QPushButton;
+        newImage->hide();
+        listImage.push_back(newImage);
+
+
         connect(newButton, SIGNAL(clicked()), this, SLOT(connectSelectWord()));
         QVBoxLayout *newLayout=new QVBoxLayout;
-        newLayout->addWidget(imageLabel);
+        newLayout->addWidget(newImage);
         newLayout->addWidget(newButton);
         ImageAndButtonLayout->addLayout(newLayout);
     }
@@ -84,8 +89,12 @@ void EngRus::nextRound(){
         listButton[i]->setText(UsingWord[i].ru);
         if(LeoConst::CONST()->runImage){
             QString fileName="./content/"+UsingWord[i].eng+".png";
-            QImage image(fileName);
-            listImage[i]->setPixmap(QPixmap::fromImage(image));
+            if(listImage[i]->isHidden()){
+                listImage[i]->show();
+            }
+            QPixmap pix(fileName);
+            listImage[i]->setIcon(pix);
+            listImage[i]->setIconSize(QSize(150, 100));
         }
     }
     main_Label->setText(QString(TrueWord.eng));
