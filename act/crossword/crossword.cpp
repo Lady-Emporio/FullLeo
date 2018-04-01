@@ -10,16 +10,20 @@ Crossword::Crossword(QWidget *parent) : QWidget(parent)
     QHBoxLayout *MainLayout=new QHBoxLayout(this);
     QVBoxLayout *SettingLauout=new QVBoxLayout;
     ErrorLabel=new QLabel("Все в порядке");
+    setFontToWidget(ErrorLabel);
     QPushButton *buttomVerify=new QPushButton("verify");
+    setFontToWidget(buttomVerify);
     QPushButton *buttomSeeAll=new QPushButton("Look,see all");
+    setFontToWidget(buttomSeeAll);
     QPushButton *buttomUpdate=new QPushButton("update");
-
+    setFontToWidget(buttomUpdate);
     MainTable=new TableGui;
     inCrosswordTableRowMax=LeoConst::CONST()->TABLE_ROW;
     inCrosswordTableColMax=LeoConst::CONST()->TABLE_COL;
     MainTable->setColumnCount(inCrosswordTableColMax);
     MainTable->setRowCount(inCrosswordTableRowMax);
     UsingWordList=new QListWidget;
+    setFontToWidget(UsingWordList);
     UsingWordList->setMaximumWidth(100);
 
     for(int i=0;i!=inCrosswordTableRowMax;++i){

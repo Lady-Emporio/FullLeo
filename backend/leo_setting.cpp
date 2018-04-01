@@ -182,8 +182,11 @@ QGroupBox * Settings::groupStyle(){
     comboAlg->addItem("fast");
     comboAlg->addItem("full");
     QCheckBox * buttomJump=new QCheckBox("jump?",this);
+    setFontToWidget(buttomJump);
     QCheckBox * buttomAutoCompletion=new QCheckBox("auto completion?",this);
+    setFontToWidget(buttomAutoCompletion);
     QCheckBox * ButtomGrin=new QCheckBox("delete grid?",this);
+    setFontToWidget(ButtomGrin);
     QHBoxLayout *hl1=new QHBoxLayout();
     QHBoxLayout *hl2=new QHBoxLayout();
     hl1->addWidget(row);
@@ -256,7 +259,9 @@ QGroupBox * Settings::groupEngRus(){
     }
     group_eng_rus->setLayout(mainLayout);
     QCheckBox * ButtomAudio=new QCheckBox("audio?",this);
+    setFontToWidget(ButtomAudio);
     QCheckBox * ButtonImage=new QCheckBox("image?",this);
+    setFontToWidget(ButtonImage);
     mainLayout->addWidget(ButtomAudio);
     mainLayout->addWidget(ButtonImage);
     connect(ButtomAudio, SIGNAL(clicked()), this, SLOT(connectAudio_trigger()));
@@ -269,6 +274,7 @@ void Settings::connectAudio_trigger(){
 void Settings::connectImage_trigger(){
     LeoConst::CONST()->runImage=!LeoConst::CONST()->runImage;
 }
+
 //QGroupBox * Settings::groupEngRus(){
 //    QGroupBox *group_eng_rus = new QGroupBox("Eng rus",this);
 //    group_eng_rus->setStyleSheet("QGroupBox{border: 4px solid rgb(255, 0, 0);}");
