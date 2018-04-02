@@ -308,3 +308,14 @@ bool LeoConst::setStyle(QString x,QString &Error){
         return false;
     }
 }
+
+
+
+
+
+
+
+
+
+
+

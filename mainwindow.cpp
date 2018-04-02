@@ -2,6 +2,7 @@
 #include "backend/leo_setting.h"
 #include "act/crossword/crossword.h"
 #include "act/engrus/eng_rus.h"
+#include "backend/list_word_db.h"
 
 saveMdiSub::saveMdiSub(QWidget *parent) :QMdiSubWindow(parent){}
 void saveMdiSub::closeEvent(QCloseEvent *event){ /*work but i not know;*/}
@@ -24,6 +25,8 @@ MainWindow::MainWindow(QWidget *parent)
     highTopMenu->addMenu(addMenu);
     this->setMenuBar(highTopMenu);
     highTopMenu->addAction("Settings",this,SLOT(on_actionOpenSettingstriggered()));
+    highTopMenu->addAction("DB word",this,SLOT(on_actionOpenListWordDBstriggered()));
+    highTopMenu->addAction("Active bd",this,SLOT(on_actionActiveBD()));
 
     QMenu*  windowMenu   = new QMenu("Window");
     highTopMenu->addMenu(windowMenu);
@@ -39,27 +42,9 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::on_actionOpenSettingstriggered(){
-//    static Settings *settings =Settings::getSettings();
-//    static bool firstCreate=true;
-//    if (firstCreate){
-//        saveMdiSub *subWindow1 = new saveMdiSub;
-//        subWindow1->setWidget(settings);
-//        mdiArea->addSubWindow(subWindow1);
-//        firstCreate=false;
-//        subWindow1->show();
-//    }
-//    else{
-//        QList<QMdiSubWindow *>	allSub=mdiArea->subWindowList();
-//        for(auto x:allSub){
-//            if(x->widget()==settings && x->isHidden()){
-//                    x->show();
-//            }
-//        };
-//    }
     QList<QMdiSubWindow *>	allSub=mdiArea->subWindowList();
     for(auto x:allSub){
         if(x->widget()->objectName()=="settings"){
-//            qDebug()<<"open he";
             x->close();
         }
     }
@@ -69,7 +54,6 @@ void MainWindow::on_actionOpenSettingstriggered(){
     mdiArea->addSubWindow(subWindow1);
     subWindow1->setAttribute(Qt::WA_DeleteOnClose);
     subWindow1->show();
-//    connect(settings->updateDB, SIGNAL(clicked()), subWindow1, SLOT(connectUpdateTable()));
     connect(settings->updateDB, SIGNAL(clicked()), subWindow1, SLOT(connectUpdateTable()));
     connect(subWindow1, SIGNAL(needUpdateThisIsWindow()), this, SLOT(on_actionOpenSettingstriggered()));
 }
@@ -92,6 +76,44 @@ void MainWindow::on_actionAddEngRus4x1_triggered(){
     EngRus *eng_rus_leo=new EngRus;
     QMdiSubWindow *subWindow1 = new QMdiSubWindow;
     subWindow1->setWidget(eng_rus_leo);
+    subWindow1->setAttribute(Qt::WA_DeleteOnClose);
+    mdiArea->addSubWindow(subWindow1);
+    subWindow1->show();
+}
+void MainWindow::on_actionOpenListWordDBstriggered(){
+    ListWordDB *widgetEditDB=new ListWordDB;
+    QMdiSubWindow *subWindow1 = new QMdiSubWindow;
+    subWindow1->setWidget(widgetEditDB);
+    subWindow1->setAttribute(Qt::WA_DeleteOnClose);
+    mdiArea->addSubWindow(subWindow1);
+    subWindow1->show();
+}
+
+void MainWindow::on_actionActiveBD(){
+    QWidget *w=new QWidget(this);
+    QVBoxLayout *mainLayout=new QVBoxLayout(w);
+    QListWidget *WordInActive=new QListWidget(w);
+    w->setLayout(mainLayout);
+    mainLayout->addWidget(WordInActive);
+    std::vector <Word> nowWordList;
+    QMdiSubWindow *activeSub=mdiArea->activeSubWindow();
+    if(activeSub==0){
+        QMessageBox msgBox;
+        msgBox.setText("Нет активного виджета");
+        msgBox.exec();
+        return;
+    }
+    if(activeSub->widget()->objectName()=="EngRus"){
+        EngRus * now=qobject_cast<EngRus *>(activeSub->widget());
+        nowWordList=now->ListWord;
+    }
+    for(size_t i=0;i!=nowWordList.size();++i){
+        QListWidgetItem *next=new QListWidgetItem(WordInActive);
+        next->setText(nowWordList[i].eng+" | "+nowWordList[i].ru);
+        WordInActive->addItem(next);
+    }
+    QMdiSubWindow *subWindow1 = new QMdiSubWindow;
+    subWindow1->setWidget(w);
     subWindow1->setAttribute(Qt::WA_DeleteOnClose);
     mdiArea->addSubWindow(subWindow1);
     subWindow1->show();

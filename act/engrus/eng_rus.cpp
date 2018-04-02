@@ -23,6 +23,7 @@ Button::Button(QWidget  *parent): QPushButton (parent){
 
 EngRus::EngRus(QWidget *parent) : QWidget(parent)
 {
+    this->setObjectName("EngRus");
     QVBoxLayout *mainLayout=new QVBoxLayout;
     QHBoxLayout *ImageAndButtonLayout=new QHBoxLayout;
 
@@ -36,11 +37,6 @@ EngRus::EngRus(QWidget *parent) : QWidget(parent)
         newButton->setObjectName(QString("WeAreButtonMy25/03/2018").setNum(i));
         setFontToWidget(newButton);
         listButton.push_back(newButton);
-
-//        QLabel *imageLabel = new QLabel;
-//        imageLabel->setBackgroundRole(QPalette::Base);
-//        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-//        imageLabel->setSizePolicy(sizePolicy);
         QPushButton *newImage=new QPushButton;
         newImage->hide();
         listImage.push_back(newImage);

@@ -6,8 +6,10 @@ INPUT(
 ./debug/crossword.o
 ./debug/table.o
 ./debug/eng_rus.o
+./debug/list_word_db.o
 ./debug/moc_mainwindow.o
 ./debug/moc_leo_setting.o
 ./debug/moc_crossword.o
 ./debug/moc_eng_rus.o
+./debug/moc_list_word_db.o
 );

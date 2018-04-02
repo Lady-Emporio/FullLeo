@@ -10,6 +10,8 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QFile>
+#include <QListWidget>
+#include <QListWidgetItem>
 enum status{freely,block,wordHere};
 enum pos{vertical,horizontal,zero};
 enum algTable{fast,full};

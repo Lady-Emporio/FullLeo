@@ -26,7 +26,8 @@ public slots:
 private slots:
     void on_actionCascadeSubWindows();
     void on_actionTileSubWindows();
-
+    void on_actionOpenListWordDBstriggered();
+    void on_actionActiveBD();
 };
 
 
