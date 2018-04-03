@@ -47,12 +47,14 @@ Crossword::Crossword(QWidget *parent) : QWidget(parent)
     connect(buttomSeeAll, SIGNAL(clicked()), this, SLOT(seeAll()));
     connect(buttomVerify, SIGNAL(clicked()), this, SLOT(verifyAll()));
 
-    connect(UsingWordList, SIGNAL(currentRowChanged(int)), this, SLOT(SelectWordRight(int)));
-    connect(MainTable, SIGNAL(itemSelectionChanged()), this, SLOT(SelectCell()));
 
     MainTable->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
     MainTable->setSelectionMode(QAbstractItemView::SingleSelection);//выделяем только один элемент
+
+    connect(UsingWordList, SIGNAL(currentRowChanged(int)), this, SLOT(SelectWordRight(int)));
+    connect(MainTable, SIGNAL(itemSelectionChanged()), this, SLOT(SelectCell()));
 }
+
 
 void Crossword::SelectWordRight(int x){
     if(x==-1){
@@ -61,11 +63,13 @@ void Crossword::SelectWordRight(int x){
         return;
     }
     for(size_t i=0;i!=InMainSelect.size();++i){
-        InMainSelect[i]->setBackground(LeoConst::CONST()->DEFAULTQB);
+//        InMainSelect[i]->setBackground(LeoConst::CONST()->DEFAULTQB);
+        InMainSelect[i]->setBackground(LeoConst::CONST()->WRITECELL);
     };
     InMainSelect.clear();
     for(size_t i=0;i!=LastSelectInMainTable.size();++i){
-        LastSelectInMainTable[i]->setBackground(LeoConst::CONST()->DEFAULTQB);
+//        LastSelectInMainTable[i]->setBackground(LeoConst::CONST()->DEFAULTQB);
+        LastSelectInMainTable[i]->setBackground(LeoConst::CONST()->WRITECELL);
     };
     LastSelectInMainTable.clear();
 
@@ -107,6 +111,7 @@ void Crossword::UpdateMainTable(){
             }
             else{
                 item->setText("");
+                item->setBackground(LeoConst::CONST()->WRITECELL);
             }
             MainTable->setItem(row, column, item);
         };
@@ -193,11 +198,13 @@ void Crossword::SelectCell(){
     };
     SecectInUsingWordList.clear();
     for(size_t i=0;i!=InMainSelect.size();++i){
-        InMainSelect[i]->setBackground(LeoConst::CONST()->DEFAULTQB);
+//        InMainSelect[i]->setBackground(LeoConst::CONST()->DEFAULTQB);
+        InMainSelect[i]->setBackground(LeoConst::CONST()->WRITECELL);
     };
     InMainSelect.clear();
     for(size_t i=0;i!=LastSelectInMainTable.size();++i){
-        LastSelectInMainTable[i]->setBackground(LeoConst::CONST()->DEFAULTQB);
+//        LastSelectInMainTable[i]->setBackground(LeoConst::CONST()->DEFAULTQB);
+        LastSelectInMainTable[i]->setBackground(LeoConst::CONST()->WRITECELL);
     };
     LastSelectInMainTable.clear();
     QList<QTableWidgetItem *> SelectItem=MainTable->selectedItems();
@@ -221,7 +228,7 @@ void Crossword::SelectCell(){
         QListWidgetItem * QListItem=UsingWordList->item(i);
         if(QListItem->text()==QString(selectFirstWord.ru)){
             QListItem->setBackground(LeoConst::CONST()->ACTIVELISTQB);
-            SecectInUsingWordList.push_back(UsingWordList->item(i));
+            SecectInUsingWordList.push_back(QListItem);
             UsingWordList->scrollToItem(UsingWordList->item(i),QAbstractItemView::PositionAtCenter );
         }
     };

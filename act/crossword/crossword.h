@@ -20,6 +20,7 @@ class TableGui: public QTableWidget{
 public:
     Table *tableForQKeyEvent;
     void keyPressEvent(QKeyEvent * event);
+signals:
 };
 
 class Crossword : public QWidget

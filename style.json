@@ -7,6 +7,7 @@
 			"FALSEQB":{"red":"219","green":"112","blue":"147"},
 			"GRIDQB":{"red":"255","green":"0","blue":"0"},
 			"ACTIVEINTABLEQB":{"red":"0","green":"255","blue":"0"},
+			"WRITECELL":{"red":"255","green":"255","blue":"255"},
 			"ACTIVELISTQB":{"red":"128","green":"128","blue":"128"}
 				},
 		"low":{
@@ -16,6 +17,7 @@
 			"FALSEQB":{"red":"229","green":"43","blue":"80"},
 			"GRIDQB":{"red":"100","green":"100","blue":"100"},
 			"ACTIVEINTABLEQB":{"red":"204","green":"204","blue":"255"},
+			"WRITECELL":{"red":"0","green":"255","blue":"0"},
 			"ACTIVELISTQB":{"red":"255","green":"0","blue":"0"}
 				},
 		"as1C":{
@@ -25,6 +27,7 @@
 			"FALSEQB":{"red":"255","green":"0","blue":"0"},
 			"GRIDQB":{"red":"179","green":"172","blue":"134"},
 			"ACTIVEINTABLEQB":{"red":"255","green":"250","blue":"217"},
+			"WRITECELL":{"red":"0","green":"255","blue":"0"},
 			"ACTIVELISTQB":{"red":"245","green":"242","blue":"221"}
 				},
 		"grey":{
@@ -34,6 +37,7 @@
 			"FALSEQB":{"red":"255","green":"0","blue":"0"},
 			"GRIDQB":{"red":"0","green":"0","blue":"0"},
 			"ACTIVEINTABLEQB":{"red":"170","green":"170","blue":"170"},
+			"WRITECELL":{"red":"0","green":"255","blue":"0"},
 			"ACTIVELISTQB":{"red":"128","green":"128","blue":"128"}
 				},
 		"dark":{
@@ -43,8 +47,24 @@
 			"FALSEQB":{"red":"255","green":"0","blue":"0"},
 			"GRIDQB":{"red":"0","green":"0","blue":"0"},
 			"ACTIVEINTABLEQB":{"red":"128","green":"128","blue":"128"},
+			"WRITECELL":{"red":"0","green":"255","blue":"0"},
 			"ACTIVELISTQB":{"red":"128","green":"128","blue":"128"}
+				},
+		"minimal":{
+			"DEFAULTQB":{"red":"255","green":"255","blue":"255"},
+			"NOTUSEQB":{"red":"0","green":"0","blue":"0"},
+			"TRUEQB":{"red":"255","green":"255","blue":"0"},
+			"FALSEQB":{"red":"255","green":"0","blue":"0"},
+			"GRIDQB":{"red":"0","green":"0","blue":"0"},
+			"ACTIVEINTABLEQB":{"red":"0","green":"255","blue":"0"},
+			"WRITECELL":{"red":"170","green":"170","blue":"170"},
+			"ACTIVELISTQB":{"red":"170","green":"170","blue":"170"}
 				}
+
+
+
+
+
 			},
 	"FONT_SIZE":"12",
 	"path_bd":"./bd1.sqlite",

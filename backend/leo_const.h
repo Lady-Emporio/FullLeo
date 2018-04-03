@@ -35,6 +35,7 @@ public:
     QBrush GRIDQB;
     QBrush ACTIVEINTABLEQB;
     QBrush ACTIVELISTQB;
+    QBrush WRITECELL;
     bool setStyle(QString x,QString &);
     int TABLE_ROW;
     int TABLE_COL;

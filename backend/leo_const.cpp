@@ -218,8 +218,8 @@ int getStyle(QStringList * ListStyle,QString style,QString subStyl,int *r,int *g
         return 1;
     }
     *r=nextSubStyle["red"].toString().toInt();
-    *g=nextSubStyle["blue"].toString().toInt();
-    *b=nextSubStyle["green"].toString().toInt();
+    *g=nextSubStyle["green"].toString().toInt();
+    *b=nextSubStyle["blue"].toString().toInt();
     return 0;
 }
 
@@ -251,6 +251,14 @@ bool LeoConst::setStyle(QString x,QString &Error){
     else{
         DEFAULTQB=QBrush(QColor(255, 255, 255));
         Error+="set DEFAULTQB\n";
+        ++sum;
+    }
+    if(getStyle(&NotUseListBadArchitectureAppForRunFunc,x,"WRITECELL",&r,&g,&b,Error)==0){
+        WRITECELL=QBrush(QColor(r, g, b));
+    }
+    else{
+        WRITECELL=QBrush(QColor(255, 255, 255));
+        Error+="set WRITECELL\n";
         ++sum;
     }
     if(getStyle(&NotUseListBadArchitectureAppForRunFunc,x,"NOTUSEQB",&r,&g,&b,Error)==0){

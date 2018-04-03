@@ -31,8 +31,6 @@ ListWordDB::ListWordDB(QWidget *parent) : QWidget(parent)
     thenSetList->resizeColumnsToContents();
     thenSetList->horizontalHeader()->setStretchLastSection(true);
     thenSetList->setSelectionBehavior(QAbstractItemView::SelectRows);
-
-
     QPushButton *Update=new QPushButton(this);
     setFontToWidget(Update);
     Update->setText("Accept||Update");
