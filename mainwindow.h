@@ -28,6 +28,7 @@ private slots:
     void on_actionTileSubWindows();
     void on_actionOpenListWordDBstriggered();
     void on_actionActiveBD();
+    void on_actionAddInputWite_triggered();
 };
 
 

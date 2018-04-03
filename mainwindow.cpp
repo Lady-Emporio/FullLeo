@@ -3,7 +3,7 @@
 #include "act/crossword/crossword.h"
 #include "act/engrus/eng_rus.h"
 #include "backend/list_word_db.h"
-
+#include "act/write/input_write.h"
 saveMdiSub::saveMdiSub(QWidget *parent) :QMdiSubWindow(parent){}
 void saveMdiSub::closeEvent(QCloseEvent *event){ /*work but i not know;*/}
 saveMdiSub::~saveMdiSub(){/*qDebug()<<"we are del";*/}
@@ -32,6 +32,7 @@ MainWindow::MainWindow(QWidget *parent)
     highTopMenu->addMenu(windowMenu);
     addMenu->addAction("New crossword",this,SLOT(on_actionAddCrossword_triggered()));
     addMenu->addAction("New EngRus",this,SLOT(on_actionAddEngRus4x1_triggered()));
+    addMenu->addAction("New InputWite",this,SLOT(on_actionAddInputWite_triggered()));
     windowMenu->addAction("Cascade sub windows",this,SLOT(on_actionCascadeSubWindows()));
     windowMenu->addAction("Tile sub windows",this,SLOT(on_actionTileSubWindows()));
 }
@@ -40,7 +41,14 @@ MainWindow::~MainWindow()
 {
 
 }
-
+void MainWindow::on_actionAddInputWite_triggered(){
+    InputWrite *input =new InputWrite(this);
+    saveMdiSub *subWindow1 = new saveMdiSub;
+    subWindow1->setWidget(input);
+    mdiArea->addSubWindow(subWindow1);
+    subWindow1->setAttribute(Qt::WA_DeleteOnClose);
+    subWindow1->show();
+}
 void MainWindow::on_actionOpenSettingstriggered(){
     QList<QMdiSubWindow *>	allSub=mdiArea->subWindowList();
     for(auto x:allSub){
