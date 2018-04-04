@@ -182,10 +182,19 @@ QGroupBox * Settings::groupStyle(){
     comboAlg->addItem("fast");
     comboAlg->addItem("full");
     QCheckBox * buttomJump=new QCheckBox("jump?",this);
+    if(LeoConst::CONST()->JUMP){
+        buttomJump->setCheckState(Qt::Checked);
+    }
     setFontToWidget(buttomJump);
     QCheckBox * buttomAutoCompletion=new QCheckBox("auto completion?",this);
+    if(LeoConst::CONST()->AUTOCOMPLETION){
+        buttomAutoCompletion->setCheckState(Qt::Checked);
+    }
     setFontToWidget(buttomAutoCompletion);
     QCheckBox * ButtomGrin=new QCheckBox("delete grid?",this);
+    if(LeoConst::CONST()->GRID){
+        ButtomGrin->setCheckState(Qt::Checked);
+    }
     setFontToWidget(ButtomGrin);
     QHBoxLayout *hl1=new QHBoxLayout();
     QHBoxLayout *hl2=new QHBoxLayout();
@@ -200,10 +209,13 @@ QGroupBox * Settings::groupStyle(){
     mainLayout->addWidget(buttomAutoCompletion);
     mainLayout->addWidget(ButtomGrin);
     groupStyle->setLayout(mainLayout);
+
     connect(EditRowCount, SIGNAL(textChanged(const QString &)), this, SLOT(connectRowTable(const QString &)));
     connect(EditCOL, SIGNAL(textChanged(const QString &)), this, SLOT(connectColTable(const QString &)));
-    connect(comboAlg, SIGNAL(currentTextChanged(const QString &)), this, SLOT(connectALG_trigger(const QString &)));
-    connect(comboStyle, SIGNAL(currentTextChanged(const QString &)), this, SLOT(connectStyleJson_trigger(const QString &)));
+    //activated
+//    connect(comboAlg, SIGNAL(currentTextChanged(const QString &)), this, SLOT(connectALG_trigger(const QString &)));
+    connect(comboAlg, SIGNAL(activated(const QString &)), this, SLOT(connectALG_trigger(const QString &)));
+    connect(comboStyle, SIGNAL(activated(const QString &)), this, SLOT(connectStyleJson_trigger(const QString &)));
     connect(buttomAutoCompletion, SIGNAL(clicked()), this, SLOT(connectAUTOCOMPLETION_trigger()));
     connect(buttomJump, SIGNAL(clicked()), this, SLOT(connectJUMP_trigger()));
     connect(ButtomGrin, SIGNAL(clicked()), this, SLOT(connectGRIDTABLE_trigger()));
@@ -260,8 +272,14 @@ QGroupBox * Settings::groupEngRus(){
     group_eng_rus->setLayout(mainLayout);
     QCheckBox * ButtomAudio=new QCheckBox("audio?",this);
     setFontToWidget(ButtomAudio);
+    if(LeoConst::CONST()->runAudio){
+        ButtomAudio->setCheckState(Qt::Checked);
+    }
     QCheckBox * ButtonImage=new QCheckBox("image?",this);
     setFontToWidget(ButtonImage);
+    if(LeoConst::CONST()->runImage){
+        ButtonImage->setCheckState(Qt::Checked);
+    }
     mainLayout->addWidget(ButtomAudio);
     mainLayout->addWidget(ButtonImage);
     connect(ButtomAudio, SIGNAL(clicked()), this, SLOT(connectAudio_trigger()));

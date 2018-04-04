@@ -5,6 +5,8 @@
 #include <ctime>
 #include <QMediaPlayer>
 #include <QDir>
+#include "QTime"
+#include <algorithm>
 Button::Button(QWidget  *parent): QPushButton (parent){
     //font and start text
     {
@@ -14,24 +16,26 @@ Button::Button(QWidget  *parent): QPushButton (parent){
     this->setFont(font);
     this->setText("MyClassButtom");
     }
-
     this->setStyleSheet(LeoConst::CONST()->DEFAULT_BUTTOM_COLOR);
     QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     this->setSizePolicy(sizePolicy);
 }
 
+QMediaPlayer * EngRus::player = new QMediaPlayer();//global
 
 EngRus::EngRus(QWidget *parent) : QWidget(parent)
 {
+    QTime midnight(0,0,0);
+    qsrand(midnight.secsTo(QTime::currentTime()));
     this->setObjectName("EngRus");
     QVBoxLayout *mainLayout=new QVBoxLayout;
     QHBoxLayout *ImageAndButtonLayout=new QHBoxLayout;
-
     main_Label=new QLabel("We are",this);
     setFontToWidget(main_Label);
     main_Label->setAlignment(Qt::AlignCenter);
     main_Label->setCursor(QCursor(Qt::CrossCursor));
-    for(int i=0;i!=LeoConst::CONST()->COUNT_BUTTOM;++i){
+    MaxButton=LeoConst::CONST()->COUNT_BUTTOM;
+    for(int i=0;i!=MaxButton;++i){
         Button *newButton=new Button(this);
         newButton->setText(QString("We are: ").setNum(i));
         newButton->setObjectName(QString("WeAreButtonMy25/03/2018").setNum(i));
@@ -43,6 +47,7 @@ EngRus::EngRus(QWidget *parent) : QWidget(parent)
 
 
         connect(newButton, SIGNAL(clicked()), this, SLOT(connectSelectWord()));
+        connect(newImage, SIGNAL(clicked()), this, SLOT(connectSelectImage()));
         QVBoxLayout *newLayout=new QVBoxLayout;
         newLayout->addWidget(newImage);
         newLayout->addWidget(newButton);
@@ -53,7 +58,22 @@ EngRus::EngRus(QWidget *parent) : QWidget(parent)
     this->setLayout(mainLayout);
 
     ListWord=LeoConst::CONST()->ListWithWordConst;
-    if (ListWord.size()<=5){
+    if (ListWord.size()<=MaxButton || ListWord.size()==0){
+            main_Label->setText(QString("Small size: ")+QString("").setNum(ListWord.size()));
+            return;
+    };
+    std::vector<int> UniqueWord;
+    while(UniqueWord.size()!=MaxButton){
+        int x=qrand()%ListWord.size();
+        auto it = std::find (UniqueWord.begin(), UniqueWord.end(), x);
+        if (it == UniqueWord.end()){
+            UniqueWord.push_back(x);
+        }
+    }
+    for(size_t i=0;i!=UniqueWord.size();++i){
+        sizeWordinLastSizeEnd.push_back(ListWord[i]);
+    }
+    if (ListWord.size()<=MaxButton){
             main_Label->setText(QString("Small size: ")+QString("").setNum(ListWord.size()));
             return;
     };
@@ -63,13 +83,19 @@ EngRus::EngRus(QWidget *parent) : QWidget(parent)
     std::srand ( (int)time(0));
     random_shuffle ( ListWord.begin(), ListWord.end(),[](int i) {return std::rand()%i;});
 }
+void EngRus::connectSelectImage(){
+    if(LeoConst::CONST()->runAudio){
+        player->setMedia(QUrl::fromLocalFile(QDir::toNativeSeparators("content\\"+TrueWord.eng+".mp3")));
+        player->play();
+    };
+}
 
 void EngRus::nextRound(){
     for(size_t i=0;i!=listButton.size();++i){
         listButton[i]->setStyleSheet(LeoConst::CONST()->DEFAULT_BUTTOM_COLOR);
     }
-    if (ListWord.size()<=5){
-            main_Label->setText(QString("Small size: ")+QString("").setNum(ListWord.size()));
+    if (ListWord.size()<=0){
+            main_Label->setText(QString("End size: ")+QString("").setNum(ListWord.size()));
             return;
     };
     random_shuffle ( ListWord.begin(), ListWord.end(),[](int i) {return std::rand()%i;});
@@ -78,19 +104,65 @@ void EngRus::nextRound(){
     ListWord.pop_back();
     UsingWord.push_back(TrueWord);
     for(size_t i=1;i!=listButton.size();++i){
-        UsingWord.push_back(ListWord[ListWord.size()-i]);
+        if(i>ListWord.size()){
+            break;
+        }else{
+            UsingWord.push_back(ListWord[ListWord.size()-i]);
+        }
     };
+    std::vector<Word>updateLastSizeEnd=sizeWordinLastSizeEnd;
     random_shuffle ( UsingWord.begin(), UsingWord.end(),[](int i) {return std::rand()%i;});
-    for(size_t i=0;i!=listButton.size();++i){
-        listButton[i]->setText(UsingWord[i].ru);
-        if(LeoConst::CONST()->runImage){
-            QString fileName="./content/"+UsingWord[i].eng+".png";
-            if(listImage[i]->isHidden()){
-                listImage[i]->show();
+    if (ListWord.size()+1<=MaxButton){
+        for(size_t i=0;i!=listButton.size();++i){
+               if(i<UsingWord.size()){
+                    listButton[i]->setText(UsingWord[i].ru);
+                    if(LeoConst::CONST()->runImage){
+                        QString fileName="./content/"+UsingWord[i].eng+".png";
+                        if(listImage[i]->isHidden()){
+                            listImage[i]->show();
+                        }
+                        QPixmap pix(fileName);
+                        listImage[i]->setIcon(pix);
+                        listImage[i]->setIconSize(QSize(150, 100));
+                    }
+                    else{
+                        listImage[i]->hide();
+                    }
+               }
+               else{
+                   Word backWord=sizeWordinLastSizeEnd.back();
+                   sizeWordinLastSizeEnd.pop_back();
+                    listButton[i]->setText(backWord.ru);
+                    if(LeoConst::CONST()->runImage){
+                        QString fileName="./content/"+backWord.eng+".png";
+                        if(listImage[i]->isHidden()){
+                            listImage[i]->show();
+                        }
+                        QPixmap pix(fileName);
+                        listImage[i]->setIcon(pix);
+                        listImage[i]->setIconSize(QSize(150, 100));
+                    }
+                    else{
+                        listImage[i]->hide();
+                    }
+               }
+        }
+        sizeWordinLastSizeEnd=updateLastSizeEnd;
+    }else{
+        for(size_t i=0;i!=listButton.size();++i){
+            listButton[i]->setText(UsingWord[i].ru);
+            if(LeoConst::CONST()->runImage){
+                QString fileName="./content/"+UsingWord[i].eng+".png";
+                if(listImage[i]->isHidden()){
+                    listImage[i]->show();
+                }
+                QPixmap pix(fileName);
+                listImage[i]->setIcon(pix);
+                listImage[i]->setIconSize(QSize(150, 100));
             }
-            QPixmap pix(fileName);
-            listImage[i]->setIcon(pix);
-            listImage[i]->setIconSize(QSize(150, 100));
+            else{
+                listImage[i]->hide();
+            }
         }
     }
     main_Label->setText(QString(TrueWord.eng));
@@ -105,7 +177,6 @@ void EngRus::connectSelectWord(){
     Button *buttom=findChild<Button*>(obj->objectName());
     if(buttom->text()==QString(TrueWord.ru)){
         if(LeoConst::CONST()->runAudio){
-            static QMediaPlayer *player = new QMediaPlayer;
             player->setMedia(QUrl::fromLocalFile(QDir::toNativeSeparators("content\\"+TrueWord.eng+".mp3")));
             player->play();
         };

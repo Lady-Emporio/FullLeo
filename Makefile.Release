@@ -787,6 +787,21 @@ release/moc_eng_rus.cpp: C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidge
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtabwidget.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qrubberband.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QListWidgetItem \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/QMediaPlayer \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/qmediaplayer.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/qmediaobject.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/qtmultimediadefs.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/qmultimedia.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/qmediacontent.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/qmediaresource.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtNetwork/qnetworkrequest.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QSharedDataPointer \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QUrl \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QVariant \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/qmediaenumdebug.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qmetaobject.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/qaudio.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtNetwork/qnetworkconfiguration.h \
 		act/engrus/eng_rus.h
 	'C:\Qt\Qt5.6.3\5.6.3\mingw49_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/win32-g++ -IC:/Users/User/Desktop/C++/fullLeo/FullLeo -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimediaWidgets -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtANGLE -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtNetwork -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore act/engrus/eng_rus.h -o release/moc_eng_rus.cpp
 
@@ -1495,6 +1510,21 @@ release/mainwindow.o: mainwindow.cpp mainwindow.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QVBoxLayout \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QKeyEvent \
 		act/engrus/eng_rus.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/QMediaPlayer \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/qmediaplayer.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/qmediaobject.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/qtmultimediadefs.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/qmultimedia.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/qmediacontent.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/qmediaresource.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtNetwork/qnetworkrequest.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QSharedDataPointer \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QUrl \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QVariant \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/qmediaenumdebug.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qmetaobject.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/qaudio.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtNetwork/qnetworkconfiguration.h \
 		backend/list_word_db.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QMessageBox \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qmessagebox.h \
@@ -2267,13 +2297,6 @@ release/eng_rus.o: act/engrus/eng_rus.cpp act/engrus/eng_rus.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtabwidget.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qrubberband.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QListWidgetItem \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHBoxLayout \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgridlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QVBoxLayout \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/QMediaPlayer \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/qmediaplayer.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/qmediaobject.h \
@@ -2289,9 +2312,18 @@ release/eng_rus.o: act/engrus/eng_rus.cpp act/engrus/eng_rus.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qmetaobject.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/qaudio.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtNetwork/qnetworkconfiguration.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHBoxLayout \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QVBoxLayout \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDir \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qdir.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfileinfo.h
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfileinfo.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QTime \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qdatetime.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/eng_rus.o act/engrus/eng_rus.cpp
 
 release/list_word_db.o: backend/list_word_db.cpp backend/list_word_db.h \

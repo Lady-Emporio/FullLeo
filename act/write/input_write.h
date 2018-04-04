@@ -14,6 +14,7 @@ public:
     void keyPressEvent(QKeyEvent * event);
     void resizeEvent(QResizeEvent *event);
 signals:
+    void singal_needNexRound();
 };
 
 class InputWrite : public QWidget

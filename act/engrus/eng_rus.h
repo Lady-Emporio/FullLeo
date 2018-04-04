@@ -8,7 +8,7 @@
 #include <vector>
 #include "backend/word.h"
 #include "backend/leo_const.h"
-
+#include <QMediaPlayer>
 class Button : public QPushButton
 {
    Q_OBJECT
@@ -28,12 +28,16 @@ public:
     explicit EngRus(QWidget *parent = 0);
     void nextRound();
     std::vector<Word> ListWord;
+    std::vector<Word> sizeWordinLastSizeEnd;
+    int MaxButton;
     Word TrueWord;
+    static QMediaPlayer *player;
 signals:
 
 public slots:
 
 private slots:
     void connectSelectWord();
+    void connectSelectImage();
 };
 #endif // ENGRUS_H

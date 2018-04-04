@@ -17,35 +17,53 @@ TableWrite::TableWrite(QWidget *parent) : QTableWidget(parent){
                 "background: rgb(230, 230,230);color:rgb(0,0,0);}"
     );
 }
+
 void TableWrite::keyPressEvent(QKeyEvent *event){
     if(event->type()==QEvent::KeyPress){
-        QString text=event->text();
-        QList<QTableWidgetItem *> IselectItem=this->selectedItems();
-        if(IselectItem.size()!=0){
-            QTableWidgetItem * item=IselectItem[0];
-            if(text.count()!=0){
-                QRegExpValidator r(QRegExp ("[a-z]"), 0);
-                int pos = 0;
-                int column=this->column(item);
-                if(r.validate(text,pos)==QValidator::Acceptable){
-                    if(text==QString(TrueWord[column])){
-                        item->setText(text);
-                        this->setStyleSheet(
-                                    "QTableView::item:selected:active {"
-                                    "background: rgb(230, 230,230);color:rgb(0,0,0);}"
-                        );
-                        if(column+1!=this->columnCount()){
-                            this->setCurrentIndex(this->model()->index(0,column+1));
+        if(event->key()==Qt::Key_Enter || event->key()==Qt::Key_Return){
+            int sum=0;
+            for(size_t i=0;i!=this->columnCount();++i){
+                if(item(0,i)->text()!=QString(TrueWord[i])){
+                    ++sum;
+                }
+            }
+            if(sum==0){
+                emit singal_needNexRound();
+            }
+        }
+        else{
+            QString text=event->text();
+            QList<QTableWidgetItem *> IselectItem=this->selectedItems();
+            if(IselectItem.size()!=0){
+                QTableWidgetItem * item=IselectItem[0];
+                if(text.count()!=0){
+                    QRegExpValidator r(QRegExp ("[a-z]"), 0);
+                    int pos = 0;
+                    int column=this->column(item);
+                    if(r.validate(text,pos)==QValidator::Acceptable){
+                        if(text==QString(TrueWord[column])){
+                            item->setText(text);
+                            this->setStyleSheet(
+                                        "QTableView::item:selected:active {"
+                                        "background: rgb(230, 230,230);color:rgb(0,0,0);}"
+                            );
+                            this->item(0,column)->setBackground(LeoConst::CONST()->TRUEQB);
+                            this->item(0,column)->setFlags(Qt::NoItemFlags);
+                            if(column+1!=this->columnCount()){
+                                this->setCurrentIndex(this->model()->index(0,column+1));
+
+                            }
+    //                        if(column-1>=0){
+    ////                            this->item(0,column-1)->setBackground(LeoConst::CONST()->TRUEQB);
+    //                            this->item(0,column)->setFlags(Qt::NoItemFlags);
+    //                        }
+                        }else{
+    //                        item->setBackground(LeoConst::CONST()->FALSEQB);
+                            this->setStyleSheet(
+                                        "QTableView::item:selected:active {"
+                                        "background: rgb(255, 0,0);color:rgb(0,0,0);}"
+                            );
                         }
-                        if(column-1>=0){
-                            this->item(0,column-1)->setBackground(LeoConst::CONST()->WRITECELL);
-                        }
-                    }else{
-//                        item->setBackground(LeoConst::CONST()->FALSEQB);
-                        this->setStyleSheet(
-                                    "QTableView::item:selected:active {"
-                                    "background: rgb(255, 0,0);color:rgb(0,0,0);}"
-                        );
                     }
                 }
             }
@@ -58,7 +76,7 @@ void TableWrite::resizeEvent(QResizeEvent *event){
     if (intMaxColumn!=0){
         QRect viewRect = this->rect();
         size_t column0_width = viewRect.width() * (100/intMaxColumn*0.01);//Calculate first column's width as 80% of QTableView's width.
-        for(size_t i=0;i!=column0_width-1;++i){
+        for(size_t i=0;i!=intMaxColumn;++i){
             this->setColumnWidth( i, column0_width );
         }
     }
@@ -67,7 +85,10 @@ void TableWrite::resizeEvent(QResizeEvent *event){
 InputWrite::InputWrite(QWidget *parent) : QWidget(parent)
 {
     inputTable=new TableWrite(this);
+    setFontToWidget(inputTable);
     TrueLabel=new QLabel(this);
+    setFontToWidget(TrueLabel);
+    TrueLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     QVBoxLayout *mainLayout=new QVBoxLayout(this);
     QHBoxLayout *settingAndImage=new QHBoxLayout;
     mainLayout->addWidget(TrueLabel);
@@ -75,25 +96,34 @@ InputWrite::InputWrite(QWidget *parent) : QWidget(parent)
     mainLayout->addLayout(settingAndImage);
 
     QPushButton *nextRound=new QPushButton(this);
+    setFontToWidget(nextRound);
     nextRound->setText("next round");
     settingAndImage->addWidget(nextRound);
     this->setLayout(mainLayout);
     ListWord=LeoConst::CONST()->ListWithWordConst;
     connect(nextRound, SIGNAL(clicked()), this, SLOT(connectNextRound_trigger()));
+    connect(inputTable, SIGNAL(singal_needNexRound()), this, SLOT(connectNextRound_trigger()));
+
 }
+
 void InputWrite::connectNextRound_trigger(){
     run();
+    inputTable->setCurrentIndex(inputTable->model()->index(0,0));
     size_t intMaxColumn=inputTable->columnCount();
     if (intMaxColumn!=0){
         QRect viewRect = inputTable->rect();
         size_t column0_width = viewRect.width() * (100/intMaxColumn*0.01);//Calculate first column's width as 80% of QTableView's width.
-        for(size_t i=0;i!=column0_width-1;++i){
+        for(size_t i=0;i!=intMaxColumn;++i){
             inputTable->setColumnWidth( i, column0_width );
         }
     }
 }
 
 void InputWrite::run(){
+    if(ListWord.size()==0){
+        TrueLabel->setText("Слова закончились");
+        return;
+    }
     TrueWord=ListWord.back();
     ListWord.pop_back();
     inputTable->TrueWord=TrueWord.eng;
@@ -102,7 +132,9 @@ void InputWrite::run(){
     inputTable->setColumnCount(word.size());
     for(size_t i=0;i!=word.size();++i){
         QTableWidgetItem *item = new QTableWidgetItem;
+//        setFontToWidget(item);
         item->setBackground(LeoConst::CONST()->WRITECELL);
+        item->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
         inputTable->setItem(0, i, item);
     }
 }
