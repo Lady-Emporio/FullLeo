@@ -12,6 +12,8 @@
 #include <QFile>
 #include <QListWidget>
 #include <QListWidgetItem>
+#include <QMediaPlayer>
+#include <QDir>
 enum status{freely,block,wordHere};
 enum pos{vertical,horizontal,zero};
 enum algTable{fast,full};
@@ -52,6 +54,7 @@ public:
     int COUNT_BUTTOM;
     bool runAudio;
     bool runImage;
+    static QMediaPlayer * player;
 private:
     LeoConst();
 };

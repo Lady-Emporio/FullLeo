@@ -8,7 +8,7 @@
 #include <vector>
 #include "backend/word.h"
 #include "backend/leo_const.h"
-#include <QMediaPlayer>
+
 class Button : public QPushButton
 {
    Q_OBJECT
@@ -31,7 +31,7 @@ public:
     std::vector<Word> sizeWordinLastSizeEnd;
     int MaxButton;
     Word TrueWord;
-    static QMediaPlayer *player;
+//    static QMediaPlayer *player;
 signals:
 
 public slots:

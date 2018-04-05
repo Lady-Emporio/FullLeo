@@ -2,6 +2,8 @@
 #include "sqlite3.h"
 #include "QMessageBox"
 
+QMediaPlayer * LeoConst::player = new QMediaPlayer();//global
+
 LeoConst::LeoConst()
 {
     getFromDB=0;

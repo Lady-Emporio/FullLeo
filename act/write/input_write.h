@@ -1,6 +1,6 @@
 #ifndef INPUTWRITE_H
 #define INPUTWRITE_H
-
+#include <QMediaPlayer>
 #include <QWidget>
 #include <QTableWidget>
 #include "backend/word.h"
@@ -26,6 +26,7 @@ public:
     explicit InputWrite(QWidget *parent = 0);
     TableWrite *inputTable;
     std::vector<Word> ListWord;
+    static QMediaPlayer *player;
     void run();
 signals:
 

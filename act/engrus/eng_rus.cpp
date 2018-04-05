@@ -3,8 +3,6 @@
 #include <QVBoxLayout>
 #include <QDebug>
 #include <ctime>
-#include <QMediaPlayer>
-#include <QDir>
 #include "QTime"
 #include <algorithm>
 Button::Button(QWidget  *parent): QPushButton (parent){
@@ -21,7 +19,7 @@ Button::Button(QWidget  *parent): QPushButton (parent){
     this->setSizePolicy(sizePolicy);
 }
 
-QMediaPlayer * EngRus::player = new QMediaPlayer();//global
+//QMediaPlayer * EngRus::player = new QMediaPlayer();//global
 
 EngRus::EngRus(QWidget *parent) : QWidget(parent)
 {
@@ -85,8 +83,8 @@ EngRus::EngRus(QWidget *parent) : QWidget(parent)
 }
 void EngRus::connectSelectImage(){
     if(LeoConst::CONST()->runAudio){
-        player->setMedia(QUrl::fromLocalFile(QDir::toNativeSeparators("content\\"+TrueWord.eng+".mp3")));
-        player->play();
+        LeoConst::player->setMedia(QUrl::fromLocalFile(QDir::toNativeSeparators("content\\"+TrueWord.eng+".mp3")));
+        LeoConst::player->play();
     };
 }
 
@@ -177,8 +175,8 @@ void EngRus::connectSelectWord(){
     Button *buttom=findChild<Button*>(obj->objectName());
     if(buttom->text()==QString(TrueWord.ru)){
         if(LeoConst::CONST()->runAudio){
-            player->setMedia(QUrl::fromLocalFile(QDir::toNativeSeparators("content\\"+TrueWord.eng+".mp3")));
-            player->play();
+            LeoConst::player->setMedia(QUrl::fromLocalFile(QDir::toNativeSeparators("content\\"+TrueWord.eng+".mp3")));
+            LeoConst::player->play();
         };
         static bool go_next=false;
          if (!go_next){

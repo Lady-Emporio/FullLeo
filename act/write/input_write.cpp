@@ -5,6 +5,7 @@
 #include <QKeyEvent>
 #include <QVBoxLayout>
 #include <QPushButton>
+
 TableWrite::TableWrite(QWidget *parent) : QTableWidget(parent){
     this->setRowCount(1);
     this->verticalHeader()->setVisible(false);
@@ -20,54 +21,88 @@ TableWrite::TableWrite(QWidget *parent) : QTableWidget(parent){
 
 void TableWrite::keyPressEvent(QKeyEvent *event){
     if(event->type()==QEvent::KeyPress){
-        if(event->key()==Qt::Key_Enter || event->key()==Qt::Key_Return){
+        QList<QTableWidgetItem *> IselectItem=this->selectedItems();
+        bool notActiveItem=false;
+        QTableWidgetItem * nowItem=0;
+        int column=0;
+        if(IselectItem.size()==0){
+            notActiveItem=true;
+        }else{
+            nowItem=IselectItem[0];
+            column=this->column(nowItem);
+        }
+        switch(event->key()){
+        case Qt::Key_Enter:
+        case Qt::Key_Return:{
             int sum=0;
             for(size_t i=0;i!=this->columnCount();++i){
                 if(item(0,i)->text()!=QString(TrueWord[i])){
                     ++sum;
+                    item(0,i)->setBackground(LeoConst::CONST()->FALSEQB);
                 }
             }
             if(sum==0){
+                if(LeoConst::CONST()->runAudio){
+                    LeoConst::player->setMedia(QUrl::fromLocalFile(QDir::toNativeSeparators("content\\"+TrueWord+".mp3")));
+                    LeoConst::player->play();
+                };
                 emit singal_needNexRound();
             }
+            break;
+            }
+        case Qt::Key_Left:{
+            for(size_t i=1;i!=columnCount();++i){
+                int next=column-i;
+                if(next>=0 && item(0,next)->flags()!=Qt::NoItemFlags){
+                    this->setCurrentIndex(this->model()->index(0,next));
+                    break;
+                }
+            }
+            break;
         }
-        else{
-            QString text=event->text();
-            QList<QTableWidgetItem *> IselectItem=this->selectedItems();
-            if(IselectItem.size()!=0){
-                QTableWidgetItem * item=IselectItem[0];
-                if(text.count()!=0){
-                    QRegExpValidator r(QRegExp ("[a-z]"), 0);
-                    int pos = 0;
-                    int column=this->column(item);
-                    if(r.validate(text,pos)==QValidator::Acceptable){
-                        if(text==QString(TrueWord[column])){
-                            item->setText(text);
-                            this->setStyleSheet(
-                                        "QTableView::item:selected:active {"
-                                        "background: rgb(230, 230,230);color:rgb(0,0,0);}"
-                            );
-                            this->item(0,column)->setBackground(LeoConst::CONST()->TRUEQB);
-                            this->item(0,column)->setFlags(Qt::NoItemFlags);
-                            if(column+1!=this->columnCount()){
-                                this->setCurrentIndex(this->model()->index(0,column+1));
-
-                            }
-    //                        if(column-1>=0){
-    ////                            this->item(0,column-1)->setBackground(LeoConst::CONST()->TRUEQB);
-    //                            this->item(0,column)->setFlags(Qt::NoItemFlags);
-    //                        }
+        case Qt::Key_Right:{
+            for(size_t i=1;i!=columnCount();++i){
+                int next=column+i;
+                if(next<columnCount() && item(0,next)->flags()!=Qt::NoItemFlags){
+                    this->setCurrentIndex(this->model()->index(0,next));
+                    break;
+                }
+            }
+            break;
+        }
+        default:{
+            if(notActiveItem){
+                return;
+            }
+            QString text=event->text().toLower();
+            if(text.count()!=0){
+                QRegExpValidator r(QRegExp ("[a-zA-Z]"), 0);
+                int pos = 0;
+                if(r.validate(text,pos)==QValidator::Acceptable){
+                    if(text==QString(TrueWord[column])){
+                        nowItem->setText(text);
+                        this->setStyleSheet("QTableView::item:selected:active { background: rgb(230, 230,230);color:rgb(0,0,0);}");
+                        this->item(0,column)->setBackground(LeoConst::CONST()->TRUEQB);
+                        this->item(0,column)->setFlags(Qt::NoItemFlags);
+                        if(column+1<this->columnCount() && this->item(0,column+1)->flags()!=Qt::NoItemFlags){
+                            this->setCurrentIndex(this->model()->index(0,column+1));
                         }else{
-    //                        item->setBackground(LeoConst::CONST()->FALSEQB);
-                            this->setStyleSheet(
-                                        "QTableView::item:selected:active {"
-                                        "background: rgb(255, 0,0);color:rgb(0,0,0);}"
-                            );
+                            for(size_t i=columnCount()-1;i!=-1;--i){
+                                if(this->item(0,i)->flags()!=Qt::NoItemFlags){
+                                    this->setCurrentIndex(this->model()->index(0,i));
+                                    break;
+                                }
+                            }
                         }
+                    }
+                    else{
+                        this->setStyleSheet("QTableView::item:selected:active {background: rgb(255, 0,0);color:rgb(0,0,0);}");
                     }
                 }
             }
         }
+        break;
+        }//end  switch
     }
 }
 
@@ -126,7 +161,7 @@ void InputWrite::run(){
     }
     TrueWord=ListWord.back();
     ListWord.pop_back();
-    inputTable->TrueWord=TrueWord.eng;
+    inputTable->TrueWord=TrueWord.eng.toLower();
     QString word=TrueWord.eng;
     TrueLabel->setText(TrueWord.ru);
     inputTable->setColumnCount(word.size());
