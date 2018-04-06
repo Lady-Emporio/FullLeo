@@ -35,6 +35,15 @@ MainWindow::MainWindow(QWidget *parent)
     addMenu->addAction("New InputWite",this,SLOT(on_actionAddInputWite_triggered()));
     windowMenu->addAction("Cascade sub windows",this,SLOT(on_actionCascadeSubWindows()));
     windowMenu->addAction("Tile sub windows",this,SLOT(on_actionTileSubWindows()));
+    windowMenu->addAction("Sub window view",this,SLOT(on_actionSubWindowView()));
+    windowMenu->addAction("Tabbed view",this,SLOT(on_actionTabbedView()));
+}
+
+void MainWindow::on_actionSubWindowView(){
+    mdiArea->setViewMode(QMdiArea::SubWindowView);
+}
+void MainWindow::on_actionTabbedView(){
+    mdiArea->setViewMode(QMdiArea::TabbedView);
 }
 
 MainWindow::~MainWindow()

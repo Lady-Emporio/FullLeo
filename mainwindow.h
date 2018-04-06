@@ -29,6 +29,8 @@ private slots:
     void on_actionOpenListWordDBstriggered();
     void on_actionActiveBD();
     void on_actionAddInputWite_triggered();
+    void on_actionSubWindowView();
+    void on_actionTabbedView();
 };
 
 
