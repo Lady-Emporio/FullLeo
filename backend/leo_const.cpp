@@ -239,17 +239,27 @@ void LeoConst::FromRootString(){
 
 void LeoConst::setStyle(QString x){
     ActiveStyle=x;
-//    QMap<QString,QMap<QString,QBrush> > AllStyleMap;
-
-//    for(auto x=AllStyleMap.begin();x!=AllStyleMap.end();++x){
-//        AllQBrushdictPARAMS
     for(auto x=AllQBrushdictPARAMS.begin();x!=AllQBrushdictPARAMS.end();++x){
         AllQBrushdictPARAMS[x.key()]=AllStyleMap[ActiveStyle][x.key()];
     }
 }
 
 
+void LeoConst::printAllWordInBD(QString path){
+//    QMessageBox msgBox;
+//    sqlite3 *db;
+//    sqlite3_stmt * pStmt;
+//    if (sqlite3_open(path.toStdString().c_str(), &db)){
+//        sqlite3_close(db);
+//        msgBox.setText("Не получается открыть бд");
+//        msgBox.exec();
+//        return;
 
+//    }
+
+//    sqlite3_finalize(pStmt);
+//    sqlite3_close(db);
+}
 
 
 

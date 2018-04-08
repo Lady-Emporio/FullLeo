@@ -31,9 +31,10 @@ public:
     QGroupBox * groupStyle();
     QGroupBox * groupEngRus();
     QGroupBox * groupJson();
-
+    QGroupBox * groupFileAndBD();
     explicit Settings(QWidget *parent = 0);
     QPushButton *updateDB;
+    QLineEdit *saveBd;
 signals:
 
 public slots:
@@ -55,6 +56,7 @@ private slots:
     void connectGRIDTABLE_trigger();
     void connectImage_trigger();
     void connectNeedSaveJson();
+    void connect_saveActiveListInBd();
 };
 
 #endif // LEOSETTING_H

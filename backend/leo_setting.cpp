@@ -17,6 +17,7 @@ Settings::Settings(QWidget *parent) : QWidget(parent)
     mainLayout->addWidget(groupStyle(),1,0);
     mainLayout->addWidget(groupEngRus(),1,1);
     mainLayout->addWidget(groupJson(),0,2,2,1);
+    mainLayout->addWidget(groupFileAndBD(),0,3,2,1);
 
     this->setLayout(mainLayout);
 }
@@ -277,9 +278,10 @@ QGroupBox * Settings::groupJson(){
     group_Json->setStyleSheet("QGroupBox{border: 4px solid rgb(170, 0, 170);}");
     setFontToWidget(group_Json);
     QGridLayout *mainLayout=new QGridLayout(group_Json);
-
     QPushButton *save_button=new QPushButton("Save",this);
+    setFontToWidget(save_button);
     QListWidget *ConstValue=new QListWidget(this);
+    setFontToWidget(ConstValue);
     for(auto iter=LeoConst::CONST()->All_BOOL_PARAMS.begin();iter!=LeoConst::CONST()->All_BOOL_PARAMS.end();++iter){
         QString status;
         if (iter.value()==false){
@@ -345,6 +347,39 @@ void Settings::connectNeedSaveJson(){
     saveFile.write(saveDoc.toJson());
 }
 
+QGroupBox * Settings::groupFileAndBD(){
+    QGroupBox *group_FileAndBD = new QGroupBox("File bd",this);
+    group_FileAndBD->setStyleSheet("QGroupBox{border: 4px solid rgb(130, 0, 130);}");
+    setFontToWidget(group_FileAndBD);
+    QGridLayout *mainLayout=new QGridLayout(group_FileAndBD);
+
+    saveBd=new QLineEdit(group_FileAndBD);
+    saveBd->setPlaceholderText("full name save bd");
+    setFontToWidget(saveBd);
+    QListWidget *bdList=new QListWidget(this);
+    setFontToWidget(bdList);
+    QDir nowPath=QDir::current();
+    QStringList fileInDir=nowPath.entryList(QStringList("*.sqlite"));
+    for(auto x:fileInDir){
+        bdList->addItem(new QListWidgetItem(x,bdList));
+    }
+    QPushButton *save_button=new QPushButton("Save in",this);
+    setFontToWidget(save_button);
+    mainLayout->addWidget(saveBd,0,0);
+    mainLayout->addWidget(bdList,1,0);
+    mainLayout->addWidget(save_button,2,0);
+    if (group_FileAndBD->font().pointSize()>10){
+        mainLayout->setContentsMargins(10,group_FileAndBD->font().pointSize(),10,10);
+    }
+    group_FileAndBD->setLayout(mainLayout);
+    connect(save_button, SIGNAL(clicked()), this, SLOT(connect_saveActiveListInBd()));
+    return group_FileAndBD;
+}
+
+
+void Settings::connect_saveActiveListInBd(){
+    LeoConst::CONST()->printAllWordInBD(saveBd->text());
+}
 
 //QGroupBox * Settings::groupEngRus(){
 //    QGroupBox *group_eng_rus = new QGroupBox("Eng rus",this);

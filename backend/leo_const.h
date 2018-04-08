@@ -27,6 +27,7 @@ public:
     static LeoConst *  CONST();//one leo-static leo
     std::vector<Word> ListWithWordConst;
     void GetFromBD();
+    void printAllWordInBD(QString);
     QMap<QString,QMap<QString,QBrush> > AllStyleMap;
     QMap<QString,QBrush> AllQBrushdictPARAMS;
     QMap<QString,int> All_INT_PARAMS;
