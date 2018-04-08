@@ -224,9 +224,9 @@
             }
         }
     },
-    "fontFamyle": "Courier New",
+    "fontFamyle": "Times New Roman",
     "getFromDB": 0,
     "path_bd": "./bd1.sqlite",
-    "runAudio": false,
-    "runImage": false
+    "runAudio": true,
+    "runImage": true
 }

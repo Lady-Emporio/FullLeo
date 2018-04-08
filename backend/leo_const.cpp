@@ -2,10 +2,11 @@
 #include "sqlite3.h"
 #include "QMessageBox"
 
-QMediaPlayer * LeoConst::player = new QMediaPlayer();//global
+
 
 LeoConst::LeoConst()
 {
+    player=new QMediaPlayer;
     ALGORITMH=fast;
     All_BOOL_PARAMS.insert("JUMP",false);
     All_BOOL_PARAMS.insert("AUTOCOMPLETION",false);
@@ -219,7 +220,7 @@ void LeoConst::FromRootBOOL(){
         msgBox.exec();
         return;
     }
-    All_BOOL_PARAMS[param]=root.value(param).toInt();
+    All_BOOL_PARAMS[param]=root.value(param).toBool();
     }
 }
 
@@ -227,7 +228,6 @@ void LeoConst::FromRootString(){
     QMessageBox msgBox;
     for(QMap<QString,QString>::iterator it = All_QString_PARAMS.begin();it != All_QString_PARAMS.end(); ++it){
     QString param=it.key();
-    qDebug()<<param;
     if(!(root.contains(param) && root[param].isString())){
         msgBox.setText("Problem with: "+it.key());
         msgBox.exec();
@@ -239,7 +239,13 @@ void LeoConst::FromRootString(){
 
 void LeoConst::setStyle(QString x){
     ActiveStyle=x;
-    FromRootQBrush();
+//    QMap<QString,QMap<QString,QBrush> > AllStyleMap;
+
+//    for(auto x=AllStyleMap.begin();x!=AllStyleMap.end();++x){
+//        AllQBrushdictPARAMS
+    for(auto x=AllQBrushdictPARAMS.begin();x!=AllQBrushdictPARAMS.end();++x){
+        AllQBrushdictPARAMS[x.key()]=AllStyleMap[ActiveStyle][x.key()];
+    }
 }
 
 

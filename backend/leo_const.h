@@ -35,7 +35,7 @@ public:
     void setStyle(QString);
 
     algTable ALGORITMH;
-    static QMediaPlayer * player;
+    QMediaPlayer * player;
 
     void getMainRootJson();
     void FromRootQBrush();

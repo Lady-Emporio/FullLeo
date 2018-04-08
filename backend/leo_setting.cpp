@@ -142,8 +142,12 @@ QGroupBox * Settings::groupStyle(){
     QString Error;
     QComboBox *comboStyle=new QComboBox(groupStyle);
     setFontToWidget(comboStyle);
+    QString activeStyle=LeoConst::CONST()->ActiveStyle;
+    comboStyle->addItem(activeStyle);
     for(int i=0;i!=LeoConst::CONST()->ListStyle.size();++i){
-        comboStyle->addItem(LeoConst::CONST()->ListStyle.at(i));
+        if(LeoConst::CONST()->ListStyle.at(i) !=activeStyle){
+            comboStyle->addItem(LeoConst::CONST()->ListStyle.at(i));
+        }
     }
     mainLayout->addWidget(comboStyle);
     if (groupStyle->font().pointSize()>10){
@@ -280,7 +284,9 @@ QGroupBox * Settings::groupJson(){
         QString status;
         if (iter.value()==false){
             status="Выкл";
-        }else{status="true";}
+        }else{
+            status="true";
+        }
         ConstValue->addItem(iter.key()+" | "+status);
     }
     for(auto iter=LeoConst::CONST()->All_QString_PARAMS.begin();iter!=LeoConst::CONST()->All_QString_PARAMS.end();++iter){

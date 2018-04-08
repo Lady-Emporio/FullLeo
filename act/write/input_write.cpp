@@ -43,8 +43,8 @@ void TableWrite::keyPressEvent(QKeyEvent *event){
             }
             if(sum==0){
                 if(LeoConst::CONST()->All_BOOL_PARAMS["runAudio"]){
-                    LeoConst::player->setMedia(QUrl::fromLocalFile(QDir::toNativeSeparators("content\\"+TrueWord+".mp3")));
-                    LeoConst::player->play();
+                    LeoConst::CONST()->player->setMedia(QUrl::fromLocalFile(QDir::toNativeSeparators("content\\"+TrueWord+".mp3")));
+                    LeoConst::CONST()->player->play();
                 };
                 emit singal_needNexRound();
             }

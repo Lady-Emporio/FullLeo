@@ -26,7 +26,6 @@ public:
     explicit InputWrite(QWidget *parent = 0);
     TableWrite *inputTable;
     std::vector<Word> ListWord;
-    static QMediaPlayer *player;
     void run();
 signals:
 

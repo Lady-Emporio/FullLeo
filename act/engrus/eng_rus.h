@@ -31,7 +31,6 @@ public:
     std::vector<Word> sizeWordinLastSizeEnd;
     int MaxButton;
     Word TrueWord;
-//    static QMediaPlayer *player;
 signals:
 
 public slots:
