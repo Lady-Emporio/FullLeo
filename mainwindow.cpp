@@ -8,8 +8,9 @@ saveMdiSub::saveMdiSub(QWidget *parent) :QMdiSubWindow(parent){}
 void saveMdiSub::closeEvent(QCloseEvent *event){ /*work but i not know;*/}
 saveMdiSub::~saveMdiSub(){/*qDebug()<<"we are del";*/}
 void saveMdiSub::connectUpdateTable(){
-     LeoConst::CONST()->GetFromBD();
-     emit needUpdateThisIsWindow();
+//     LeoConst::CONST()->GetFromBD();
+    LeoConst::CONST()->THIS_IS_ALL_UPDATE_fromfileAndBD();
+    emit needUpdateThisIsWindow();
 }
 
 MainWindow::MainWindow(QWidget *parent)

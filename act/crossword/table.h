@@ -50,10 +50,10 @@ private:
 
 inline bool NotInTableIndexError(int x,pos position){
     if(position==vertical){
-        if(x>=LeoConst::CONST()->TABLE_ROW){return true;}
+        if(x>=LeoConst::CONST()->All_INT_PARAMS["TABLE_ROW"]){return true;}
     }
     else if(position==horizontal){
-        if(x>=LeoConst::CONST()->TABLE_COL){return true;}
+        if(x>=LeoConst::CONST()->All_INT_PARAMS["TABLE_COL"]){return true;}
     }
     if(x<0){return true;}
     else 		{return false;}

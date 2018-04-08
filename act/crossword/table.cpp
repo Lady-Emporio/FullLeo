@@ -25,8 +25,8 @@ void Cell::setSecondWord(Word x){this->secondWord_=x;}
 //#############################table#########
 Table::Table()
 {
-    maxRowInThisTableNow=LeoConst::CONST()->TABLE_ROW;
-    maxColInThisTableNow=LeoConst::CONST()->TABLE_COL;
+    maxRowInThisTableNow=LeoConst::CONST()->All_INT_PARAMS["TABLE_ROW"];
+    maxColInThisTableNow=LeoConst::CONST()->All_INT_PARAMS["TABLE_COL"];
     table=new Cell*[maxRowInThisTableNow];
     for(int i=0;i!=maxRowInThisTableNow;++i){
         table[i]=new Cell[maxColInThisTableNow];

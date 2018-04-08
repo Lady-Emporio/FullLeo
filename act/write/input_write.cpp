@@ -38,11 +38,11 @@ void TableWrite::keyPressEvent(QKeyEvent *event){
             for(size_t i=0;i!=this->columnCount();++i){
                 if(item(0,i)->text()!=QString(TrueWord[i])){
                     ++sum;
-                    item(0,i)->setBackground(LeoConst::CONST()->FALSEQB);
+                    item(0,i)->setBackground(LeoConst::CONST()->AllQBrushdictPARAMS["FALSEQB"]);
                 }
             }
             if(sum==0){
-                if(LeoConst::CONST()->runAudio){
+                if(LeoConst::CONST()->All_BOOL_PARAMS["runAudio"]){
                     LeoConst::player->setMedia(QUrl::fromLocalFile(QDir::toNativeSeparators("content\\"+TrueWord+".mp3")));
                     LeoConst::player->play();
                 };
@@ -82,7 +82,7 @@ void TableWrite::keyPressEvent(QKeyEvent *event){
                     if(text==QString(TrueWord[column])){
                         nowItem->setText(text);
                         this->setStyleSheet("QTableView::item:selected:active { background: rgb(230, 230,230);color:rgb(0,0,0);}");
-                        this->item(0,column)->setBackground(LeoConst::CONST()->TRUEQB);
+                        this->item(0,column)->setBackground(LeoConst::CONST()->AllQBrushdictPARAMS["TRUEQB"]);
                         this->item(0,column)->setFlags(Qt::NoItemFlags);
                         if(column+1<this->columnCount() && this->item(0,column+1)->flags()!=Qt::NoItemFlags){
                             this->setCurrentIndex(this->model()->index(0,column+1));
@@ -168,7 +168,7 @@ void InputWrite::run(){
     for(size_t i=0;i!=word.size();++i){
         QTableWidgetItem *item = new QTableWidgetItem;
 //        setFontToWidget(item);
-        item->setBackground(LeoConst::CONST()->WRITECELL);
+        item->setBackground(LeoConst::CONST()->AllQBrushdictPARAMS["WRITECELL"]);
         item->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
         inputTable->setItem(0, i, item);
     }

@@ -14,7 +14,7 @@ Button::Button(QWidget  *parent): QPushButton (parent){
     this->setFont(font);
     this->setText("MyClassButtom");
     }
-    this->setStyleSheet(LeoConst::CONST()->DEFAULT_BUTTOM_COLOR);
+    this->setStyleSheet(LeoConst::CONST()->All_QString_PARAMS["DEFAULT_BUTTOM_COLOR"]);
     QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     this->setSizePolicy(sizePolicy);
 }
@@ -32,7 +32,7 @@ EngRus::EngRus(QWidget *parent) : QWidget(parent)
     setFontToWidget(main_Label);
     main_Label->setAlignment(Qt::AlignCenter);
     main_Label->setCursor(QCursor(Qt::CrossCursor));
-    MaxButton=LeoConst::CONST()->COUNT_BUTTOM;
+    MaxButton=LeoConst::CONST()->All_INT_PARAMS["COUNT_BUTTOM"];
     for(int i=0;i!=MaxButton;++i){
         Button *newButton=new Button(this);
         newButton->setText(QString("We are: ").setNum(i));
@@ -82,7 +82,7 @@ EngRus::EngRus(QWidget *parent) : QWidget(parent)
     random_shuffle ( ListWord.begin(), ListWord.end(),[](int i) {return std::rand()%i;});
 }
 void EngRus::connectSelectImage(){
-    if(LeoConst::CONST()->runAudio){
+    if(LeoConst::CONST()->All_BOOL_PARAMS["runAudio"]){
         LeoConst::player->setMedia(QUrl::fromLocalFile(QDir::toNativeSeparators("content\\"+TrueWord.eng+".mp3")));
         LeoConst::player->play();
     };
@@ -90,7 +90,7 @@ void EngRus::connectSelectImage(){
 
 void EngRus::nextRound(){
     for(size_t i=0;i!=listButton.size();++i){
-        listButton[i]->setStyleSheet(LeoConst::CONST()->DEFAULT_BUTTOM_COLOR);
+        listButton[i]->setStyleSheet(LeoConst::CONST()->All_QString_PARAMS["DEFAULT_BUTTOM_COLOR"]);
     }
     if (ListWord.size()<=0){
             main_Label->setText(QString("End size: ")+QString("").setNum(ListWord.size()));
@@ -114,7 +114,7 @@ void EngRus::nextRound(){
         for(size_t i=0;i!=listButton.size();++i){
                if(i<UsingWord.size()){
                     listButton[i]->setText(UsingWord[i].ru);
-                    if(LeoConst::CONST()->runImage){
+                    if(LeoConst::CONST()->All_BOOL_PARAMS["runImage"]){
                         QString fileName="./content/"+UsingWord[i].eng+".png";
                         if(listImage[i]->isHidden()){
                             listImage[i]->show();
@@ -131,7 +131,7 @@ void EngRus::nextRound(){
                    Word backWord=sizeWordinLastSizeEnd.back();
                    sizeWordinLastSizeEnd.pop_back();
                     listButton[i]->setText(backWord.ru);
-                    if(LeoConst::CONST()->runImage){
+                    if(LeoConst::CONST()->All_BOOL_PARAMS["runImage"]){
                         QString fileName="./content/"+backWord.eng+".png";
                         if(listImage[i]->isHidden()){
                             listImage[i]->show();
@@ -149,7 +149,7 @@ void EngRus::nextRound(){
     }else{
         for(size_t i=0;i!=listButton.size();++i){
             listButton[i]->setText(UsingWord[i].ru);
-            if(LeoConst::CONST()->runImage){
+            if(LeoConst::CONST()->All_BOOL_PARAMS["runImage"]){
                 QString fileName="./content/"+UsingWord[i].eng+".png";
                 if(listImage[i]->isHidden()){
                     listImage[i]->show();
@@ -174,13 +174,13 @@ void EngRus::connectSelectWord(){
     QObject* obj = sender();
     Button *buttom=findChild<Button*>(obj->objectName());
     if(buttom->text()==QString(TrueWord.ru)){
-        if(LeoConst::CONST()->runAudio){
+        if(LeoConst::CONST()->All_BOOL_PARAMS["runAudio"]){
             LeoConst::player->setMedia(QUrl::fromLocalFile(QDir::toNativeSeparators("content\\"+TrueWord.eng+".mp3")));
             LeoConst::player->play();
         };
         static bool go_next=false;
          if (!go_next){
-             buttom->setStyleSheet(LeoConst::CONST()->TRUE_ANSWER_COLOR);
+             buttom->setStyleSheet(LeoConst::CONST()->All_QString_PARAMS["TRUE_ANSWER_COLOR"]);
              go_next=true;
          }
          else{
@@ -188,7 +188,7 @@ void EngRus::connectSelectWord(){
              nextRound();
         }
     }else{
-        buttom->setStyleSheet(LeoConst::CONST()->FALSE_ANSWER_COLOR);
+        buttom->setStyleSheet(LeoConst::CONST()->All_QString_PARAMS["FALSE_ANSWER_COLOR"]);
     }
 
 

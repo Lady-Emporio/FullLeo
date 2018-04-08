@@ -30,6 +30,8 @@ public:
     QGroupBox * groupFont();
     QGroupBox * groupStyle();
     QGroupBox * groupEngRus();
+    QGroupBox * groupJson();
+
     explicit Settings(QWidget *parent = 0);
     QPushButton *updateDB;
 signals:
@@ -52,6 +54,7 @@ private slots:
     void connectAudio_trigger();
     void connectGRIDTABLE_trigger();
     void connectImage_trigger();
+    void connectNeedSaveJson();
 };
 
 #endif // LEOSETTING_H

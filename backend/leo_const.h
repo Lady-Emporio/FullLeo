@@ -14,47 +14,39 @@
 #include <QListWidgetItem>
 #include <QMediaPlayer>
 #include <QDir>
+#include <QMap>
+#include <QObject>
 enum status{freely,block,wordHere};
 enum pos{vertical,horizontal,zero};
 enum algTable{fast,full};
 void setFontToWidget(QWidget * x);
-int getConstParam(QString ,QString &);
-int getStyle(QStringList * ListStyle,QString style,QString subStyl,int *r,int *g,int *b,QString &Error);
+
 class LeoConst
 {
 public:
     static LeoConst *  CONST();//one leo-static leo
-    int getFromDB;
-    int FONT_SIZE;
-    QString fontFamyle;
-    QString path_bd;
     std::vector<Word> ListWithWordConst;
     void GetFromBD();
-    QBrush DEFAULTQB;
-    QBrush NOTUSEQB;
-    QBrush TRUEQB;
-    QBrush FALSEQB;
-    QBrush GRIDQB;
-    QBrush ACTIVEINTABLEQB;
-    QBrush ACTIVELISTQB;
-    QBrush WRITECELL;
-    bool setStyle(QString x,QString &);
-    int TABLE_ROW;
-    int TABLE_COL;
-    int ROWHEIGHT;
-    int COLUMNWIDTH;
-    int MARGIN1;
+    QMap<QString,QMap<QString,QBrush> > AllStyleMap;
+    QMap<QString,QBrush> AllQBrushdictPARAMS;
+    QMap<QString,int> All_INT_PARAMS;
+    QMap<QString,QString> All_QString_PARAMS;
+    QMap<QString,bool> All_BOOL_PARAMS;
+    void setStyle(QString);
+
     algTable ALGORITMH;
-    bool JUMP;
-    bool AUTOCOMPLETION;
-    bool GRID;
-    QString TRUE_ANSWER_COLOR;
-    QString FALSE_ANSWER_COLOR;
-    QString DEFAULT_BUTTOM_COLOR;
-    int COUNT_BUTTOM;
-    bool runAudio;
-    bool runImage;
     static QMediaPlayer * player;
+
+    void getMainRootJson();
+    void FromRootQBrush();
+    void FromRootINT();
+    void FromRootBOOL();
+    void fillActiveStyleAndListStyle();
+    void FromRootString();
+    void THIS_IS_ALL_UPDATE_fromfileAndBD();
+    QJsonObject root;
+    QStringList ListStyle;
+    QString ActiveStyle;
 private:
     LeoConst();
 };

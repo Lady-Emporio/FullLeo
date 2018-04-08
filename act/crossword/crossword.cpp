@@ -18,8 +18,8 @@ Crossword::Crossword(QWidget *parent) : QWidget(parent)
     QPushButton *buttomUpdate=new QPushButton("update");
     setFontToWidget(buttomUpdate);
     MainTable=new TableGui;
-    inCrosswordTableRowMax=LeoConst::CONST()->TABLE_ROW;
-    inCrosswordTableColMax=LeoConst::CONST()->TABLE_COL;
+    inCrosswordTableRowMax=LeoConst::CONST()->All_INT_PARAMS["TABLE_ROW"];
+    inCrosswordTableColMax=LeoConst::CONST()->All_INT_PARAMS["TABLE_COL"];
     MainTable->setColumnCount(inCrosswordTableColMax);
     MainTable->setRowCount(inCrosswordTableRowMax);
     UsingWordList=new QListWidget;
@@ -32,7 +32,9 @@ Crossword::Crossword(QWidget *parent) : QWidget(parent)
     for(int i=0;i!=inCrosswordTableColMax;++i){
         MainTable->setColumnWidth(i,20);
     };
-    this->resize(inCrosswordTableRowMax*LeoConst::CONST()->ROWHEIGHT+(LeoConst::CONST()->MARGIN1*3)+UsingWordList->width(),(inCrosswordTableColMax*LeoConst::CONST()->COLUMNWIDTH)+LeoConst::CONST()->MARGIN1);
+    this->resize(inCrosswordTableRowMax*LeoConst::CONST()->All_INT_PARAMS["ROWHEIGHT"]+
+            (LeoConst::CONST()->All_INT_PARAMS["MARGIN1"]*3)+UsingWordList->width(),(inCrosswordTableColMax*LeoConst::CONST()->All_INT_PARAMS["COLUMNWIDTH"])+
+            LeoConst::CONST()->All_INT_PARAMS["MARGIN1"]);
 
     MainLayout->addLayout(SettingLauout);
     SettingLauout->addWidget(ErrorLabel);
@@ -64,12 +66,12 @@ void Crossword::SelectWordRight(int x){
     }
     for(size_t i=0;i!=InMainSelect.size();++i){
 //        InMainSelect[i]->setBackground(LeoConst::CONST()->DEFAULTQB);
-        InMainSelect[i]->setBackground(LeoConst::CONST()->WRITECELL);
+        InMainSelect[i]->setBackground(LeoConst::CONST()->AllQBrushdictPARAMS["WRITECELL"]);
     };
     InMainSelect.clear();
     for(size_t i=0;i!=LastSelectInMainTable.size();++i){
 //        LastSelectInMainTable[i]->setBackground(LeoConst::CONST()->DEFAULTQB);
-        LastSelectInMainTable[i]->setBackground(LeoConst::CONST()->WRITECELL);
+        LastSelectInMainTable[i]->setBackground(LeoConst::CONST()->AllQBrushdictPARAMS["WRITECELL"]);
     };
     LastSelectInMainTable.clear();
 
@@ -83,7 +85,7 @@ void Crossword::SelectWordRight(int x){
             QString engSecondWord=MyCelectSecondWord.ru;
             if(selected==engFirstWord || selected==engSecondWord){
                     QTableWidgetItem *itemNow=MainTable->item(row,column);
-                    itemNow->setBackground(LeoConst::CONST()->ACTIVEINTABLEQB);
+                    itemNow->setBackground(LeoConst::CONST()->AllQBrushdictPARAMS["ACTIVEINTABLEQB"]);
                     LastSelectInMainTable.push_back(itemNow);
             }
         };
@@ -98,20 +100,20 @@ void Crossword::UpdateMainTable(){
             if(word=='@'){
                 item->setText(" ");
                 item->setFlags(Qt::NoItemFlags);
-                item->setBackground(LeoConst::CONST()->NOTUSEQB);
+                item->setBackground(LeoConst::CONST()->AllQBrushdictPARAMS["NOTUSEQB"]);
             }
             else if(word=='#'){
                 item->setFlags(Qt::NoItemFlags);
-                if(LeoConst::CONST()->GRID){
+                if(LeoConst::CONST()->All_BOOL_PARAMS["GRID"]){
                     item->setText(QString(word));
                 }else{
                     item->setText(" ");
                 }
-                item->setBackground(LeoConst::CONST()->GRIDQB);
+                item->setBackground(LeoConst::CONST()->AllQBrushdictPARAMS["GRIDQB"]);
             }
             else{
                 item->setText("");
-                item->setBackground(LeoConst::CONST()->WRITECELL);
+                item->setBackground(LeoConst::CONST()->AllQBrushdictPARAMS["WRITECELL"]);
             }
             MainTable->setItem(row, column, item);
         };
@@ -122,8 +124,8 @@ void Crossword::UpdateMainTable(){
 }
 
 void Crossword::slotUpdate(){
-    inCrosswordTableColMax=LeoConst::CONST()->TABLE_COL;
-    inCrosswordTableRowMax=LeoConst::CONST()->TABLE_ROW;
+    inCrosswordTableColMax=LeoConst::CONST()->All_INT_PARAMS["TABLE_COL"];
+    inCrosswordTableRowMax=LeoConst::CONST()->All_INT_PARAMS["TABLE_ROW"];
     clearToNextPound();
     std::string error;
     if(!tableWord->run(&error,LeoConst::CONST()->ALGORITMH)){
@@ -162,11 +164,11 @@ void Crossword::seeAll(){
                 if(word=='#' || word=='@'){continue;}
                 QTableWidgetItem *item =MainTable->item(row,column);
                 if(item->text()!=QString(word)){
-                    item->setBackground(LeoConst::CONST()->FALSEQB);
+                    item->setBackground(LeoConst::CONST()->AllQBrushdictPARAMS["FALSEQB"]);
                     item->setText(QString(word));
                 }
                 else{
-                    item->setBackground(LeoConst::CONST()->TRUEQB);
+                    item->setBackground(LeoConst::CONST()->AllQBrushdictPARAMS["TRUEQB"]);
                 }
         };
     };
@@ -183,10 +185,10 @@ void Crossword::verifyAll(){
                 if(word=='#' || word=='@'){continue;}
                 QTableWidgetItem *item =MainTable->item(row,column);
                 if(item->text()!=QString(word)){
-                    item->setBackground(LeoConst::CONST()->FALSEQB);
+                    item->setBackground(LeoConst::CONST()->AllQBrushdictPARAMS["FALSEQB"]);
                 }
                 else{
-                    item->setBackground(LeoConst::CONST()->TRUEQB);
+                    item->setBackground(LeoConst::CONST()->AllQBrushdictPARAMS["TRUEQB"]);
                 }
         };
     };
@@ -194,17 +196,17 @@ void Crossword::verifyAll(){
 
 void Crossword::SelectCell(){
     for(size_t i=0;i!=SecectInUsingWordList.size();++i){
-        SecectInUsingWordList[i]->setBackground(LeoConst::CONST()->DEFAULTQB);
+        SecectInUsingWordList[i]->setBackground(LeoConst::CONST()->AllQBrushdictPARAMS["DEFAULTQB"]);
     };
     SecectInUsingWordList.clear();
     for(size_t i=0;i!=InMainSelect.size();++i){
 //        InMainSelect[i]->setBackground(LeoConst::CONST()->DEFAULTQB);
-        InMainSelect[i]->setBackground(LeoConst::CONST()->WRITECELL);
+        InMainSelect[i]->setBackground(LeoConst::CONST()->AllQBrushdictPARAMS["WRITECELL"]);
     };
     InMainSelect.clear();
     for(size_t i=0;i!=LastSelectInMainTable.size();++i){
 //        LastSelectInMainTable[i]->setBackground(LeoConst::CONST()->DEFAULTQB);
-        LastSelectInMainTable[i]->setBackground(LeoConst::CONST()->WRITECELL);
+        LastSelectInMainTable[i]->setBackground(LeoConst::CONST()->AllQBrushdictPARAMS["WRITECELL"]);
     };
     LastSelectInMainTable.clear();
     QList<QTableWidgetItem *> SelectItem=MainTable->selectedItems();
@@ -219,7 +221,7 @@ void Crossword::SelectCell(){
         for(int column = 0; column !=MainTable->columnCount(); ++column){
             if(tableWord->table[row][column].FirstWord().eng==selectFirstWord.eng || tableWord->table[row][column].SecondWord().eng==selectFirstWord.eng){
                 QTableWidgetItem *goodItem=MainTable->item(row,column);
-                goodItem->setBackground(LeoConst::CONST()->ACTIVEINTABLEQB);
+                goodItem->setBackground(LeoConst::CONST()->AllQBrushdictPARAMS["ACTIVEINTABLEQB"]);
                 InMainSelect.push_back(goodItem);
             }
         }
@@ -227,7 +229,7 @@ void Crossword::SelectCell(){
     for(int i=0;i!=UsingWordList->count();++i){
         QListWidgetItem * QListItem=UsingWordList->item(i);
         if(QListItem->text()==QString(selectFirstWord.ru)){
-            QListItem->setBackground(LeoConst::CONST()->ACTIVELISTQB);
+            QListItem->setBackground(LeoConst::CONST()->AllQBrushdictPARAMS["ACTIVELISTQB"]);
             SecectInUsingWordList.push_back(QListItem);
             UsingWordList->scrollToItem(UsingWordList->item(i),QAbstractItemView::PositionAtCenter );
         }
@@ -245,7 +247,7 @@ void TableGui::keyPressEvent(QKeyEvent * event){
                 int pos = 0;
                 if(r.validate(text,pos)==QValidator::Acceptable){
                     item->setText(text);
-                    if(LeoConst::CONST()->AUTOCOMPLETION){
+                    if(LeoConst::CONST()->All_BOOL_PARAMS["AUTOCOMPLETION"]){
                         int column=this->column(item);
                         int row=this->row(item);
                         //word can be vertical (up to-> down) or horizontal (left to-> right)
@@ -317,7 +319,7 @@ void TableGui::keyPressEvent(QKeyEvent * event){
                             }
                         }
                     }
-                    if(LeoConst::CONST()->JUMP){
+                    if(LeoConst::CONST()->All_BOOL_PARAMS["JUMP"]){
                         if(this->item(row,left)->flags()==Qt::NoItemFlags){
                             for(int i=left;i!=-1;--i){
                                 if(this->item(row,i)->flags()!=Qt::NoItemFlags){
@@ -345,7 +347,7 @@ void TableGui::keyPressEvent(QKeyEvent * event){
                         }
 
                     }
-                    if(LeoConst::CONST()->JUMP){
+                    if(LeoConst::CONST()->All_BOOL_PARAMS["JUMP"]){
                         if(this->item(row,right)->flags()==Qt::NoItemFlags){
                             for(int i=right;i!=this->columnCount();++i){
                                 if(this->item(row,i)->flags()!=Qt::NoItemFlags){
@@ -372,7 +374,7 @@ void TableGui::keyPressEvent(QKeyEvent * event){
                             }
                         }
                     }
-                    if(LeoConst::CONST()->JUMP){
+                    if(LeoConst::CONST()->All_BOOL_PARAMS["JUMP"]){
                         if(this->item(up,column)->flags()==Qt::NoItemFlags){
                             for(int i=up;i!=-1;--i){
                                 if(this->item(i,column)->flags()!=Qt::NoItemFlags){
@@ -400,7 +402,7 @@ void TableGui::keyPressEvent(QKeyEvent * event){
                             }
                         }
                     }
-                    if(LeoConst::CONST()->JUMP){
+                    if(LeoConst::CONST()->All_BOOL_PARAMS["JUMP"]){
                         if(this->item(down,column)->flags()==Qt::NoItemFlags){
                             for(int i=down;i!=this->rowCount();++i){
                                 if(this->item(i,column)->flags()!=Qt::NoItemFlags){
