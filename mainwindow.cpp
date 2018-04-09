@@ -31,15 +31,57 @@ MainWindow::MainWindow(QWidget *parent)
 
     QMenu*  windowMenu   = new QMenu("Window");
     highTopMenu->addMenu(windowMenu);
-    addMenu->addAction("New crossword",this,SLOT(on_actionAddCrossword_triggered()));
-    addMenu->addAction("New EngRus",this,SLOT(on_actionAddEngRus4x1_triggered()));
-    addMenu->addAction("New InputWite",this,SLOT(on_actionAddInputWite_triggered()));
+    QMenu*  crossword_menu   = new QMenu("Crossword");
+    QMenu*  x_vs_y_menu   = new QMenu("X vs Y");
+    QMenu*  inputWrite_menu   = new QMenu("Input write");
+    addMenu->addMenu(crossword_menu);
+    addMenu->addMenu(x_vs_y_menu);
+    addMenu->addMenu(inputWrite_menu);
+
+    crossword_menu->addAction("New crossword",this,SLOT(on_actionAddCrossword_triggered()));
+    x_vs_y_menu->addAction("New EngRus",this,SLOT(on_actionAddEngRus4x1_triggered()));
+    inputWrite_menu->addAction("New InputWite",this,SLOT(on_actionAddInputWite_triggered()));
+    inputWrite_menu->addAction("New random",this,SLOT(on_actionAddInputWrite_Random_triggered()));
+    inputWrite_menu->addAction("New sort A-Z",this,SLOT(on_actionAddInputWrite_Sort_A_Z_triggered()));
+    inputWrite_menu->addAction("New sort Z-A",this,SLOT(on_actionAddInputWrite_Sort_triggered()));
+    inputWrite_menu->addAction("New one row",this,SLOT(on_actionAddOneRowtriggered()));
     windowMenu->addAction("Cascade sub windows",this,SLOT(on_actionCascadeSubWindows()));
     windowMenu->addAction("Tile sub windows",this,SLOT(on_actionTileSubWindows()));
     windowMenu->addAction("Sub window view",this,SLOT(on_actionSubWindowView()));
     windowMenu->addAction("Tabbed view",this,SLOT(on_actionTabbedView()));
 }
-
+void MainWindow::on_actionAddInputWrite_Random_triggered(){
+    InputWrite *input =new InputWrite(this,InputWrite::Type::random);
+    saveMdiSub *subWindow1 = new saveMdiSub;
+    subWindow1->setWidget(input);
+    mdiArea->addSubWindow(subWindow1);
+    subWindow1->setAttribute(Qt::WA_DeleteOnClose);
+    subWindow1->show();
+}
+void MainWindow::on_actionAddInputWrite_Sort_triggered(){
+    InputWrite *input =new InputWrite(this,InputWrite::Type::sortZ_A);
+    saveMdiSub *subWindow1 = new saveMdiSub;
+    subWindow1->setWidget(input);
+    mdiArea->addSubWindow(subWindow1);
+    subWindow1->setAttribute(Qt::WA_DeleteOnClose);
+    subWindow1->show();
+}
+void MainWindow::on_actionAddInputWrite_Sort_A_Z_triggered(){
+    InputWrite *input =new InputWrite(this,InputWrite::Type::sortA_Z);
+    saveMdiSub *subWindow1 = new saveMdiSub;
+    subWindow1->setWidget(input);
+    mdiArea->addSubWindow(subWindow1);
+    subWindow1->setAttribute(Qt::WA_DeleteOnClose);
+    subWindow1->show();
+}
+void MainWindow::on_actionAddOneRowtriggered(){
+    OneLongRowTable *input =new OneLongRowTable(this,InputWrite::Type::common);
+    saveMdiSub *subWindow1 = new saveMdiSub;
+    subWindow1->setWidget(input);
+    mdiArea->addSubWindow(subWindow1);
+    subWindow1->setAttribute(Qt::WA_DeleteOnClose);
+    subWindow1->show();
+}
 void MainWindow::on_actionSubWindowView(){
     mdiArea->setViewMode(QMdiArea::SubWindowView);
 }

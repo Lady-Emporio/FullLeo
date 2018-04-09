@@ -8,7 +8,7 @@
 #include "QMdiSubWindow"
 #include "backend/leo_const.h"
 #include "backend/leo_setting.h"
-
+#include "act/write/input_write.h"
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -23,6 +23,10 @@ public slots:
     void on_actionOpenSettingstriggered();//debug
     void on_actionAddCrossword_triggered();//debug
     void on_actionAddEngRus4x1_triggered();
+    void on_actionAddInputWrite_Random_triggered();
+    void on_actionAddInputWrite_Sort_triggered();
+    void on_actionAddInputWrite_Sort_A_Z_triggered();
+    void on_actionAddOneRowtriggered();
 private slots:
     void on_actionCascadeSubWindows();
     void on_actionTileSubWindows();

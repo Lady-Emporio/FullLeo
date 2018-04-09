@@ -195,120 +195,9 @@ void InputWrite::run(){
     }
 }
 
-OneTableOneRow::OneTableOneRow(QWidget *parent){
-    this->setColumnCount(30);
-    this->setRowCount(1);
-    this->setShowGrid(true);
-    for(size_t i=0;i!=this->columnCount();++i){
-        QTableWidgetItem *item = new QTableWidgetItem;
-        item->setBackground(LeoConst::CONST()->AllQBrushdictPARAMS["NOTUSEQB"]);
-        item->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-        item->setFlags(Qt::ItemFlag::NoItemFlags);
-        this->setItem(0, i, item);
-    }
-    this->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
-    this->setSelectionMode(QAbstractItemView::SingleSelection);
-    this->verticalHeader()->setVisible(false);
-    this->horizontalHeader()->setVisible(false);
-    for(int i=0;i!=this->rowCount();++i){
-        this->setRowHeight(i,20);
-    }
-    for(int i=0;i!=this->columnCount();++i){
-        this->setColumnWidth(i,20);
-    };
-}
-
-void OneTableOneRow::keyPressEvent(QKeyEvent * event){
-    if(event->type()==QEvent::KeyPress){
-        QList<QTableWidgetItem *> IselectItem=this->selectedItems();
-        bool notActiveItem=false;
-        QTableWidgetItem * nowItem=0;
-        int column=0;
-        if(IselectItem.size()==0){
-            notActiveItem=true;
-        }else{
-            nowItem=IselectItem[0];
-            column=this->column(nowItem);
-        }
-        switch(event->key()){
-        case Qt::Key_Enter:
-        case Qt::Key_Return:{
-            int sum=0;
-            for(size_t i=0,textIndexNow=beginTableWord;i!=TrueWord.size();++i,++textIndexNow){
-                if(item(0,textIndexNow)->text()!=QString(TrueWord[i])){
-                    ++sum;
-                    item(0,textIndexNow)->setBackground(LeoConst::CONST()->AllQBrushdictPARAMS["FALSEQB"]);
-                }
-            }
-            if(sum==0){
-                if(LeoConst::CONST()->All_BOOL_PARAMS["runAudio"]){
-                    LeoConst::CONST()->player->setMedia(QUrl::fromLocalFile(QDir::toNativeSeparators("content\\"+TrueWord+".mp3")));
-                    LeoConst::CONST()->player->play();
-                };
-                emit singal_needNexRound();
-            }
-            break;
-            }
-        case Qt::Key_Left:{
-            for(size_t i=1;i!=columnCount();++i){
-                int next=column-i;
-                if(next>=0 && item(0,next)->flags()!=Qt::NoItemFlags){
-                    this->setCurrentIndex(this->model()->index(0,next));
-                    break;
-                }
-            }
-            break;
-        }
-        case Qt::Key_Right:{
-            for(size_t i=1;i!=columnCount();++i){
-                int next=column+i;
-                if(next<columnCount() && item(0,next)->flags()!=Qt::NoItemFlags){
-                    this->setCurrentIndex(this->model()->index(0,next));
-                    break;
-                }
-            }
-            break;
-        }
-        default:{
-            if(notActiveItem){
-                return;
-            }
-            QString text=event->text().toLower();
-            if(text.count()!=0){
-                QRegExpValidator r(QRegExp ("[a-zA-Z]"), 0);
-                int pos = 0;
-                if(r.validate(text,pos)==QValidator::Acceptable){
-                    int textIndexNow=column-beginTableWord;
-                    if(text==QString(TrueWord[textIndexNow])){
-                        nowItem->setText(text);
-                        this->setStyleSheet("QTableView::item:selected:active { background: rgb(230, 230,230);color:rgb(0,0,0);}");
-                        this->item(0,column)->setBackground(LeoConst::CONST()->AllQBrushdictPARAMS["TRUEQB"]);
-                        this->item(0,column)->setFlags(Qt::NoItemFlags);
-                        if(column+1<this->columnCount() && this->item(0,column+1)->flags()!=Qt::NoItemFlags){
-                            this->setCurrentIndex(this->model()->index(0,column+1));
-                        }else{
-                            for(size_t i=columnCount()-1;i!=-1;--i){
-                                if(this->item(0,i)->flags()!=Qt::NoItemFlags){
-                                    this->setCurrentIndex(this->model()->index(0,i));
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    else{
-                        this->setStyleSheet("QTableView::item:selected:active {background: rgb(255, 0,0);color:rgb(0,0,0);}");
-                    }
-                }
-            }
-        }
-        break;
-    }
-}
-}
-
 OneLongRowTable::OneLongRowTable(QWidget *parent,InputWrite::Type this_is_status_type) : QWidget(parent),type_this(this_is_status_type)
 {
-    inputTable=new OneTableOneRow(this);
+    inputTable=new QTableWidget(this);
     setFontToWidget(inputTable);
     TrueLabel=new QLabel(this);
     setFontToWidget(TrueLabel);
@@ -316,46 +205,34 @@ OneLongRowTable::OneLongRowTable(QWidget *parent,InputWrite::Type this_is_status
     QVBoxLayout *mainLayout=new QVBoxLayout(this);
 
 
-    QPushButton *nextRound=new QPushButton("next round",this);
+    QPushButton *nextRound=new QPushButton(this);
     connect(nextRound, SIGNAL(clicked()), this, SLOT(connectNextRound_trigger()));
-    connect(inputTable, SIGNAL(singal_needNexRound()), this, SLOT(connectNextRound_trigger()));
 
+    inputTable->setColumnCount(30);
+    inputTable->setRowCount(1);
+    for(size_t i=0;i!=inputTable->columnCount();++i){
+        QTableWidgetItem *item = new QTableWidgetItem;
+//        item->setBackground(LeoConst::CONST()->AllQBrushdictPARAMS["WRITECELL"]);
+        item->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+        item->setFlags(Qt::ItemFlag::NoItemFlags);
+        inputTable->setItem(0, i, item);
+    }
+
+    inputTable->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
+    inputTable->setSelectionMode(QAbstractItemView::SingleSelection);
+    inputTable->verticalHeader()->setVisible(false);
+    inputTable->horizontalHeader()->setVisible(false);
+    for(int i=0;i!=inputTable->rowCount();++i){
+        inputTable->setRowHeight(i,20);
+    }
+    for(int i=0;i!=inputTable->columnCount();++i){
+        inputTable->setColumnWidth(i,20);
+    };
     mainLayout->addWidget(TrueLabel);
     mainLayout->addWidget(inputTable);
     mainLayout->addWidget(nextRound);
     this->setLayout(mainLayout);
-
-    EverWordList=LeoConst::CONST()->ListWithWordConst;
-    ListWord=EverWordList;
 }
 void OneLongRowTable::connectNextRound_trigger(){
-    if(ListWord.size()==0){
-        TrueLabel->setText("Слова закончились");
-        return;
-    }
-    for(size_t i=0;i!=inputTable->columnCount();++i){
-        inputTable->item(0,i)->setText("");
-        inputTable->item(0,i)->setFlags(Qt::ItemFlag::NoItemFlags);
-        inputTable->item(0,i)->setBackground(LeoConst::CONST()->AllQBrushdictPARAMS["NOTUSEQB"]);
-    }
-    TrueWord=ListWord.back();
-    ListWord.pop_back();
-    inputTable->TrueWord=TrueWord.eng.toLower();
-    QString word=TrueWord.eng;
-    TrueLabel->setText(TrueWord.ru);
-    int haldWord=word.size()/2;
-    int startTable=inputTable->columnCount()/2-haldWord;
-    inputTable->beginTableWord=startTable;
-    if(startTable+word.size()>=inputTable->columnCount()){
-        return;
-    }
-    else if(startTable<0){
-        return;
-    }
-    for(size_t i=startTable,n=0;n!=word.size();++i,++n){
-        QTableWidgetItem *item=inputTable->item(0,i);
-        item->setBackground(LeoConst::CONST()->AllQBrushdictPARAMS["WRITECELL"]);
-        item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-    }
-    inputTable->setCurrentIndex(inputTable->model()->index(0,startTable));
+
 }

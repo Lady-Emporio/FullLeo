@@ -325,7 +325,6 @@ void Settings::connectNeedSaveJson(){
         return;
     }
 
-
     QJsonObject Setting_Json;
     for(QMap<QString,bool>::iterator x = LeoConst::CONST()->All_BOOL_PARAMS.begin();x != LeoConst::CONST()->All_BOOL_PARAMS.end(); ++x){
         Setting_Json[x.key()]=x.value();
@@ -384,7 +383,6 @@ QGroupBox * Settings::groupFileAndBD(){
     connect(save_button, SIGNAL(clicked()), this, SLOT(connect_saveActiveListInBd()));
     return group_FileAndBD;
 }
-
 
 void Settings::connect_saveActiveListInBd(){
     LeoConst::CONST()->printAllWordInBD(saveBd->text());
