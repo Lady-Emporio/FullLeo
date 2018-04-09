@@ -13,6 +13,7 @@ LeoConst::LeoConst()
     All_BOOL_PARAMS.insert("GRID",false);
     All_BOOL_PARAMS.insert("runAudio",false);
     All_BOOL_PARAMS.insert("runImage",false);
+    All_BOOL_PARAMS.insert("EVER",false);
 
 
 
@@ -246,19 +247,30 @@ void LeoConst::setStyle(QString x){
 
 
 void LeoConst::printAllWordInBD(QString path){
-//    QMessageBox msgBox;
-//    sqlite3 *db;
-//    sqlite3_stmt * pStmt;
-//    if (sqlite3_open(path.toStdString().c_str(), &db)){
-//        sqlite3_close(db);
-//        msgBox.setText("Не получается открыть бд");
-//        msgBox.exec();
-//        return;
-
-//    }
-
-//    sqlite3_finalize(pStmt);
-//    sqlite3_close(db);
+    QMessageBox msgBox;
+    sqlite3 *db;
+    sqlite3_stmt *stmt;
+    if( sqlite3_open(path.toStdString().c_str(), &db) ){
+        sqlite3_close(db);
+        msgBox.setText("Can't open database.");
+        msgBox.exec();
+        return;
+    }
+    std::string create="CREATE TABLE IF NOT EXISTS MainTable(eng text,ru text); ";
+    if( sqlite3_exec(db, create.c_str(), 0, 0, 0)!=SQLITE_OK ){
+        sqlite3_close(db);
+        msgBox.setText("Can't create MainTable: ");
+        msgBox.exec();
+        return;
+    }
+    for (Word x:ListWithWordConst){
+        sqlite3_prepare( db, "insert into 'MainTable' values(?,?);", -1, &stmt, 0);
+        sqlite3_bind_text( stmt, 1, x.eng.toStdString().c_str(),  -1, 0 );
+        sqlite3_bind_text( stmt, 2, x.ru.toStdString().c_str(), -1, 0 );
+        sqlite3_step(stmt);
+        sqlite3_finalize(stmt);
+    }
+    sqlite3_close(db);
 }
 
 

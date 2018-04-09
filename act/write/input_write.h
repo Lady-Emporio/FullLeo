@@ -26,6 +26,7 @@ public:
     explicit InputWrite(QWidget *parent = 0);
     TableWrite *inputTable;
     std::vector<Word> ListWord;
+    std::vector<Word> EverWordList;
     void run();
 signals:
 

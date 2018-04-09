@@ -260,10 +260,17 @@ QGroupBox * Settings::groupEngRus(){
     if(LeoConst::CONST()->All_BOOL_PARAMS["runImage"]){
         ButtonImage->setCheckState(Qt::Checked);
     }
+    QCheckBox * ButtomEver=new QCheckBox("ever?",this);
+    setFontToWidget(ButtomEver);
+    if(LeoConst::CONST()->All_BOOL_PARAMS["EVER"]){
+        ButtomEver->setCheckState(Qt::Checked);
+    }
     mainLayout->addWidget(ButtomAudio);
     mainLayout->addWidget(ButtonImage);
+    mainLayout->addWidget(ButtomEver);
     connect(ButtomAudio, SIGNAL(clicked()), this, SLOT(connectAudio_trigger()));
     connect(ButtonImage, SIGNAL(clicked()), this, SLOT(connectImage_trigger()));
+    connect(ButtomEver, SIGNAL(clicked()), this, SLOT(connectEVER_trigger()));
     return group_eng_rus;
 }
 void Settings::connectAudio_trigger(){
@@ -272,7 +279,9 @@ void Settings::connectAudio_trigger(){
 void Settings::connectImage_trigger(){
     LeoConst::CONST()->All_BOOL_PARAMS["runImage"]=!LeoConst::CONST()->All_BOOL_PARAMS["runImage"];
 }
-
+void Settings::connectEVER_trigger(){
+    LeoConst::CONST()->All_BOOL_PARAMS["EVER"]=!LeoConst::CONST()->All_BOOL_PARAMS["EVER"];
+}
 QGroupBox * Settings::groupJson(){
     QGroupBox *group_Json = new QGroupBox("Json",this);
     group_Json->setStyleSheet("QGroupBox{border: 4px solid rgb(170, 0, 170);}");

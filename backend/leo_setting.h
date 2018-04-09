@@ -53,6 +53,7 @@ private slots:
     void connectAUTOCOMPLETION_trigger();
     void connectJUMP_trigger();
     void connectAudio_trigger();
+    void connectEVER_trigger();
     void connectGRIDTABLE_trigger();
     void connectImage_trigger();
     void connectNeedSaveJson();

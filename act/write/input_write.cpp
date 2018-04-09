@@ -135,7 +135,8 @@ InputWrite::InputWrite(QWidget *parent) : QWidget(parent)
     nextRound->setText("next round");
     settingAndImage->addWidget(nextRound);
     this->setLayout(mainLayout);
-    ListWord=LeoConst::CONST()->ListWithWordConst;
+    EverWordList=LeoConst::CONST()->ListWithWordConst;
+    ListWord=EverWordList;
     connect(nextRound, SIGNAL(clicked()), this, SLOT(connectNextRound_trigger()));
     connect(inputTable, SIGNAL(singal_needNexRound()), this, SLOT(connectNextRound_trigger()));
 
@@ -156,8 +157,12 @@ void InputWrite::connectNextRound_trigger(){
 
 void InputWrite::run(){
     if(ListWord.size()==0){
+        if(LeoConst::CONST()->All_BOOL_PARAMS["EVER"]){
+            ListWord=EverWordList;
+        }else{
         TrueLabel->setText("Слова закончились");
         return;
+        }
     }
     TrueWord=ListWord.back();
     ListWord.pop_back();

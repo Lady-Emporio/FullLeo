@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_Settings_t {
-    QByteArrayData data[17];
-    char stringdata0[317];
+    QByteArrayData data[18];
+    char stringdata0[337];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -42,10 +42,11 @@ QT_MOC_LITERAL(9, 128, 24), // "connectStyleJson_trigger"
 QT_MOC_LITERAL(10, 153, 29), // "connectAUTOCOMPLETION_trigger"
 QT_MOC_LITERAL(11, 183, 19), // "connectJUMP_trigger"
 QT_MOC_LITERAL(12, 203, 20), // "connectAudio_trigger"
-QT_MOC_LITERAL(13, 224, 24), // "connectGRIDTABLE_trigger"
-QT_MOC_LITERAL(14, 249, 20), // "connectImage_trigger"
-QT_MOC_LITERAL(15, 270, 19), // "connectNeedSaveJson"
-QT_MOC_LITERAL(16, 290, 26) // "connect_saveActiveListInBd"
+QT_MOC_LITERAL(13, 224, 19), // "connectEVER_trigger"
+QT_MOC_LITERAL(14, 244, 24), // "connectGRIDTABLE_trigger"
+QT_MOC_LITERAL(15, 269, 20), // "connectImage_trigger"
+QT_MOC_LITERAL(16, 290, 19), // "connectNeedSaveJson"
+QT_MOC_LITERAL(17, 310, 26) // "connect_saveActiveListInBd"
 
     },
     "Settings\0connectIntFromDB\0\0connectPathToDB\0"
@@ -54,8 +55,9 @@ QT_MOC_LITERAL(16, 290, 26) // "connect_saveActiveListInBd"
     "connectALG_trigger\0connectStyleJson_trigger\0"
     "connectAUTOCOMPLETION_trigger\0"
     "connectJUMP_trigger\0connectAudio_trigger\0"
-    "connectGRIDTABLE_trigger\0connectImage_trigger\0"
-    "connectNeedSaveJson\0connect_saveActiveListInBd"
+    "connectEVER_trigger\0connectGRIDTABLE_trigger\0"
+    "connectImage_trigger\0connectNeedSaveJson\0"
+    "connect_saveActiveListInBd"
 };
 #undef QT_MOC_LITERAL
 
@@ -65,7 +67,7 @@ static const uint qt_meta_data_Settings[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      15,   14, // methods
+      16,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -73,21 +75,22 @@ static const uint qt_meta_data_Settings[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    1,   89,    2, 0x08 /* Private */,
-       3,    1,   92,    2, 0x08 /* Private */,
-       4,    1,   95,    2, 0x08 /* Private */,
-       5,    1,   98,    2, 0x08 /* Private */,
-       6,    1,  101,    2, 0x08 /* Private */,
-       7,    1,  104,    2, 0x08 /* Private */,
-       8,    1,  107,    2, 0x08 /* Private */,
-       9,    1,  110,    2, 0x08 /* Private */,
-      10,    0,  113,    2, 0x08 /* Private */,
-      11,    0,  114,    2, 0x08 /* Private */,
-      12,    0,  115,    2, 0x08 /* Private */,
-      13,    0,  116,    2, 0x08 /* Private */,
-      14,    0,  117,    2, 0x08 /* Private */,
-      15,    0,  118,    2, 0x08 /* Private */,
-      16,    0,  119,    2, 0x08 /* Private */,
+       1,    1,   94,    2, 0x08 /* Private */,
+       3,    1,   97,    2, 0x08 /* Private */,
+       4,    1,  100,    2, 0x08 /* Private */,
+       5,    1,  103,    2, 0x08 /* Private */,
+       6,    1,  106,    2, 0x08 /* Private */,
+       7,    1,  109,    2, 0x08 /* Private */,
+       8,    1,  112,    2, 0x08 /* Private */,
+       9,    1,  115,    2, 0x08 /* Private */,
+      10,    0,  118,    2, 0x08 /* Private */,
+      11,    0,  119,    2, 0x08 /* Private */,
+      12,    0,  120,    2, 0x08 /* Private */,
+      13,    0,  121,    2, 0x08 /* Private */,
+      14,    0,  122,    2, 0x08 /* Private */,
+      15,    0,  123,    2, 0x08 /* Private */,
+      16,    0,  124,    2, 0x08 /* Private */,
+      17,    0,  125,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::QString,    2,
@@ -98,6 +101,7 @@ static const uint qt_meta_data_Settings[] = {
     QMetaType::Void, QMetaType::QString,    2,
     QMetaType::Void, QMetaType::QString,    2,
     QMetaType::Void, QMetaType::QString,    2,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -126,10 +130,11 @@ void Settings::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         case 8: _t->connectAUTOCOMPLETION_trigger(); break;
         case 9: _t->connectJUMP_trigger(); break;
         case 10: _t->connectAudio_trigger(); break;
-        case 11: _t->connectGRIDTABLE_trigger(); break;
-        case 12: _t->connectImage_trigger(); break;
-        case 13: _t->connectNeedSaveJson(); break;
-        case 14: _t->connect_saveActiveListInBd(); break;
+        case 11: _t->connectEVER_trigger(); break;
+        case 12: _t->connectGRIDTABLE_trigger(); break;
+        case 13: _t->connectImage_trigger(); break;
+        case 14: _t->connectNeedSaveJson(); break;
+        case 15: _t->connect_saveActiveListInBd(); break;
         default: ;
         }
     }
@@ -160,13 +165,13 @@ int Settings::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 15)
+        if (_id < 16)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 15;
+        _id -= 16;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 15)
+        if (_id < 16)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 15;
+        _id -= 16;
     }
     return _id;
 }
