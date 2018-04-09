@@ -27,6 +27,9 @@ public slots:
     void on_actionAddInputWrite_Sort_triggered();
     void on_actionAddInputWrite_Sort_A_Z_triggered();
     void on_actionAddOneRowtriggered();
+    void on_actionAddOneRow_A_Z_triggered();
+    void on_actionAddOneRow_Z_A_triggered();
+    void on_actionAddOneRow_random_triggered();
 private slots:
     void on_actionCascadeSubWindows();
     void on_actionTileSubWindows();

@@ -45,6 +45,9 @@ MainWindow::MainWindow(QWidget *parent)
     inputWrite_menu->addAction("New sort A-Z",this,SLOT(on_actionAddInputWrite_Sort_A_Z_triggered()));
     inputWrite_menu->addAction("New sort Z-A",this,SLOT(on_actionAddInputWrite_Sort_triggered()));
     inputWrite_menu->addAction("New one row",this,SLOT(on_actionAddOneRowtriggered()));
+    inputWrite_menu->addAction("New one sort A-Z",this,SLOT(on_actionAddOneRow_A_Z_triggered()));
+    inputWrite_menu->addAction("New one sort Z-A",this,SLOT(on_actionAddOneRow_Z_A_triggered()));
+    inputWrite_menu->addAction("New one random",this,SLOT(on_actionAddOneRow_random_triggered()));
     windowMenu->addAction("Cascade sub windows",this,SLOT(on_actionCascadeSubWindows()));
     windowMenu->addAction("Tile sub windows",this,SLOT(on_actionTileSubWindows()));
     windowMenu->addAction("Sub window view",this,SLOT(on_actionSubWindowView()));
@@ -82,6 +85,35 @@ void MainWindow::on_actionAddOneRowtriggered(){
     subWindow1->setAttribute(Qt::WA_DeleteOnClose);
     subWindow1->show();
 }
+
+void MainWindow::on_actionAddOneRow_A_Z_triggered(){
+    OneLongRowTable *input =new OneLongRowTable(this,InputWrite::Type::sortA_Z);
+    saveMdiSub *subWindow1 = new saveMdiSub;
+    subWindow1->setWidget(input);
+    mdiArea->addSubWindow(subWindow1);
+    subWindow1->setAttribute(Qt::WA_DeleteOnClose);
+    subWindow1->show();
+}
+void MainWindow::on_actionAddOneRow_Z_A_triggered(){
+    OneLongRowTable *input =new OneLongRowTable(this,InputWrite::Type::sortZ_A);
+    saveMdiSub *subWindow1 = new saveMdiSub;
+    subWindow1->setWidget(input);
+    mdiArea->addSubWindow(subWindow1);
+    subWindow1->setAttribute(Qt::WA_DeleteOnClose);
+    subWindow1->show();
+}
+void MainWindow::on_actionAddOneRow_random_triggered(){
+    OneLongRowTable *input =new OneLongRowTable(this,InputWrite::Type::random);
+    saveMdiSub *subWindow1 = new saveMdiSub;
+    subWindow1->setWidget(input);
+    mdiArea->addSubWindow(subWindow1);
+    subWindow1->setAttribute(Qt::WA_DeleteOnClose);
+    subWindow1->show();
+}
+
+
+
+
 void MainWindow::on_actionSubWindowView(){
     mdiArea->setViewMode(QMdiArea::SubWindowView);
 }

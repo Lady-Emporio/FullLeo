@@ -326,6 +326,16 @@ OneLongRowTable::OneLongRowTable(QWidget *parent,InputWrite::Type this_is_status
     this->setLayout(mainLayout);
 
     EverWordList=LeoConst::CONST()->ListWithWordConst;
+    if(type_this==InputWrite::Type::random){
+        std::srand ( unsigned ( std::time(0) ) );
+        std::random_shuffle(EverWordList.begin(),EverWordList.end(),[](int i){return std::rand()%i;});
+    }
+    else if(type_this==InputWrite::Type::sortZ_A){
+        std::sort(EverWordList.begin(),EverWordList.end(),[](Word x1,Word x2){return x1.eng<x2.eng;});
+    }
+    else if(type_this==InputWrite::Type::sortA_Z){
+        std::sort(EverWordList.begin(),EverWordList.end(),[](Word x1,Word x2){return x1.eng>x2.eng;});
+    }
     ListWord=EverWordList;
 }
 void OneLongRowTable::connectNextRound_trigger(){
@@ -333,6 +343,11 @@ void OneLongRowTable::connectNextRound_trigger(){
         TrueLabel->setText("Слова закончились");
         return;
     }
+    if(type_this==InputWrite::Type::random){
+        std::srand ( unsigned ( std::time(0) ) );
+        std::random_shuffle(EverWordList.begin(),EverWordList.end(),[](int i){return std::rand()%i;});
+    }
+
     for(size_t i=0;i!=inputTable->columnCount();++i){
         inputTable->item(0,i)->setText("");
         inputTable->item(0,i)->setFlags(Qt::ItemFlag::NoItemFlags);
