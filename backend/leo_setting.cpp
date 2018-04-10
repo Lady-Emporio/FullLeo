@@ -362,7 +362,7 @@ QGroupBox * Settings::groupFileAndBD(){
     QGridLayout *mainLayout=new QGridLayout(group_FileAndBD);
 
     saveBd=new QLineEdit(group_FileAndBD);
-    saveBd->setPlaceholderText("full name save bd");
+    saveBd->setPlaceholderText("without *.sqlite");
     setFontToWidget(saveBd);
     QListWidget *bdList=new QListWidget(this);
     setFontToWidget(bdList);
@@ -373,21 +373,35 @@ QGroupBox * Settings::groupFileAndBD(){
     }
     QPushButton *save_button=new QPushButton("Save in",this);
     setFontToWidget(save_button);
+    QPushButton *Error_button=new QPushButton("Error save",this);
+    setFontToWidget(Error_button);
     mainLayout->addWidget(saveBd,0,0);
     mainLayout->addWidget(bdList,1,0);
     mainLayout->addWidget(save_button,2,0);
+    mainLayout->addWidget(Error_button,3,0);
     if (group_FileAndBD->font().pointSize()>10){
         mainLayout->setContentsMargins(10,group_FileAndBD->font().pointSize(),10,10);
     }
     group_FileAndBD->setLayout(mainLayout);
     connect(save_button, SIGNAL(clicked()), this, SLOT(connect_saveActiveListInBd()));
+    connect(Error_button, SIGNAL(clicked()), this, SLOT(connect_ErrorSaveListInBd()));
     return group_FileAndBD;
 }
 
 void Settings::connect_saveActiveListInBd(){
-    LeoConst::CONST()->printAllWordInBD(saveBd->text());
+    if(saveBd->text().count()!=0){
+        LeoConst::CONST()->printAllWordInBD(saveBd->text());
+    }else{
+        saveBd->setPlaceholderText("Текст не введен");
+    }
 }
-
+void Settings::connect_ErrorSaveListInBd(){
+    if(saveBd->text().count()!=0){
+        LeoConst::CONST()->fallbackAllWordInBD(saveBd->text());
+    }else{
+        saveBd->setPlaceholderText("Текст не введен");
+    }
+}
 //QGroupBox * Settings::groupEngRus(){
 //    QGroupBox *group_eng_rus = new QGroupBox("Eng rus",this);
 //    group_eng_rus->setStyleSheet("QGroupBox{border: 4px solid rgb(255, 0, 0);}");

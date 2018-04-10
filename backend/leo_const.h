@@ -28,6 +28,7 @@ public:
     std::vector<Word> ListWithWordConst;
     void GetFromBD();
     void printAllWordInBD(QString);
+    void fallbackAllWordInBD(QString);
     QMap<QString,QMap<QString,QBrush> > AllStyleMap;
     QMap<QString,QBrush> AllQBrushdictPARAMS;
     QMap<QString,int> All_INT_PARAMS;

@@ -58,6 +58,7 @@ private slots:
     void connectImage_trigger();
     void connectNeedSaveJson();
     void connect_saveActiveListInBd();
+    void connect_ErrorSaveListInBd();
 };
 
 #endif // LEOSETTING_H

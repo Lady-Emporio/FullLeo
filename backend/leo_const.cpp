@@ -1,7 +1,7 @@
 #include "leo_const.h"
 #include "sqlite3.h"
 #include "QMessageBox"
-
+#include <QtSql>
 
 
 LeoConst::LeoConst()
@@ -250,6 +250,7 @@ void LeoConst::printAllWordInBD(QString path){
     QMessageBox msgBox;
     sqlite3 *db;
     sqlite3_stmt *stmt;
+    path+=".sqlite";
     if( sqlite3_open(path.toStdString().c_str(), &db) ){
         sqlite3_close(db);
         msgBox.setText("Can't open database.");
@@ -264,16 +265,42 @@ void LeoConst::printAllWordInBD(QString path){
         return;
     }
     for (Word x:ListWithWordConst){
+        std::string eng_std=x.eng.toStdString();//else not do it visibly
+        std::string ru_std=x.ru.toStdString();//error:  x.ru.toStdString().c_str() not work
         sqlite3_prepare( db, "insert into 'MainTable' values(?,?);", -1, &stmt, 0);
-        sqlite3_bind_text( stmt, 1, x.eng.toStdString().c_str(),  -1, 0 );
-        sqlite3_bind_text( stmt, 2, x.ru.toStdString().c_str(), -1, 0 );
+        sqlite3_bind_text( stmt, 1, eng_std.c_str(),  -1, 0 );
+        sqlite3_bind_text( stmt, 2, ru_std.c_str(), -1, 0 );
         sqlite3_step(stmt);
         sqlite3_finalize(stmt);
     }
     sqlite3_close(db);
 }
 
-
+void LeoConst::fallbackAllWordInBD(QString path){
+    path+=".sqlite";
+    QMessageBox msgBox;
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    QSqlQuery query;
+    db.setDatabaseName(path);//Имя базы.
+    if (!db.open()){
+        msgBox.setText(db.lastError().text());
+        msgBox.exec();
+        return;
+    }
+    query=db.exec( QString( "CREATE TABLE IF NOT EXISTS MainTable(eng text,ru text); "));
+    for(Word x:ListWithWordConst){
+        query.prepare("INSERT INTO MainTable VALUES (:eng, :ru)");
+        query.bindValue(":eng", x.eng);
+        query.bindValue(":ru", x.ru);
+        if(!query.exec()){
+            msgBox.setText(db.lastError().text()+" "+query.lastError().text());
+            msgBox.exec();
+            return;
+        }
+    }
+    db.commit();
+    db.close();
+}
 
 
 

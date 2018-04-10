@@ -227,7 +227,7 @@
     },
     "fontFamyle": "Times New Roman",
     "getFromDB": 0,
-    "path_bd": "bd1.sqlite",
+    "path_bd": "12.sqlite",
     "runAudio": true,
     "runImage": true
 }
