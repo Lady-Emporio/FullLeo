@@ -39,7 +39,8 @@ MainWindow::MainWindow(QWidget *parent)
     addMenu->addMenu(inputWrite_menu);
 
     crossword_menu->addAction("New crossword",this,SLOT(on_actionAddCrossword_triggered()));
-    x_vs_y_menu->addAction("New EngRus",this,SLOT(on_actionAddEngRus4x1_triggered()));
+    x_vs_y_menu->addAction("New EngRus wrong vert",this,SLOT(on_actionAddEngRus4x1_vert_triggered()));
+    x_vs_y_menu->addAction("New EngRus wrong hori",this,SLOT(on_actionAddEngRus4x1_hori_triggered()));
     inputWrite_menu->addAction("New InputWite",this,SLOT(on_actionAddInputWite_triggered()));
     inputWrite_menu->addAction("New random",this,SLOT(on_actionAddInputWrite_Random_triggered()));
     inputWrite_menu->addAction("New sort A-Z",this,SLOT(on_actionAddInputWrite_Sort_A_Z_triggered()));
@@ -164,8 +165,16 @@ void MainWindow::on_actionAddCrossword_triggered(){
     cross->show();
 }
 
-void MainWindow::on_actionAddEngRus4x1_triggered(){
-    EngRus *eng_rus_leo=new EngRus;
+void MainWindow::on_actionAddEngRus4x1_vert_triggered(){
+    EngRus *eng_rus_leo=new EngRus(this,Leo::vertical);
+    QMdiSubWindow *subWindow1 = new QMdiSubWindow;
+    subWindow1->setWidget(eng_rus_leo);
+    subWindow1->setAttribute(Qt::WA_DeleteOnClose);
+    mdiArea->addSubWindow(subWindow1);
+    subWindow1->show();
+}
+void MainWindow::on_actionAddEngRus4x1_hori_triggered(){
+    EngRus *eng_rus_leo=new EngRus(this,Leo::horizontal);
     QMdiSubWindow *subWindow1 = new QMdiSubWindow;
     subWindow1->setWidget(eng_rus_leo);
     subWindow1->setAttribute(Qt::WA_DeleteOnClose);

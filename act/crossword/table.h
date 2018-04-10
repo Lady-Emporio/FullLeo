@@ -6,6 +6,7 @@
 #include "backend/word.h"
 #include <vector>
 #include "backend/leo_const.h"
+using namespace Leo;
 class Cell{
 public:
     Cell();
@@ -66,5 +67,4 @@ inline Cell getBlock(){
     blockCell.setValue('#');
     return blockCell;
 }
-
 #endif // TABLE_H

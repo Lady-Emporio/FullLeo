@@ -304,6 +304,9 @@ debug/moc_mainwindow.cpp: C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QMain
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfileinfo.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QMap \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QObject \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QMessageBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qmessagebox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qdialog.h \
 		backend/leo_setting.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qcombobox.h \
@@ -671,6 +674,9 @@ debug/moc_crossword.cpp: C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QTable
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfileinfo.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QMap \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QObject \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QMessageBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qmessagebox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qdialog.h \
 		act/crossword/table.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
@@ -851,6 +857,9 @@ debug/moc_eng_rus.cpp: C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget 
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfileinfo.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QMap \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QObject \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QMessageBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qmessagebox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qdialog.h \
 		act/engrus/eng_rus.h
 	'C:\Qt\Qt5.6.3\5.6.3\mingw49_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/win32-g++ -IC:/Users/User/Desktop/C++/fullLeo/FullLeo -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimediaWidgets -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtANGLE -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtNetwork -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore act/engrus/eng_rus.h -o debug/moc_eng_rus.cpp
 
@@ -1011,6 +1020,9 @@ debug/moc_list_word_db.cpp: backend/leo_const.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfileinfo.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QMap \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QObject \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QMessageBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qmessagebox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qdialog.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QVBoxLayout \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
@@ -1021,9 +1033,6 @@ debug/moc_list_word_db.cpp: backend/leo_const.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QPushButton \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qpushbutton.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractbutton.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QMessageBox \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qmessagebox.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qdialog.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QTableWidget \
@@ -1193,6 +1202,9 @@ debug/moc_input_write.cpp: C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/Q
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfileinfo.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QMap \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QObject \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QMessageBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qmessagebox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qdialog.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
 		act/write/input_write.h
@@ -1385,6 +1397,9 @@ debug/main.o: main.cpp mainwindow.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfileinfo.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QMap \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QObject \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QMessageBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qmessagebox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qdialog.h \
 		backend/leo_setting.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qcombobox.h \
@@ -1600,6 +1615,9 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfileinfo.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QMap \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QObject \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QMessageBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qmessagebox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qdialog.h \
 		backend/leo_setting.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qcombobox.h \
@@ -1644,10 +1662,7 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QVBoxLayout \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QKeyEvent \
 		act/engrus/eng_rus.h \
-		backend/list_word_db.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QMessageBox \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qmessagebox.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qdialog.h
+		backend/list_word_db.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/mainwindow.o mainwindow.cpp
 
 debug/leo_const.o: backend/leo_const.cpp backend/leo_const.h \
@@ -1807,10 +1822,10 @@ debug/leo_const.o: backend/leo_const.cpp backend/leo_const.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfileinfo.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QMap \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QObject \
-		sqlite3.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QMessageBox \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qmessagebox.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qdialog.h \
+		sqlite3.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QtSql \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QtSqlDepends \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QtCore \
@@ -2121,11 +2136,11 @@ debug/leo_setting.o: backend/leo_setting.cpp backend/leo_setting.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfileinfo.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QMap \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QObject \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QVBoxLayout \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHBoxLayout \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QMessageBox \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qmessagebox.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qdialog.h
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qdialog.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QVBoxLayout \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHBoxLayout
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/leo_setting.o backend/leo_setting.cpp
 
 debug/crossword.o: act/crossword/crossword.cpp act/crossword/crossword.h \
@@ -2290,6 +2305,9 @@ debug/crossword.o: act/crossword/crossword.cpp act/crossword/crossword.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfileinfo.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QMap \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QObject \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QMessageBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qmessagebox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qdialog.h \
 		act/crossword/table.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
@@ -2466,6 +2484,9 @@ debug/table.o: act/crossword/table.cpp act/crossword/table.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfileinfo.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QMap \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QObject \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QMessageBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qmessagebox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qdialog.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/table.o act/crossword/table.cpp
 
@@ -2633,6 +2654,9 @@ debug/eng_rus.o: act/engrus/eng_rus.cpp act/engrus/eng_rus.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfileinfo.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QMap \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QObject \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QMessageBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qmessagebox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qdialog.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHBoxLayout \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
@@ -2802,6 +2826,9 @@ debug/list_word_db.o: backend/list_word_db.cpp backend/list_word_db.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfileinfo.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QMap \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QObject \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QMessageBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qmessagebox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qdialog.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QVBoxLayout \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
@@ -2812,9 +2839,6 @@ debug/list_word_db.o: backend/list_word_db.cpp backend/list_word_db.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QPushButton \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qpushbutton.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractbutton.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QMessageBox \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qmessagebox.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qdialog.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QTableWidget \
@@ -2987,6 +3011,9 @@ debug/input_write.o: act/write/input_write.cpp act/write/input_write.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfileinfo.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QMap \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QObject \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QMessageBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qmessagebox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qdialog.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHBoxLayout \

@@ -22,7 +22,8 @@ private:
 public slots:
     void on_actionOpenSettingstriggered();//debug
     void on_actionAddCrossword_triggered();//debug
-    void on_actionAddEngRus4x1_triggered();
+    void on_actionAddEngRus4x1_vert_triggered();
+    void on_actionAddEngRus4x1_hori_triggered();
     void on_actionAddInputWrite_Random_triggered();
     void on_actionAddInputWrite_Sort_triggered();
     void on_actionAddInputWrite_Sort_A_Z_triggered();

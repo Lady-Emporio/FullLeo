@@ -21,13 +21,15 @@ Button::Button(QWidget  *parent): QPushButton (parent){
 
 
 
-EngRus::EngRus(QWidget *parent) : QWidget(parent)
+EngRus::EngRus(QWidget *parent,Leo::pos statusThis) : QWidget(parent) ,status(statusThis)
 {
     QTime midnight(0,0,0);
     qsrand(midnight.secsTo(QTime::currentTime()));
     this->setObjectName("EngRus");
-    QVBoxLayout *mainLayout=new QVBoxLayout;
-    QHBoxLayout *ImageAndButtonLayout=new QHBoxLayout;
+    QVBoxLayout *horizontal_mainLayout=new QVBoxLayout;
+    QHBoxLayout *horizontal_ImageAndButtonLayout=new QHBoxLayout;
+    QHBoxLayout *vertical_mainLayout=new QHBoxLayout;
+    QVBoxLayout *vertical_ImageAndButtonLayout=new QVBoxLayout;
     main_Label=new QLabel("We are",this);
     setFontToWidget(main_Label);
     main_Label->setAlignment(Qt::AlignCenter);
@@ -46,16 +48,34 @@ EngRus::EngRus(QWidget *parent) : QWidget(parent)
 
         connect(newButton, SIGNAL(clicked()), this, SLOT(connectSelectWord()));
         connect(newImage, SIGNAL(clicked()), this, SLOT(connectSelectImage()));
-        QVBoxLayout *newLayout=new QVBoxLayout;
-        newLayout->addWidget(newImage);
-        newLayout->addWidget(newButton);
-        ImageAndButtonLayout->addLayout(newLayout);
+        if(status==Leo::horizontal){
+            QVBoxLayout *newLayout=new QVBoxLayout;
+            newLayout->addWidget(newImage);
+            newLayout->addWidget(newButton);
+            horizontal_ImageAndButtonLayout->addLayout(newLayout);
+        }else if(status==Leo::vertical){
+            QHBoxLayout *newLayout=new QHBoxLayout;
+            newLayout->addWidget(newImage);
+            newLayout->addWidget(newButton);
+            vertical_ImageAndButtonLayout->addLayout(newLayout);
+        }
     }
-    mainLayout->addWidget(main_Label);
-    mainLayout->addLayout(ImageAndButtonLayout);
-    this->setLayout(mainLayout);
+    if(status==Leo::horizontal){
+        horizontal_mainLayout->addWidget(main_Label);
+        horizontal_mainLayout->addLayout(horizontal_ImageAndButtonLayout);
+        this->setLayout(horizontal_mainLayout);
+    }else if(status==Leo::vertical){
+        vertical_mainLayout->addWidget(main_Label);
+        vertical_mainLayout->addLayout(vertical_ImageAndButtonLayout);
+        this->setLayout(vertical_mainLayout);
+    }
 
-    ListWord=LeoConst::CONST()->ListWithWordConst;
+
+    EverWordList=LeoConst::CONST()->ListWithWordConst;
+    sort(EverWordList.begin(),EverWordList.end(),[](Word x1,Word x2) {return (x1.eng<x2.eng);}); //убираю дубли
+    auto last=unique(EverWordList.begin(),EverWordList.end(),[](Word x1,Word x2) {return (x1.eng==x2.eng);});
+    EverWordList.erase(last, EverWordList.end());
+    ListWord=EverWordList;
     if (ListWord.size()<=MaxButton || ListWord.size()==0){
             main_Label->setText(QString("Small size: ")+QString("").setNum(ListWord.size()));
             return;
@@ -69,15 +89,12 @@ EngRus::EngRus(QWidget *parent) : QWidget(parent)
         }
     }
     for(size_t i=0;i!=UniqueWord.size();++i){
-        sizeWordinLastSizeEnd.push_back(ListWord[i]);
+        sizeWordinLastSizeEnd.push_back(ListWord[UniqueWord[i]]);
     }
     if (ListWord.size()<=MaxButton){
             main_Label->setText(QString("Small size: ")+QString("").setNum(ListWord.size()));
             return;
     };
-    sort(ListWord.begin(),ListWord.end(),[](Word x1,Word x2) {return (x1.eng<x2.eng);}); //убираю дубли
-    auto last=unique(ListWord.begin(),ListWord.end(),[](Word x1,Word x2) {return (x1.eng==x2.eng);});
-    ListWord.erase(last, ListWord.end());
     std::srand ( (int)time(0));
     random_shuffle ( ListWord.begin(), ListWord.end(),[](int i) {return std::rand()%i;});
 }
@@ -93,16 +110,21 @@ void EngRus::nextRound(){
         listButton[i]->setStyleSheet(LeoConst::CONST()->All_QString_PARAMS["DEFAULT_BUTTOM_COLOR"]);
     }
     if (ListWord.size()<=0){
-            main_Label->setText(QString("End size: ")+QString("").setNum(ListWord.size()));
-            return;
+            if(LeoConst::CONST()->All_BOOL_PARAMS["EVER"]){
+                ListWord=EverWordList;
+            }
+            else{
+                main_Label->setText(QString("End size: ")+QString("").setNum(ListWord.size()));
+                return;
+            }
     };
     random_shuffle ( ListWord.begin(), ListWord.end(),[](int i) {return std::rand()%i;});
     std::vector<Word>UsingWord;
     TrueWord=ListWord.back();
     ListWord.pop_back();
     UsingWord.push_back(TrueWord);
-    for(size_t i=1;i!=listButton.size();++i){
-        if(i>ListWord.size()){
+    for(size_t i=1;UsingWord.size()!=MaxButton;++i){
+        if(i>=ListWord.size()){
             break;
         }else{
             UsingWord.push_back(ListWord[ListWord.size()-i]);
@@ -128,8 +150,8 @@ void EngRus::nextRound(){
                     }
                }
                else{
-                   Word backWord=sizeWordinLastSizeEnd.back();
-                   sizeWordinLastSizeEnd.pop_back();
+                    Word backWord=sizeWordinLastSizeEnd.back();
+                    sizeWordinLastSizeEnd.pop_back();
                     listButton[i]->setText(backWord.ru);
                     if(LeoConst::CONST()->All_BOOL_PARAMS["runImage"]){
                         QString fileName="./content/"+backWord.eng+".png";

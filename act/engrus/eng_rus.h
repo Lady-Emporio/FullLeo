@@ -8,7 +8,6 @@
 #include <vector>
 #include "backend/word.h"
 #include "backend/leo_const.h"
-
 class Button : public QPushButton
 {
    Q_OBJECT
@@ -25,9 +24,11 @@ public:
     QLabel *main_Label;
     std::vector<Button*>listButton;
     std::vector<QPushButton*>listImage;
-    explicit EngRus(QWidget *parent = 0);
+    explicit EngRus(QWidget *parent = 0,Leo::pos statusThis=Leo::pos::vertical);
+    Leo::pos status;
     void nextRound();
     std::vector<Word> ListWord;
+    std::vector<Word> EverWordList;
     std::vector<Word> sizeWordinLastSizeEnd;
     int MaxButton;
     Word TrueWord;

@@ -16,8 +16,11 @@
 #include <QDir>
 #include <QMap>
 #include <QObject>
+#include <QMessageBox>
 enum status{freely,block,wordHere};
+namespace Leo{
 enum pos{vertical,horizontal,zero};
+}
 enum algTable{fast,full};
 void setFontToWidget(QWidget * x);
 
