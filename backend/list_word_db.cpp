@@ -6,7 +6,16 @@ ListWordDB::ListWordDB(QWidget *parent) : QWidget(parent)
 {
     QVBoxLayout *mainLayout=new QVBoxLayout(this);
     QHBoxLayout *ListBDLayout=new QHBoxLayout();
+    findWord=new QLineEdit(this);
+    setFontToWidget(findWord);
     listinBD=new QTableWidget(this);
+    finderTable=new QTableWidget(this);
+    setFontToWidget(finderTable);
+    finderTable->setRowCount(LeoConst::CONST()->ListWithWordConst.size());
+    finderTable->setColumnCount(2);
+    finderTable->setHorizontalHeaderLabels((QStringList() << "eng" << "ru"));
+    finderTable->horizontalHeader()->setStretchLastSection(true);
+    finderTable->setSelectionBehavior(QAbstractItemView::SelectRows);
     setFontToWidget(listinBD);
     listinBD->setRowCount(LeoConst::CONST()->ListWithWordConst.size());
     listinBD->setColumnCount(2);
@@ -36,12 +45,36 @@ ListWordDB::ListWordDB(QWidget *parent) : QWidget(parent)
     Update->setText("Accept||Update");
     ListBDLayout->addWidget(listinBD);
     ListBDLayout->addWidget(thenSetList);
+    ListBDLayout->addWidget(findWord);
+    ListBDLayout->addWidget(finderTable);
     mainLayout->addLayout(ListBDLayout);
     mainLayout->addWidget(Update);
     this->setLayout(mainLayout);
     connect(listinBD, SIGNAL(cellDoubleClicked(int , int)), this, SLOT(connect_IN_bd_trigger(int, int)));
     connect(thenSetList, SIGNAL(cellDoubleClicked(int , int)), this, SLOT(connect_FROM_NEW_LISR_trigger(int, int)));
     connect(Update, SIGNAL(clicked()), this, SLOT(connect_UpdateTable()));
+    connect(findWord, SIGNAL(textChanged(const QString )), this, SLOT(connect_TextChanged_FindWord(const QString)));
+    connect(finderTable, SIGNAL(cellDoubleClicked(int , int)), this, SLOT(connect_FROM_FINDER_trigger(int, int)));
+}
+void ListWordDB::connect_TextChanged_FindWord(const QString &currentText){
+    QList<QTableWidgetItem*> finder=listinBD->findItems(currentText,Qt::MatchContains);
+    finderTable->clear();
+    finderTable->setRowCount(0);
+    for(QTableWidgetItem* x:finder){
+        int row=listinBD->row(x);
+        QTableWidgetItem *nextEng=new QTableWidgetItem(*(listinBD->item(row,0)));
+        QTableWidgetItem *nextRu=new QTableWidgetItem( *(listinBD->item(row,1)));
+        finderTable->insertRow(0);
+        finderTable->setItem(0, 0, nextEng);
+        finderTable->setItem(0, 1, nextRu);
+    }
+}
+void ListWordDB::connect_FROM_FINDER_trigger(int row, int column){
+    thenSetList->insertRow(0);
+    QTableWidgetItem *nextEng=new QTableWidgetItem(*(finderTable->item(row,0)));
+    QTableWidgetItem *nextRu=new QTableWidgetItem( *(finderTable->item(row,1)));
+    thenSetList->setItem(0, 0, nextEng);
+    thenSetList->setItem(0, 1, nextRu);
 }
 
 void ListWordDB::connect_IN_bd_trigger(int row, int column){

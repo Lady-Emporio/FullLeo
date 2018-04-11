@@ -31,6 +31,7 @@ public slots:
     void on_actionAddOneRow_A_Z_triggered();
     void on_actionAddOneRow_Z_A_triggered();
     void on_actionAddOneRow_random_triggered();
+    void on_actionAddOneRow_contra_Vice_versa_triggered();
 private slots:
     void on_actionCascadeSubWindows();
     void on_actionTileSubWindows();

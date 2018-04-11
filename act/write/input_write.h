@@ -39,6 +39,7 @@ class OneTableOneRow: public QTableWidget{
     Q_OBJECT
 public:
     QString TrueWord;
+    Leo::Type type_this;
     OneTableOneRow(QWidget *parent = 0);
     int beginTableWord;
     void keyPressEvent(QKeyEvent * event);

@@ -49,11 +49,21 @@ MainWindow::MainWindow(QWidget *parent)
     inputWrite_menu->addAction("New one sort A-Z",this,SLOT(on_actionAddOneRow_A_Z_triggered()));
     inputWrite_menu->addAction("New one sort Z-A",this,SLOT(on_actionAddOneRow_Z_A_triggered()));
     inputWrite_menu->addAction("New one random",this,SLOT(on_actionAddOneRow_random_triggered()));
+    inputWrite_menu->addAction("New one contra Vice versa",this,SLOT(on_actionAddOneRow_contra_Vice_versa_triggered()));
     windowMenu->addAction("Cascade sub windows",this,SLOT(on_actionCascadeSubWindows()));
     windowMenu->addAction("Tile sub windows",this,SLOT(on_actionTileSubWindows()));
     windowMenu->addAction("Sub window view",this,SLOT(on_actionSubWindowView()));
     windowMenu->addAction("Tabbed view",this,SLOT(on_actionTabbedView()));
 }
+void MainWindow::on_actionAddOneRow_contra_Vice_versa_triggered(){
+    OneLongRowTable *input =new OneLongRowTable(this,Leo::contra_Vice_versa);
+    saveMdiSub *subWindow1 = new saveMdiSub;
+    subWindow1->setWidget(input);
+    mdiArea->addSubWindow(subWindow1);
+    subWindow1->setAttribute(Qt::WA_DeleteOnClose);
+    subWindow1->show();
+}
+
 void MainWindow::on_actionAddInputWrite_Random_triggered(){
     InputWrite *input =new InputWrite(this,Leo::Type::random);
     saveMdiSub *subWindow1 = new saveMdiSub;

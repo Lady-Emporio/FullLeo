@@ -275,7 +275,12 @@ void OneTableOneRow::keyPressEvent(QKeyEvent * event){
             }
             QString text=event->text().toLower();
             if(text.count()!=0){
-                QRegExpValidator r(QRegExp ("[a-zA-Z]"), 0);
+                QRegExpValidator r;
+                if(type_this!=Leo::contra_Vice_versa){
+                    r.setRegExp(QRegExp ("[a-zA-Z]"));
+                }else{
+                    r.setRegExp(QRegExp ("\\D"));
+                }
                 int pos = 0;
                 if(r.validate(text,pos)==QValidator::Acceptable){
                     int textIndexNow=column-beginTableWord;
@@ -309,6 +314,7 @@ void OneTableOneRow::keyPressEvent(QKeyEvent * event){
 OneLongRowTable::OneLongRowTable(QWidget *parent,Leo::Type this_is_status_type) : QWidget(parent),type_this(this_is_status_type)
 {
     inputTable=new OneTableOneRow(this);
+    inputTable->type_this=type_this;
     setFontToWidget(inputTable);
     TrueLabel=new QLabel(this);
     setFontToWidget(TrueLabel);
@@ -359,9 +365,16 @@ void OneLongRowTable::connectNextRound_trigger(){
     }
     TrueWord=ListWord.back();
     ListWord.pop_back();
-    inputTable->TrueWord=TrueWord.eng.toLower();
-    QString word=TrueWord.eng;
-    TrueLabel->setText(TrueWord.ru);
+    QString word;
+    if(type_this!=Leo::contra_Vice_versa){
+        inputTable->TrueWord=TrueWord.eng.toLower();
+        word=TrueWord.eng;
+        TrueLabel->setText(TrueWord.ru);
+    }else{
+        inputTable->TrueWord=TrueWord.ru.toLower();
+        word=TrueWord.ru;
+        TrueLabel->setText(TrueWord.eng);
+    }
     int haldWord=word.size()/2;
     int startTable=inputTable->columnCount()/2-haldWord;
     inputTable->beginTableWord=startTable;

@@ -11,13 +11,15 @@
 #include <QMessageBox>
 #include <QLabel>
 #include <QTableWidget>
-
+#include <QLineEdit>
 class ListWordDB : public QWidget
 {
     Q_OBJECT
 public:
     explicit ListWordDB(QWidget *parent = 0);
 private:
+    QLineEdit *findWord;
+    QTableWidget *finderTable;
     QTableWidget *listinBD;
     QTableWidget *thenSetList;
 signals:
@@ -28,6 +30,8 @@ private slots:
     void connect_IN_bd_trigger(int, int);
     void connect_FROM_NEW_LISR_trigger(int,int);
     void connect_UpdateTable();
+    void connect_TextChanged_FindWord(const QString &currentText);
+    void connect_FROM_FINDER_trigger(int, int);
 };
 
 
