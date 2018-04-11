@@ -118,7 +118,7 @@ void TableWrite::resizeEvent(QResizeEvent *event){
     }
 }
 
-InputWrite::InputWrite(QWidget *parent,Type this_is_status_type) : QWidget(parent),type_this(this_is_status_type)
+InputWrite::InputWrite(QWidget *parent,Leo::Type this_is_status_type) : QWidget(parent),type_this(this_is_status_type)
 {
     inputTable=new TableWrite(this);
     setFontToWidget(inputTable);
@@ -137,14 +137,14 @@ InputWrite::InputWrite(QWidget *parent,Type this_is_status_type) : QWidget(paren
     settingAndImage->addWidget(nextRound);
     this->setLayout(mainLayout);
     EverWordList=LeoConst::CONST()->ListWithWordConst;
-    if(type_this==Type::random){
+    if(type_this==Leo::Type::random){
         std::srand ( unsigned ( std::time(0) ) );
         std::random_shuffle(EverWordList.begin(),EverWordList.end(),[](int i){return std::rand()%i;});
     }
-    else if(type_this==Type::sortZ_A){
+    else if(type_this==Leo::Type::sortZ_A){
         std::sort(EverWordList.begin(),EverWordList.end(),[](Word x1,Word x2){return x1.eng<x2.eng;});
     }
-    else if(type_this==Type::sortA_Z){
+    else if(type_this==Leo::Type::sortA_Z){
         std::sort(EverWordList.begin(),EverWordList.end(),[](Word x1,Word x2){return x1.eng>x2.eng;});
     }
     ListWord=EverWordList;
@@ -170,7 +170,7 @@ void InputWrite::connectNextRound_trigger(){
 void InputWrite::run(){
     if(ListWord.size()==0){
         if(LeoConst::CONST()->All_BOOL_PARAMS["EVER"]){
-            if(type_this==Type::random){
+            if(type_this==Leo::Type::random){
                 std::srand ( unsigned ( std::time(0) ) );
                 std::random_shuffle(EverWordList.begin(),EverWordList.end(),[](int i){return std::rand()%i;});
             }
@@ -306,7 +306,7 @@ void OneTableOneRow::keyPressEvent(QKeyEvent * event){
 }
 }
 
-OneLongRowTable::OneLongRowTable(QWidget *parent,InputWrite::Type this_is_status_type) : QWidget(parent),type_this(this_is_status_type)
+OneLongRowTable::OneLongRowTable(QWidget *parent,Leo::Type this_is_status_type) : QWidget(parent),type_this(this_is_status_type)
 {
     inputTable=new OneTableOneRow(this);
     setFontToWidget(inputTable);
@@ -326,26 +326,30 @@ OneLongRowTable::OneLongRowTable(QWidget *parent,InputWrite::Type this_is_status
     this->setLayout(mainLayout);
 
     EverWordList=LeoConst::CONST()->ListWithWordConst;
-    if(type_this==InputWrite::Type::random){
+    if(type_this==Leo::Type::random){
         std::srand ( unsigned ( std::time(0) ) );
         std::random_shuffle(EverWordList.begin(),EverWordList.end(),[](int i){return std::rand()%i;});
     }
-    else if(type_this==InputWrite::Type::sortZ_A){
+    else if(type_this==Leo::Type::sortZ_A){
         std::sort(EverWordList.begin(),EverWordList.end(),[](Word x1,Word x2){return x1.eng<x2.eng;});
     }
-    else if(type_this==InputWrite::Type::sortA_Z){
+    else if(type_this==Leo::Type::sortA_Z){
         std::sort(EverWordList.begin(),EverWordList.end(),[](Word x1,Word x2){return x1.eng>x2.eng;});
     }
     ListWord=EverWordList;
 }
 void OneLongRowTable::connectNextRound_trigger(){
     if(ListWord.size()==0){
-        TrueLabel->setText("Слова закончились");
-        return;
-    }
-    if(type_this==InputWrite::Type::random){
-        std::srand ( unsigned ( std::time(0) ) );
-        std::random_shuffle(EverWordList.begin(),EverWordList.end(),[](int i){return std::rand()%i;});
+        if(LeoConst::CONST()->All_BOOL_PARAMS["EVER"]){
+            if(type_this==Leo::Type::random){
+                std::srand ( unsigned ( std::time(0) ) );
+                std::random_shuffle(EverWordList.begin(),EverWordList.end(),[](int i){return std::rand()%i;});
+            }
+            ListWord=EverWordList;
+        }else{
+            TrueLabel->setText("Слова закончились");
+            return;
+        }
     }
 
     for(size_t i=0;i!=inputTable->columnCount();++i){

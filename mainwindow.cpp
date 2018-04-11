@@ -55,7 +55,7 @@ MainWindow::MainWindow(QWidget *parent)
     windowMenu->addAction("Tabbed view",this,SLOT(on_actionTabbedView()));
 }
 void MainWindow::on_actionAddInputWrite_Random_triggered(){
-    InputWrite *input =new InputWrite(this,InputWrite::Type::random);
+    InputWrite *input =new InputWrite(this,Leo::Type::random);
     saveMdiSub *subWindow1 = new saveMdiSub;
     subWindow1->setWidget(input);
     mdiArea->addSubWindow(subWindow1);
@@ -63,7 +63,7 @@ void MainWindow::on_actionAddInputWrite_Random_triggered(){
     subWindow1->show();
 }
 void MainWindow::on_actionAddInputWrite_Sort_triggered(){
-    InputWrite *input =new InputWrite(this,InputWrite::Type::sortZ_A);
+    InputWrite *input =new InputWrite(this,Leo::Type::sortZ_A);
     saveMdiSub *subWindow1 = new saveMdiSub;
     subWindow1->setWidget(input);
     mdiArea->addSubWindow(subWindow1);
@@ -71,7 +71,7 @@ void MainWindow::on_actionAddInputWrite_Sort_triggered(){
     subWindow1->show();
 }
 void MainWindow::on_actionAddInputWrite_Sort_A_Z_triggered(){
-    InputWrite *input =new InputWrite(this,InputWrite::Type::sortA_Z);
+    InputWrite *input =new InputWrite(this,Leo::Type::sortA_Z);
     saveMdiSub *subWindow1 = new saveMdiSub;
     subWindow1->setWidget(input);
     mdiArea->addSubWindow(subWindow1);
@@ -79,7 +79,7 @@ void MainWindow::on_actionAddInputWrite_Sort_A_Z_triggered(){
     subWindow1->show();
 }
 void MainWindow::on_actionAddOneRowtriggered(){
-    OneLongRowTable *input =new OneLongRowTable(this,InputWrite::Type::common);
+    OneLongRowTable *input =new OneLongRowTable(this,Leo::Type::common);
     saveMdiSub *subWindow1 = new saveMdiSub;
     subWindow1->setWidget(input);
     mdiArea->addSubWindow(subWindow1);
@@ -88,7 +88,7 @@ void MainWindow::on_actionAddOneRowtriggered(){
 }
 
 void MainWindow::on_actionAddOneRow_A_Z_triggered(){
-    OneLongRowTable *input =new OneLongRowTable(this,InputWrite::Type::sortA_Z);
+    OneLongRowTable *input =new OneLongRowTable(this,Leo::Type::sortA_Z);
     saveMdiSub *subWindow1 = new saveMdiSub;
     subWindow1->setWidget(input);
     mdiArea->addSubWindow(subWindow1);
@@ -96,7 +96,7 @@ void MainWindow::on_actionAddOneRow_A_Z_triggered(){
     subWindow1->show();
 }
 void MainWindow::on_actionAddOneRow_Z_A_triggered(){
-    OneLongRowTable *input =new OneLongRowTable(this,InputWrite::Type::sortZ_A);
+    OneLongRowTable *input =new OneLongRowTable(this,Leo::Type::sortZ_A);
     saveMdiSub *subWindow1 = new saveMdiSub;
     subWindow1->setWidget(input);
     mdiArea->addSubWindow(subWindow1);
@@ -104,7 +104,7 @@ void MainWindow::on_actionAddOneRow_Z_A_triggered(){
     subWindow1->show();
 }
 void MainWindow::on_actionAddOneRow_random_triggered(){
-    OneLongRowTable *input =new OneLongRowTable(this,InputWrite::Type::random);
+    OneLongRowTable *input =new OneLongRowTable(this,Leo::Type::random);
     saveMdiSub *subWindow1 = new saveMdiSub;
     subWindow1->setWidget(input);
     mdiArea->addSubWindow(subWindow1);

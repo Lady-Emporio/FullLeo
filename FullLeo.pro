@@ -30,3 +30,5 @@ HEADERS  += mainwindow.h \
     act/engrus/eng_rus.h \
     backend/list_word_db.h \
     act/write/input_write.h
+
+DISTFILES +=

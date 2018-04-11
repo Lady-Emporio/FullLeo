@@ -143,7 +143,7 @@ QGroupBox * Settings::groupStyle(){
     QString Error;
     QComboBox *comboStyle=new QComboBox(groupStyle);
     setFontToWidget(comboStyle);
-    QString activeStyle=LeoConst::CONST()->ActiveStyle;
+    QString activeStyle=LeoConst::CONST()->All_QString_PARAMS["ActiveStyle"];
     comboStyle->addItem(activeStyle);
     for(int i=0;i!=LeoConst::CONST()->ListStyle.size();++i){
         if(LeoConst::CONST()->ListStyle.at(i) !=activeStyle){

@@ -20,6 +20,7 @@
 enum status{freely,block,wordHere};
 namespace Leo{
 enum pos{vertical,horizontal,zero};
+enum Type{common,random,sortZ_A,sortA_Z,contra_Vice_versa};
 }
 enum algTable{fast,full};
 void setFontToWidget(QWidget * x);
@@ -51,7 +52,6 @@ public:
     void THIS_IS_ALL_UPDATE_fromfileAndBD();
     QJsonObject root;
     QStringList ListStyle;
-    QString ActiveStyle;
 private:
     LeoConst();
 };

@@ -21,11 +21,10 @@ class InputWrite : public QWidget
 {
     Q_OBJECT
 public:
-    enum Type{common,random,sortZ_A,sortA_Z};
     QLabel *TrueLabel;
     Word TrueWord;
-    explicit InputWrite(QWidget *parent = 0,Type =common);
-    Type type_this;
+    explicit InputWrite(QWidget *parent = 0,Leo::Type =Leo::common);
+    Leo::Type type_this;
     TableWrite *inputTable;
     std::vector<Word> ListWord;
     std::vector<Word> EverWordList;
@@ -50,8 +49,8 @@ class OneLongRowTable : public QWidget
 {
     Q_OBJECT
 public:
-    explicit OneLongRowTable(QWidget *parent = 0,InputWrite::Type =InputWrite::Type::common);
-    InputWrite::Type type_this;
+    explicit OneLongRowTable(QWidget *parent = 0,Leo::Type =Leo::Type::common);
+    Leo::Type type_this;
     QLabel *TrueLabel;
     Word TrueWord;
     OneTableOneRow *inputTable;

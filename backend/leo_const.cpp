@@ -40,6 +40,7 @@ LeoConst::LeoConst()
     All_QString_PARAMS.insert("TRUE_ANSWER_COLOR","");
     All_QString_PARAMS.insert("FALSE_ANSWER_COLOR","");
     All_QString_PARAMS.insert("DEFAULT_BUTTOM_COLOR","");
+    All_QString_PARAMS.insert("ActiveStyle","default");
     THIS_IS_ALL_UPDATE_fromfileAndBD();
 
 }
@@ -145,15 +146,11 @@ void LeoConst::fillActiveStyleAndListStyle(){
         msgBox.exec();
         return;
     }
-
-
-    auto findDef=std::find(ListStyle.begin(),ListStyle.end(),"default");
-    if (findDef!=ListStyle.end()){
-        ActiveStyle="default";
-    }else{
+    auto findDef=std::find(ListStyle.begin(),ListStyle.end(),All_QString_PARAMS["ActiveStyle"]);
+    if (findDef==ListStyle.end()){
         msgBox.setText("default style not found, set pandom style");
         msgBox.exec();
-        ActiveStyle=ListStyle[0];
+        All_QString_PARAMS["ActiveStyle"]=ListStyle[0];
     }
 }
 
@@ -166,8 +163,8 @@ void LeoConst::FromRootQBrush(){
         return;
     }
     QJsonObject mainStyle=root["crossword"].toObject();
-    if(!(mainStyle.contains(ActiveStyle) && mainStyle[ActiveStyle].isObject())){
-        msgBox.setText("not have: "+ ActiveStyle);
+    if(!(mainStyle.contains(All_QString_PARAMS["ActiveStyle"]) && mainStyle[All_QString_PARAMS["ActiveStyle"]].isObject())){
+        msgBox.setText("not have: "+ All_QString_PARAMS["ActiveStyle"]);
         msgBox.exec();
         return;
     }
@@ -239,9 +236,9 @@ void LeoConst::FromRootString(){
 }
 
 void LeoConst::setStyle(QString x){
-    ActiveStyle=x;
+    All_QString_PARAMS["ActiveStyle"]=x;
     for(auto x=AllQBrushdictPARAMS.begin();x!=AllQBrushdictPARAMS.end();++x){
-        AllQBrushdictPARAMS[x.key()]=AllStyleMap[ActiveStyle][x.key()];
+        AllQBrushdictPARAMS[x.key()]=AllStyleMap[All_QString_PARAMS["ActiveStyle"]][x.key()];
     }
 }
 
