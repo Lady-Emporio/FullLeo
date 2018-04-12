@@ -18,7 +18,8 @@ SOURCES += main.cpp\
     act/crossword/table.cpp \
     act/engrus/eng_rus.cpp \
     backend/list_word_db.cpp \
-    act/write/input_write.cpp
+    act/write/input_write.cpp \
+    act/notvisual/not_visual_one_row.cpp
 
 HEADERS  += mainwindow.h \
     backend/leo_const.h \
@@ -29,6 +30,7 @@ HEADERS  += mainwindow.h \
     act/crossword/table.h \
     act/engrus/eng_rus.h \
     backend/list_word_db.h \
-    act/write/input_write.h
+    act/write/input_write.h \
+    act/notvisual/not_visual_one_row.h
 
 DISTFILES +=

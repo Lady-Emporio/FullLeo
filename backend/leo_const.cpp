@@ -41,6 +41,9 @@ LeoConst::LeoConst()
     All_QString_PARAMS.insert("FALSE_ANSWER_COLOR","");
     All_QString_PARAMS.insert("DEFAULT_BUTTOM_COLOR","");
     All_QString_PARAMS.insert("ActiveStyle","default");
+    All_QString_PARAMS.insert("TrueSound","");
+    All_QString_PARAMS.insert("FalseSound","");
+    All_QString_PARAMS.insert("alphabet","");
     THIS_IS_ALL_UPDATE_fromfileAndBD();
 
 }

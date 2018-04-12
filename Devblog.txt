@@ -58,3 +58,4 @@ getFromDB: 0-все что есть. Любое другое число-брат
 "perfect word"-добавил поиск, теперь можно и по русски и английски вбивать слова, добавляя их в временный лист текущих слов, который можно сделать активными.
 2018/04/11:
 "begin notVisualOneRow"-добавил сортировку по столбцу в ListDB. and buttons move from one list to second. And "activeStyle" применяется. до этого forget use his. Add Alliance db. Begin make notVisualOneRow
+"establish visualOneRow"-Я can use it. Not use eye, only hear

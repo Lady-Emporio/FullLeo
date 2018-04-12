@@ -4,6 +4,8 @@
 #include "act/engrus/eng_rus.h"
 #include "backend/list_word_db.h"
 #include "act/write/input_write.h"
+#include "act/notvisual/not_visual_one_row.h"
+
 saveMdiSub::saveMdiSub(QWidget *parent) :QMdiSubWindow(parent){}
 void saveMdiSub::closeEvent(QCloseEvent *event){ /*work but i not know;*/}
 saveMdiSub::~saveMdiSub(){/*qDebug()<<"we are del";*/}
@@ -34,9 +36,11 @@ MainWindow::MainWindow(QWidget *parent)
     QMenu*  crossword_menu   = new QMenu("Crossword");
     QMenu*  x_vs_y_menu   = new QMenu("X vs Y");
     QMenu*  inputWrite_menu   = new QMenu("Input write");
+    QMenu*  Visual_menu   = new QMenu("Visual");
     addMenu->addMenu(crossword_menu);
     addMenu->addMenu(x_vs_y_menu);
     addMenu->addMenu(inputWrite_menu);
+    addMenu->addMenu(Visual_menu);
 
     crossword_menu->addAction("New crossword",this,SLOT(on_actionAddCrossword_triggered()));
     x_vs_y_menu->addAction("New EngRus wrong vert",this,SLOT(on_actionAddEngRus4x1_vert_triggered()));
@@ -50,11 +54,22 @@ MainWindow::MainWindow(QWidget *parent)
     inputWrite_menu->addAction("New one sort Z-A",this,SLOT(on_actionAddOneRow_Z_A_triggered()));
     inputWrite_menu->addAction("New one random",this,SLOT(on_actionAddOneRow_random_triggered()));
     inputWrite_menu->addAction("New one contra Vice versa",this,SLOT(on_actionAddOneRow_contra_Vice_versa_triggered()));
+    Visual_menu->addAction("New visual",this,SLOT(on_actionAdd_visual_triggered()));
     windowMenu->addAction("Cascade sub windows",this,SLOT(on_actionCascadeSubWindows()));
     windowMenu->addAction("Tile sub windows",this,SLOT(on_actionTileSubWindows()));
     windowMenu->addAction("Sub window view",this,SLOT(on_actionSubWindowView()));
     windowMenu->addAction("Tabbed view",this,SLOT(on_actionTabbedView()));
 }
+
+void MainWindow::on_actionAdd_visual_triggered(){
+    NotVisualOneRow *input =new NotVisualOneRow(this);
+    saveMdiSub *subWindow1 = new saveMdiSub;
+    subWindow1->setWidget(input);
+    mdiArea->addSubWindow(subWindow1);
+    subWindow1->setAttribute(Qt::WA_DeleteOnClose);
+    subWindow1->show();
+}
+
 void MainWindow::on_actionAddOneRow_contra_Vice_versa_triggered(){
     OneLongRowTable *input =new OneLongRowTable(this,Leo::contra_Vice_versa);
     saveMdiSub *subWindow1 = new saveMdiSub;
