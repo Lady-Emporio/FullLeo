@@ -32,6 +32,9 @@ private slots:
     void connect_UpdateTable();
     void connect_TextChanged_FindWord(const QString &currentText);
     void connect_FROM_FINDER_trigger(int, int);
+    void connect_SORT_list_db_trigger(int);
+    void connect_Word_shift_right();
+    void connect_Word_shift_left();
 };
 
 

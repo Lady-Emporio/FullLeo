@@ -8,6 +8,9 @@
 #include <QString>
 #include <QMessageBox>
 #include <QGridLayout>
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QSqlError>
 Settings::Settings(QWidget *parent) : QWidget(parent)
 {
     this->setObjectName("settings");
@@ -364,12 +367,14 @@ QGroupBox * Settings::groupFileAndBD(){
     saveBd=new QLineEdit(group_FileAndBD);
     saveBd->setPlaceholderText("without *.sqlite");
     setFontToWidget(saveBd);
-    QListWidget *bdList=new QListWidget(this);
+    bdList=new QListWidget(this);
     setFontToWidget(bdList);
     QDir nowPath=QDir::current();
     QStringList fileInDir=nowPath.entryList(QStringList("*.sqlite"));
     for(auto x:fileInDir){
-        bdList->addItem(new QListWidgetItem(x,bdList));
+        QListWidgetItem *next=new QListWidgetItem(x,bdList);
+        next->setCheckState(Qt::Unchecked);
+        bdList->addItem(next);
     }
     QPushButton *save_button=new QPushButton("Save in",this);
     setFontToWidget(save_button);
@@ -389,12 +394,57 @@ QGroupBox * Settings::groupFileAndBD(){
 }
 
 void Settings::connect_saveActiveListInBd(){
+    std::vector<QString>checkedDBList;
+    for(size_t i=0;i!=bdList->count();++i){
+        QListWidgetItem *next=bdList->item(i);
+        if(next->checkState()==Qt::Checked){
+            checkedDBList.push_back(next->text());
+        }
+    }
     if(saveBd->text().count()!=0){
-        LeoConst::CONST()->printAllWordInBD(saveBd->text());
-    }else{
+        if(checkedDBList.size()!=0){
+            std::vector<Word>AllianceWord;
+            for(QString x:checkedDBList){
+                FromDBGetWord(AllianceWord,x);
+            }
+            std::vector<Word> save=LeoConst::CONST()->ListWithWordConst;
+            LeoConst::CONST()->ListWithWordConst=AllianceWord;
+            LeoConst::CONST()->printAllWordInBD(saveBd->text());
+            LeoConst::CONST()->ListWithWordConst=save;
+        }else{
+            LeoConst::CONST()->printAllWordInBD(saveBd->text());
+        }
+    }
+    else{
         saveBd->setPlaceholderText("Текст не введен");
     }
 }
+
+void Settings::FromDBGetWord(std::vector<Word> &AllianceWord,QString path){
+    QMessageBox msgBox;
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE","MainTable");
+    db.setDatabaseName(path);//Имя базы.
+    if (!db.open()){
+        msgBox.setText(db.lastError().text());
+        msgBox.exec();
+        return;
+    }
+    QSqlQuery query(db);
+    query.exec("SELECT eng,ru FROM MainTable");
+    while (query.next()) {
+        Word next;
+        next.eng=query.value(0).toString();
+        next.ru=query.value(1).toString();
+        AllianceWord.push_back(next);
+    }
+    query.clear();
+    db.close();
+    db=QSqlDatabase();
+    QSqlDatabase::removeDatabase("MainTable");
+}
+
+
+
 void Settings::connect_ErrorSaveListInBd(){
     if(saveBd->text().count()!=0){
         LeoConst::CONST()->fallbackAllWordInBD(saveBd->text());

@@ -52,6 +52,7 @@ void LeoConst::THIS_IS_ALL_UPDATE_fromfileAndBD(){
     fillActiveStyleAndListStyle();
     FromRootQBrush();
     GetFromBD();
+    setStyle(All_QString_PARAMS["ActiveStyle"]);
 }
 
 LeoConst *LeoConst::CONST(){

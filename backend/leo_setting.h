@@ -1,7 +1,5 @@
 #ifndef LEOSETTING_H
 #define LEOSETTING_H
-
-
 #include <QComboBox>
 #include <QWidget>
 #include <QLabel>
@@ -21,6 +19,7 @@
 #include <QCheckBox>
 #include <QGridLayout>
 #include <QListWidget>
+#include "backend/word.h"
 class Settings : public QWidget
 {
     Q_OBJECT
@@ -35,12 +34,14 @@ public:
     explicit Settings(QWidget *parent = 0);
     QPushButton *updateDB;
     QLineEdit *saveBd;
+    QListWidget *bdList;
 signals:
 
 public slots:
 private:
     void closeEvent(QCloseEvent *);
     ~Settings();
+    void FromDBGetWord(std::vector<Word>&,QString);
 private slots:
     void connectIntFromDB(const QString &);
     void connectPathToDB(const QString &);
