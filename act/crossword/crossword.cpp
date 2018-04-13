@@ -32,6 +32,13 @@ Crossword::Crossword(QWidget *parent) : QWidget(parent)
     for(int i=0;i!=inCrosswordTableColMax;++i){
         MainTable->setColumnWidth(i,20);
     };
+    for(int row=0;row!=inCrosswordTableRowMax;++row){
+        for(int col=0;col!=inCrosswordTableColMax;++col){
+            QTableWidgetItem *item=new QTableWidgetItem;
+            item->setFlags(Qt::NoItemFlags);
+            MainTable->setItem(row,col,item);
+        }
+    }
     this->resize(inCrosswordTableRowMax*LeoConst::CONST()->All_INT_PARAMS["ROWHEIGHT"]+
             (LeoConst::CONST()->All_INT_PARAMS["MARGIN1"]*3)+UsingWordList->width(),(inCrosswordTableColMax*LeoConst::CONST()->All_INT_PARAMS["COLUMNWIDTH"])+
             LeoConst::CONST()->All_INT_PARAMS["MARGIN1"]);

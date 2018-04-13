@@ -59,3 +59,5 @@ getFromDB: 0-все что есть. Любое другое число-брат
 2018/04/11:
 "begin notVisualOneRow"-добавил сортировку по столбцу в ListDB. and buttons move from one list to second. And "activeStyle" применяется. до этого forget use his. Add Alliance db. Begin make notVisualOneRow
 "establish visualOneRow"-Я can use it. Not use eye, only hear
+2018/04/12:
+"ErrorWidget"-тестил notvisual-есть пару мелочек, буду тестить:если уже слово полностью заполнено, не просто give Error sound,а True. fix fall crossword if click not created item, before run. start add ErrorTable and ErrorWidget

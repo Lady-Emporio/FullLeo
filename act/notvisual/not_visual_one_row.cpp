@@ -81,13 +81,22 @@ if(text.count()!=0){
     }
 
     QString word=TrueWord.eng;
-    if(text==QString(word[indexInput])){
+    if(indexInput>=word.size()){
+        QMediaPlaylist *playlist=new QMediaPlaylist(this);
+        QString mp3=LeoConst::CONST()->All_QString_PARAMS["TrueSound"];
+        playlist->addMedia(QUrl::fromLocalFile(QDir::toNativeSeparators(mp3)));
+        playlist->addMedia(QUrl::fromLocalFile(QDir::toNativeSeparators("content\\"+QString("RU")+TrueWord.eng+".mp3")));
+        playlist->setCurrentIndex(1);
+        player->setPlaylist(playlist);
+        player->play();
+    }
+    else if(text==QString(word[indexInput])){
         InputLabel->setText(InputLabel->text()+QString(word[indexInput]));
         ++indexInput;
     }else{
         QMediaPlaylist *playlist=new QMediaPlaylist(this);
         QString path=LeoConst::CONST()->CONST()->All_QString_PARAMS["alphabet"]+QString("RU")+QString(text).toLower()+".mp3";
-        QString mp3=LeoConst::CONST()->All_QString_PARAMS["TrueSound"];
+        QString mp3=LeoConst::CONST()->All_QString_PARAMS["FalseSound"];
         playlist->addMedia(QUrl::fromLocalFile(QDir::toNativeSeparators(mp3)));
         playlist->addMedia(QUrl::fromLocalFile(QDir::toNativeSeparators(path)));
         playlist->setCurrentIndex(1);
