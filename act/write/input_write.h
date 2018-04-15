@@ -10,6 +10,7 @@ class TableWrite: public QTableWidget{
     Q_OBJECT
 public:
     QString TrueWord;
+    Word TrueWordWORD;
     TableWrite(QWidget *parent = 0);
     void keyPressEvent(QKeyEvent * event);
     void resizeEvent(QResizeEvent *event);
@@ -39,13 +40,16 @@ class OneTableOneRow: public QTableWidget{
     Q_OBJECT
 public:
     QString TrueWord;
+    Word TrueWordWORD;
     Leo::Type type_this;
     OneTableOneRow(QWidget *parent = 0);
     int beginTableWord;
     void keyPressEvent(QKeyEvent * event);
 signals:
     void singal_needNexRound();
+    void singal_nextWord();
 };
+
 class OneLongRowTable : public QWidget
 {
     Q_OBJECT
@@ -53,11 +57,14 @@ public:
     explicit OneLongRowTable(QWidget *parent = 0,Leo::Type =Leo::Type::common);
     Leo::Type type_this;
     QLabel *TrueLabel;
+    QLabel *RoundLabel;
+    QLabel *NomberLabel;
     Word TrueWord;
     OneTableOneRow *inputTable;
     std::vector<Word> ListWord;
     std::vector<Word> EverWordList;
 public slots:
     void connectNextRound_trigger();
+    void connectNext_Word_trigger();
 };
 #endif // INPUTWRITE_H

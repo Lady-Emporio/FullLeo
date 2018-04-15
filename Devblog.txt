@@ -61,3 +61,6 @@ getFromDB: 0-все что есть. Любое другое число-брат
 "establish visualOneRow"-Я can use it. Not use eye, only hear
 2018/04/12:
 "ErrorWidget"-тестил notvisual-есть пару мелочек, буду тестить:если уже слово полностью заполнено, не просто give Error sound,а True. fix fall crossword if click not created item, before run. start add ErrorTable and ErrorWidget
+2018/04/15:
+""-В целом ErrorWidget работает. Осталось create global variable and show it in settings.
+"good day"-ErrorWidget работает. TrueXY настроил и отображение раунда со счетчиком.

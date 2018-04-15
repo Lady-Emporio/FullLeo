@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include <QLabel>
-#include <QWidget>
 #include <QPushButton>
 #include <vector>
 #include "backend/word.h"

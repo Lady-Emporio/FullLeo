@@ -41,6 +41,8 @@ private slots:
     void on_actionAddInputWite_triggered();
     void on_actionSubWindowView();
     void on_actionTabbedView();
+    void on_actionOpenError_Bstriggered();
+    void on_actionAddTrueEngRu_triggered();
 };
 
 

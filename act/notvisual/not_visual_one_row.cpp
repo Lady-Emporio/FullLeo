@@ -2,6 +2,7 @@
 #include <QGridLayout>
 #include <ctime>        // std::time
 #include <QMediaPlaylist>
+#include "backend/error_count.h"
 NotVisualOneRow::NotVisualOneRow(QWidget *parent) : QWidget(parent)
 {
     player=new QMediaPlayer;
@@ -24,6 +25,7 @@ NotVisualOneRow::NotVisualOneRow(QWidget *parent) : QWidget(parent)
     ListWord=EverWordList;
 
 }
+
 void NotVisualOneRow::NextRound(){
     if (ListWord.size()<=0){
         if(LeoConst::CONST()->All_BOOL_PARAMS["EVER"]){
@@ -80,7 +82,7 @@ if(text.count()!=0){
     }
     }
 
-    QString word=TrueWord.eng;
+    QString word=TrueWord.eng.toLower();
     if(indexInput>=word.size()){
         QMediaPlaylist *playlist=new QMediaPlaylist(this);
         QString mp3=LeoConst::CONST()->All_QString_PARAMS["TrueSound"];
@@ -94,6 +96,9 @@ if(text.count()!=0){
         InputLabel->setText(InputLabel->text()+QString(word[indexInput]));
         ++indexInput;
     }else{
+        if(LeoConst::CONST()->All_BOOL_PARAMS["ERROR"]){
+            ErrorCount::addToDB(TrueWord);
+        }
         QMediaPlaylist *playlist=new QMediaPlaylist(this);
         QString path=LeoConst::CONST()->CONST()->All_QString_PARAMS["alphabet"]+QString("RU")+QString(text).toLower()+".mp3";
         QString mp3=LeoConst::CONST()->All_QString_PARAMS["FalseSound"];

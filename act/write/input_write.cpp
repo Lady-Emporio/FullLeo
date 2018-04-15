@@ -6,7 +6,7 @@
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <ctime>        // std::time
-
+#include "backend/error_count.h"
 TableWrite::TableWrite(QWidget *parent) : QTableWidget(parent){
     this->setRowCount(1);
     this->verticalHeader()->setVisible(false);
@@ -40,6 +40,9 @@ void TableWrite::keyPressEvent(QKeyEvent *event){
                 if(item(0,i)->text()!=QString(TrueWord[i])){
                     ++sum;
                     item(0,i)->setBackground(LeoConst::CONST()->AllQBrushdictPARAMS["FALSEQB"]);
+                    if(LeoConst::CONST()->All_BOOL_PARAMS["ERROR"]){
+                        ErrorCount::addToDB(TrueWordWORD);
+                    }
                 }
             }
             if(sum==0){
@@ -97,6 +100,9 @@ void TableWrite::keyPressEvent(QKeyEvent *event){
                         }
                     }
                     else{
+                        if(LeoConst::CONST()->All_BOOL_PARAMS["ERROR"]){
+                            ErrorCount::addToDB(TrueWordWORD);
+                        }
                         this->setStyleSheet("QTableView::item:selected:active {background: rgb(255, 0,0);color:rgb(0,0,0);}");
                     }
                 }
@@ -183,6 +189,7 @@ void InputWrite::run(){
     TrueWord=ListWord.back();
     ListWord.pop_back();
     inputTable->TrueWord=TrueWord.eng.toLower();
+    inputTable->TrueWordWORD=TrueWord;
     QString word=TrueWord.eng;
     TrueLabel->setText(TrueWord.ru);
     inputTable->setColumnCount(word.size());
@@ -245,6 +252,7 @@ void OneTableOneRow::keyPressEvent(QKeyEvent * event){
                     LeoConst::CONST()->player->setMedia(QUrl::fromLocalFile(QDir::toNativeSeparators("content\\"+TrueWord+".mp3")));
                     LeoConst::CONST()->player->play();
                 };
+                emit singal_nextWord();
                 emit singal_needNexRound();
             }
             break;
@@ -301,6 +309,9 @@ void OneTableOneRow::keyPressEvent(QKeyEvent * event){
                         }
                     }
                     else{
+                        if(LeoConst::CONST()->All_BOOL_PARAMS["ERROR"]){
+                            ErrorCount::addToDB(TrueWordWORD);
+                        }
                         this->setStyleSheet("QTableView::item:selected:active {background: rgb(255, 0,0);color:rgb(0,0,0);}");
                     }
                 }
@@ -319,16 +330,22 @@ OneLongRowTable::OneLongRowTable(QWidget *parent,Leo::Type this_is_status_type) 
     TrueLabel=new QLabel(this);
     setFontToWidget(TrueLabel);
     TrueLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-    QVBoxLayout *mainLayout=new QVBoxLayout(this);
-
-
+    QGridLayout *mainLayout=new QGridLayout(this);
+    RoundLabel=new QLabel("0",this);
+    setFontToWidget(RoundLabel);
+    NomberLabel=new QLabel("0",this);
+    setFontToWidget(NomberLabel);
+    RoundLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    NomberLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     QPushButton *nextRound=new QPushButton("next round",this);
     connect(nextRound, SIGNAL(clicked()), this, SLOT(connectNextRound_trigger()));
     connect(inputTable, SIGNAL(singal_needNexRound()), this, SLOT(connectNextRound_trigger()));
 
-    mainLayout->addWidget(TrueLabel);
-    mainLayout->addWidget(inputTable);
-    mainLayout->addWidget(nextRound);
+    mainLayout->addWidget(TrueLabel,0,0,1,3);
+    mainLayout->addWidget(inputTable,1,0,1,3);
+    mainLayout->addWidget(nextRound,2,0);
+    mainLayout->addWidget(RoundLabel,2,1);
+    mainLayout->addWidget(NomberLabel,2,2);
     this->setLayout(mainLayout);
 
     EverWordList=LeoConst::CONST()->ListWithWordConst;
@@ -343,7 +360,15 @@ OneLongRowTable::OneLongRowTable(QWidget *parent,Leo::Type this_is_status_type) 
         std::sort(EverWordList.begin(),EverWordList.end(),[](Word x1,Word x2){return x1.eng>x2.eng;});
     }
     ListWord=EverWordList;
+    connect(inputTable, SIGNAL(singal_nextWord()), this, SLOT(connectNext_Word_trigger()));
 }
+
+void OneLongRowTable::connectNext_Word_trigger(){
+    int round=NomberLabel->text().toInt();
+    ++round;
+    NomberLabel->setText(QString("").setNum(round));
+}
+
 void OneLongRowTable::connectNextRound_trigger(){
     if(ListWord.size()==0){
         if(LeoConst::CONST()->All_BOOL_PARAMS["EVER"]){
@@ -352,12 +377,21 @@ void OneLongRowTable::connectNextRound_trigger(){
                 std::random_shuffle(EverWordList.begin(),EverWordList.end(),[](int i){return std::rand()%i;});
             }
             ListWord=EverWordList;
+            int round=RoundLabel->text().toInt();
+            ++round;
+            RoundLabel->setText(QString("").setNum(round));
         }else{
             TrueLabel->setText("Слова закончились");
             return;
         }
     }
-
+    if(!LeoConst::CONST()->All_BOOL_PARAMS["ACCOUNT"]){
+        RoundLabel->hide();
+        NomberLabel->hide();
+    }else{
+        RoundLabel->show();
+        NomberLabel->show();
+    }
     for(size_t i=0;i!=inputTable->columnCount();++i){
         inputTable->item(0,i)->setText("");
         inputTable->item(0,i)->setFlags(Qt::ItemFlag::NoItemFlags);
@@ -368,10 +402,12 @@ void OneLongRowTable::connectNextRound_trigger(){
     QString word;
     if(type_this!=Leo::contra_Vice_versa){
         inputTable->TrueWord=TrueWord.eng.toLower();
+        inputTable->TrueWordWORD=TrueWord;
         word=TrueWord.eng;
         TrueLabel->setText(TrueWord.ru);
     }else{
         inputTable->TrueWord=TrueWord.ru.toLower();
+        inputTable->TrueWordWORD=TrueWord;
         word=TrueWord.ru;
         TrueLabel->setText(TrueWord.eng);
     }
@@ -379,9 +415,11 @@ void OneLongRowTable::connectNextRound_trigger(){
     int startTable=inputTable->columnCount()/2-haldWord;
     inputTable->beginTableWord=startTable;
     if(startTable+word.size()>=inputTable->columnCount()){
+        TrueLabel->setText("columnCount large");
         return;
     }
     else if(startTable<0){
+        TrueLabel->setText("columnCount small");
         return;
     }
     for(size_t i=startTable,n=0;n!=word.size();++i,++n){

@@ -14,8 +14,8 @@ LeoConst::LeoConst()
     All_BOOL_PARAMS.insert("runAudio",false);
     All_BOOL_PARAMS.insert("runImage",false);
     All_BOOL_PARAMS.insert("EVER",false);
-
-
+    All_BOOL_PARAMS.insert("ERROR",false);
+    All_BOOL_PARAMS.insert("ACCOUNT",false);
 
     AllQBrushdictPARAMS.insert("DEFAULTQB", QBrush(QColor(255, 255, 255)));
     AllQBrushdictPARAMS.insert("NOTUSEQB", QBrush(QColor(255, 255, 255)));

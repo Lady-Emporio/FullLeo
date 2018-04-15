@@ -1,11 +1,13 @@
 {
+    "ACCOUNT": true,
     "AUTOCOMPLETION": false,
     "ActiveStyle": "minimal",
     "COLUMNWIDTH": 20,
-    "COUNT_BUTTOM": 4,
-    "DEFAULT_BUTTOM_COLOR": "Button:pressed{background-color: rgb(0, 0, 255);}Button {background-color: rgb(170, 170, 127);border: 4px solid red;border-radius: 5px;}",
+    "COUNT_BUTTOM": 6,
+    "DEFAULT_BUTTOM_COLOR": "QPushButton:pressed{Text-align:left;background-color: rgb(0, 0, 255);}QPushButton {Text-align:left;background-color: rgb(170, 170, 127);border: 4px solid red;border-radius: 5px;}",
+    "ERROR": false,
     "EVER": true,
-    "FALSE_ANSWER_COLOR": "Button {background-color: rgb(255, 0, 0);border: 4px solid red;border-radius: 5px;}",
+    "FALSE_ANSWER_COLOR": "QPushButton {background-color: rgb(255, 0, 0);Text-align:left;border: 4px solid red;border-radius: 5px;}",
     "FONT_SIZE": 12,
     "FalseSound": "./systemSound/pilyalu.mp3",
     "GRID": false,
@@ -14,7 +16,7 @@
     "ROWHEIGHT": 20,
     "TABLE_COL": 10,
     "TABLE_ROW": 10,
-    "TRUE_ANSWER_COLOR": "Button {background-color: rgb(0, 200, 0);border: 4px solid red;border-radius: 5px;}",
+    "TRUE_ANSWER_COLOR": "QPushButton {background-color: rgb(0, 200, 0);Text-align:left;border: 4px solid red;border-radius: 5px;}",
     "TrueSound": "./systemSound/true.mp3",
     "alphabet": "systemSound/en-uk/",
     "crossword": {
@@ -231,7 +233,7 @@
     },
     "fontFamyle": "Times New Roman",
     "getFromDB": 0,
-    "path_bd": "12.sqlite",
+    "path_bd": "Error.sqlite",
     "runAudio": true,
-    "runImage": true
+    "runImage": false
 }

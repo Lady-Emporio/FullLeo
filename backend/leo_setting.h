@@ -60,6 +60,8 @@ private slots:
     void connectNeedSaveJson();
     void connect_saveActiveListInBd();
     void connect_ErrorSaveListInBd();
+    void connect_Error_trigger();
+    void connect_ACCOUNT_trigger();
 };
 
 #endif // LEOSETTING_H

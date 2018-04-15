@@ -5,6 +5,8 @@
 #include "backend/list_word_db.h"
 #include "act/write/input_write.h"
 #include "act/notvisual/not_visual_one_row.h"
+#include "backend/error_count.h"
+#include "act/engrus/x_y.h"
 
 saveMdiSub::saveMdiSub(QWidget *parent) :QMdiSubWindow(parent){}
 void saveMdiSub::closeEvent(QCloseEvent *event){ /*work but i not know;*/}
@@ -30,6 +32,7 @@ MainWindow::MainWindow(QWidget *parent)
     highTopMenu->addAction("Settings",this,SLOT(on_actionOpenSettingstriggered()));
     highTopMenu->addAction("DB word",this,SLOT(on_actionOpenListWordDBstriggered()));
     highTopMenu->addAction("Active bd",this,SLOT(on_actionActiveBD()));
+    highTopMenu->addAction("Error",this,SLOT(on_actionOpenError_Bstriggered()));
 
     QMenu*  windowMenu   = new QMenu("Window");
     highTopMenu->addMenu(windowMenu);
@@ -45,6 +48,7 @@ MainWindow::MainWindow(QWidget *parent)
     crossword_menu->addAction("New crossword",this,SLOT(on_actionAddCrossword_triggered()));
     x_vs_y_menu->addAction("New EngRus wrong vert",this,SLOT(on_actionAddEngRus4x1_vert_triggered()));
     x_vs_y_menu->addAction("New EngRus wrong hori",this,SLOT(on_actionAddEngRus4x1_hori_triggered()));
+    x_vs_y_menu->addAction("New True Eng ru",this,SLOT(on_actionAddTrueEngRu_triggered()));
     inputWrite_menu->addAction("New InputWite",this,SLOT(on_actionAddInputWite_triggered()));
     inputWrite_menu->addAction("New random",this,SLOT(on_actionAddInputWrite_Random_triggered()));
     inputWrite_menu->addAction("New sort A-Z",this,SLOT(on_actionAddInputWrite_Sort_A_Z_triggered()));
@@ -59,6 +63,30 @@ MainWindow::MainWindow(QWidget *parent)
     windowMenu->addAction("Tile sub windows",this,SLOT(on_actionTileSubWindows()));
     windowMenu->addAction("Sub window view",this,SLOT(on_actionSubWindowView()));
     windowMenu->addAction("Tabbed view",this,SLOT(on_actionTabbedView()));
+}
+
+void MainWindow::on_actionAddTrueEngRu_triggered(){
+    XY *trueLeo=new XY(this);
+    saveMdiSub *subWindow1 = new saveMdiSub;
+    subWindow1->setWidget(trueLeo);
+    mdiArea->addSubWindow(subWindow1);
+    subWindow1->setAttribute(Qt::WA_DeleteOnClose);
+    subWindow1->show();
+}
+
+void MainWindow::on_actionOpenError_Bstriggered(){
+    QList<QMdiSubWindow *>	allSub=mdiArea->subWindowList();
+    for(auto x:allSub){
+        if(x->widget()->objectName()=="ErrorCount"){
+            x->close();
+        }
+    }
+    ErrorCount *er_widget =new ErrorCount(this);
+    saveMdiSub *subWindow1 = new saveMdiSub;
+    subWindow1->setWidget(er_widget);
+    mdiArea->addSubWindow(subWindow1);
+    subWindow1->setAttribute(Qt::WA_DeleteOnClose);
+    subWindow1->show();
 }
 
 void MainWindow::on_actionAdd_visual_triggered(){
@@ -136,9 +164,6 @@ void MainWindow::on_actionAddOneRow_random_triggered(){
     subWindow1->setAttribute(Qt::WA_DeleteOnClose);
     subWindow1->show();
 }
-
-
-
 
 void MainWindow::on_actionSubWindowView(){
     mdiArea->setViewMode(QMdiArea::SubWindowView);

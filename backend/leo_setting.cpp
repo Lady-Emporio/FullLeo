@@ -268,14 +268,36 @@ QGroupBox * Settings::groupEngRus(){
     if(LeoConst::CONST()->All_BOOL_PARAMS["EVER"]){
         ButtomEver->setCheckState(Qt::Checked);
     }
+    QCheckBox * ButtomError=new QCheckBox("Error?",this);
+    setFontToWidget(ButtomError);
+    if(LeoConst::CONST()->All_BOOL_PARAMS["ERROR"]){
+        ButtomError->setCheckState(Qt::Checked);
+    }
+    QCheckBox * ButtomAccount=new QCheckBox("Account?",this);
+    setFontToWidget(ButtomAccount);
+    if(LeoConst::CONST()->All_BOOL_PARAMS["ACCOUNT"]){
+        ButtomAccount->setCheckState(Qt::Checked);
+    }
     mainLayout->addWidget(ButtomAudio);
     mainLayout->addWidget(ButtonImage);
     mainLayout->addWidget(ButtomEver);
+    mainLayout->addWidget(ButtomError);
+    mainLayout->addWidget(ButtomAccount);
     connect(ButtomAudio, SIGNAL(clicked()), this, SLOT(connectAudio_trigger()));
     connect(ButtonImage, SIGNAL(clicked()), this, SLOT(connectImage_trigger()));
     connect(ButtomEver, SIGNAL(clicked()), this, SLOT(connectEVER_trigger()));
+    connect(ButtomError, SIGNAL(clicked()), this, SLOT(connect_Error_trigger()));
+    connect(ButtomAccount, SIGNAL(clicked()), this, SLOT(connect_ACCOUNT_trigger()));
     return group_eng_rus;
 }
+void Settings::connect_ACCOUNT_trigger(){
+    LeoConst::CONST()->All_BOOL_PARAMS["ACCOUNT"]=!LeoConst::CONST()->All_BOOL_PARAMS["ACCOUNT"];
+}
+
+void Settings::connect_Error_trigger(){
+    LeoConst::CONST()->All_BOOL_PARAMS["ERROR"]=!LeoConst::CONST()->All_BOOL_PARAMS["ERROR"];
+}
+
 void Settings::connectAudio_trigger(){
     LeoConst::CONST()->All_BOOL_PARAMS["runAudio"]=!LeoConst::CONST()->All_BOOL_PARAMS["runAudio"];
 }

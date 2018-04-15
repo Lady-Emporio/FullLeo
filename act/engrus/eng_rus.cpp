@@ -5,6 +5,7 @@
 #include <ctime>
 #include "QTime"
 #include <algorithm>
+#include "backend/error_count.h"
 Button::Button(QWidget  *parent): QPushButton (parent){
     //font and start text
     {
@@ -91,10 +92,6 @@ EngRus::EngRus(QWidget *parent,Leo::pos statusThis) : QWidget(parent) ,status(st
     for(size_t i=0;i!=UniqueWord.size();++i){
         sizeWordinLastSizeEnd.push_back(ListWord[UniqueWord[i]]);
     }
-    if (ListWord.size()<=MaxButton){
-            main_Label->setText(QString("Small size: ")+QString("").setNum(ListWord.size()));
-            return;
-    };
     std::srand ( (int)time(0));
     random_shuffle ( ListWord.begin(), ListWord.end(),[](int i) {return std::rand()%i;});
 }
@@ -207,6 +204,9 @@ void EngRus::connectSelectWord(){
          }
          else{
              go_next=false;
+             if(LeoConst::CONST()->All_BOOL_PARAMS["ERROR"]){
+                 ErrorCount::addToDB(TrueWord);
+             }
              nextRound();
         }
     }else{

@@ -17,6 +17,7 @@
 #include <QMap>
 #include <QObject>
 #include <QMessageBox>
+
 enum status{freely,block,wordHere};
 namespace Leo{
 enum pos{vertical,horizontal,zero};
