@@ -43,7 +43,7 @@ public:
     void selectAll();
     std::vector<QMap<QString,QString> > AllErrorString;
     QSqlTableModel *model;
-    static QSqlDatabase db;
+    QSqlDatabase db;
     bool startIf;
 signals:
 

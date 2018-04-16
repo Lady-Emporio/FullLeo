@@ -6,6 +6,7 @@
 #include "backend/error_count.h"
 XY::XY(QWidget *parent) : QWidget(parent)
 {
+    this->setObjectName("XY");
     main_Label=new QLabel("We are",this);
     main_Label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     setFontToWidget(main_Label);
@@ -29,10 +30,15 @@ XY::XY(QWidget *parent) : QWidget(parent)
         nextButton->setObjectName(QString("WeAreButtonMy25/03/2018").setNum(i));
         listButton.push_back(nextButton);
     }
+    RoundForLabel=0;
+    NomberForLabel=0;
+    RoundLabel=new QLabel(QString("").setNum(RoundForLabel),this);
+    NomberLabel=new QLabel(QString("").setNum(NomberForLabel),this);
     this->setLayout(mainLayout);
     mainLayout->addWidget(main_Label,0,0);
     mainLayout->addWidget(ImageLabel,1,0,MaxButton-1,1);
-
+    mainLayout->addWidget(RoundLabel,MaxButton,0);
+    mainLayout->addWidget(NomberLabel,MaxButton,1);
     EverWordList=LeoConst::CONST()->ListWithWordConst;
     sort(EverWordList.begin(),EverWordList.end(),[](Word x1,Word x2) {return (x1.eng<x2.eng);}); //убираю дубли
     auto last=unique(EverWordList.begin(),EverWordList.end(),[](Word x1,Word x2) {return (x1.eng==x2.eng);});
@@ -73,6 +79,11 @@ void XY::connectSelectWord(){
         };
         static bool go_next=false;
          if (!go_next){
+             if(LeoConst::CONST()->All_BOOL_PARAMS["runImage"]){
+                 QPixmap image("./content/"+TrueWord.eng+".png");
+                 ImageLabel->setPixmap(image);
+                 ImageLabel->show();
+             }
              button->setStyleSheet(LeoConst::CONST()->All_QString_PARAMS["TRUE_ANSWER_COLOR"]);
              go_next=true;
          }
@@ -94,6 +105,8 @@ void XY::nextRound(){
     }
     if (ListWord.size()<=0){
             if(LeoConst::CONST()->All_BOOL_PARAMS["EVER"]){
+                ++RoundForLabel;
+                RoundLabel->setText(QString("").setNum(RoundForLabel));
                 ListWord=EverWordList;
             }
             else{
@@ -101,10 +114,15 @@ void XY::nextRound(){
                 return;
             }
     };
+    ++NomberForLabel;
     std::vector<Word>UsingWord;
     TrueWord=ListWord.back();
     ListWord.pop_back();
     UsingWord.push_back(TrueWord);
+    Word nextWord=TrueWord;
+    nextWord.Round=RoundForLabel;
+    nextWord.Nomber=NomberForLabel;
+    UsingWordForStory.push_back(nextWord);
     for(size_t i=1;UsingWord.size()!=MaxButton;++i){
         if(i>=ListWord.size()){
             break;
@@ -131,12 +149,14 @@ void XY::nextRound(){
             listButton[i]->setText(UsingWord[i].ru);
         }
     }
-    if(LeoConst::CONST()->All_BOOL_PARAMS["runImage"]){
-        QPixmap image("./content/"+TrueWord.eng+".png");
-        ImageLabel->setPixmap(image);
-        ImageLabel->show();
+    ImageLabel->hide();
+    NomberLabel->setText(QString("").setNum(NomberForLabel));
+    if(!LeoConst::CONST()->All_BOOL_PARAMS["ACCOUNT"]){
+        RoundLabel->hide();
+        NomberLabel->hide();
     }else{
-        ImageLabel->hide();
+        RoundLabel->show();
+        NomberLabel->show();
     }
     main_Label->setText(QString(TrueWord.eng));
 }

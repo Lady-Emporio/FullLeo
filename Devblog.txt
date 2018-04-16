@@ -64,3 +64,5 @@ getFromDB: 0-все что есть. Любое другое число-брат
 2018/04/15:
 ""-В целом ErrorWidget работает. Осталось create global variable and show it in settings.
 "good day"-ErrorWidget работает. TrueXY настроил и отображение раунда со счетчиком.
+2018/04/16:
+"Story"-not work sqlError-driver not found. Replace statis on method. Add Round\Nomber counter in XY. Add not so bad styry.

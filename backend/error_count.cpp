@@ -1,8 +1,12 @@
 #include "error_count.h"
-QSqlDatabase ErrorCount::db = QSqlDatabase::addDatabase("QSQLITE","ErrorTable");
 ErrorCount::ErrorCount(QWidget *parent) : QWidget(parent)
 {
-    this->setObjectName("ErrorCount");
+    static int counter=0;
+    ++counter;
+    QString ThisName="ErrorCount"+QString("").setNum(counter);
+    this->setObjectName(ThisName);
+    this->setWindowTitle(ThisName);
+    db = QSqlDatabase::addDatabase("QSQLITE",ThisName);
     startIf=true;
     static bool createDB=true;
     if(createDB){

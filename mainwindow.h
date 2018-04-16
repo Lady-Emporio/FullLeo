@@ -9,6 +9,7 @@
 #include "backend/leo_const.h"
 #include "backend/leo_setting.h"
 #include "act/write/input_write.h"
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -43,6 +44,7 @@ private slots:
     void on_actionTabbedView();
     void on_actionOpenError_Bstriggered();
     void on_actionAddTrueEngRu_triggered();
+    void on_action_historyXY();
 };
 
 
@@ -63,5 +65,7 @@ private:
 private slots:
     void connectUpdateTable();
 };
+
+
 
 #endif // MAINWINDOW_H

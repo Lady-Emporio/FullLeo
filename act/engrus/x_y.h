@@ -16,14 +16,18 @@ public:
     QLabel *main_Label;
     QLabel *ImageLabel;
     std::vector<Word> ListWord;
+    std::vector<Word> UsingWordForStory;
     std::vector<Word> EverWordList;
     std::vector<Word> sizeWordinLastSizeEnd;
     std::vector<QPushButton*>listButton;
     int MaxButton;
     Word TrueWord;
     void nextRound();
+    int RoundForLabel;
+    int NomberForLabel;
+    QLabel *NomberLabel;
+    QLabel *RoundLabel;
 signals:
-
 public slots:
     void connectSelectWord();
 };

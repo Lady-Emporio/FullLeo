@@ -29,9 +29,12 @@ MainWindow::MainWindow(QWidget *parent)
     QMenu*  addMenu   = new QMenu("Add");
     highTopMenu->addMenu(addMenu);
     this->setMenuBar(highTopMenu);
+    QMenu*  activeMenu   = new QMenu("Active");
     highTopMenu->addAction("Settings",this,SLOT(on_actionOpenSettingstriggered()));
     highTopMenu->addAction("DB word",this,SLOT(on_actionOpenListWordDBstriggered()));
-    highTopMenu->addAction("Active bd",this,SLOT(on_actionActiveBD()));
+    highTopMenu->addMenu(activeMenu);
+    activeMenu->addAction("Active bd",this,SLOT(on_actionActiveBD()));
+    activeMenu->addAction("Active XY",this,SLOT(on_action_historyXY()));
     highTopMenu->addAction("Error",this,SLOT(on_actionOpenError_Bstriggered()));
 
     QMenu*  windowMenu   = new QMenu("Window");
@@ -68,6 +71,7 @@ MainWindow::MainWindow(QWidget *parent)
 void MainWindow::on_actionAddTrueEngRu_triggered(){
     XY *trueLeo=new XY(this);
     saveMdiSub *subWindow1 = new saveMdiSub;
+    subWindow1->setWindowTitle("This is XY");
     subWindow1->setWidget(trueLeo);
     mdiArea->addSubWindow(subWindow1);
     subWindow1->setAttribute(Qt::WA_DeleteOnClose);
@@ -242,10 +246,10 @@ void MainWindow::on_actionOpenListWordDBstriggered(){
 
 void MainWindow::on_actionActiveBD(){
     QWidget *w=new QWidget(this);
-    QVBoxLayout *mainLayout=new QVBoxLayout(w);
+    QGridLayout *mainLayout=new QGridLayout(w);
     QListWidget *WordInActive=new QListWidget(w);
     w->setLayout(mainLayout);
-    mainLayout->addWidget(WordInActive);
+    mainLayout->addWidget(WordInActive,0,0);
     std::vector <Word> nowWordList;
     QMdiSubWindow *activeSub=mdiArea->activeSubWindow();
     if(activeSub==0){
@@ -254,15 +258,55 @@ void MainWindow::on_actionActiveBD(){
         msgBox.exec();
         return;
     }
-    if(activeSub->widget()->objectName()=="EngRus"){
+    else if(activeSub->widget()->objectName()=="EngRus"){
         EngRus * now=qobject_cast<EngRus *>(activeSub->widget());
-        nowWordList=now->ListWord;
+        nowWordList=now->EverWordList;
+    }
+    else if(activeSub->widget()->objectName()=="XY"){
+        XY * now=qobject_cast<XY *>(activeSub->widget());
+        nowWordList=now->EverWordList;
     }
     for(size_t i=0;i!=nowWordList.size();++i){
         QListWidgetItem *next=new QListWidgetItem(WordInActive);
         next->setText(nowWordList[i].eng+" | "+nowWordList[i].ru);
         WordInActive->addItem(next);
     }
+    QMdiSubWindow *subWindow1 = new QMdiSubWindow;
+    subWindow1->setWidget(w);
+    subWindow1->setAttribute(Qt::WA_DeleteOnClose);
+    mdiArea->addSubWindow(subWindow1);
+    subWindow1->show();
+}
+
+void MainWindow::on_action_historyXY(){
+    QWidget *w=new QWidget(this);
+    QGridLayout *mainLayout=new QGridLayout(w);
+    QListWidget *WordInActive=new QListWidget(w);
+    std::vector <Word> nowWordList;
+    QMdiSubWindow *activeSub=mdiArea->activeSubWindow();
+    if(activeSub==0){
+        QMessageBox msgBox;
+        msgBox.setText("Нет активного виджета");
+        msgBox.exec();
+        return;
+    }
+    else if(activeSub->widget()->objectName()=="XY"){
+        XY * now=qobject_cast<XY *>(activeSub->widget());
+        nowWordList=now->UsingWordForStory;
+    }else{
+        QMessageBox msgBox;
+        msgBox.setText("Нет XY");
+        msgBox.exec();
+    }
+    for(size_t i=0;i!=nowWordList.size();++i){
+        QListWidgetItem *next=new QListWidgetItem(WordInActive);
+        QString round=QString("").setNum(nowWordList[i].Round);
+        QString nomber=QString("").setNum(nowWordList[i].Nomber);
+        next->setText(round+"/"+nomber+" | "+nowWordList[i].eng+" | "+nowWordList[i].ru);
+        WordInActive->addItem(next);
+    }
+    w->setLayout(mainLayout);
+    mainLayout->addWidget(WordInActive,0,0);
     QMdiSubWindow *subWindow1 = new QMdiSubWindow;
     subWindow1->setWidget(w);
     subWindow1->setAttribute(Qt::WA_DeleteOnClose);
