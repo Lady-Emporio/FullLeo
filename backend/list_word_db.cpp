@@ -56,6 +56,20 @@ ListWordDB::ListWordDB(QWidget *parent) : QWidget(parent)
     to_left_Button->setText("<<");
     setFontToWidget(to_left_Button);
 
+    QHBoxLayout *StayBDLayout=new QHBoxLayout();
+    FromDB=new QLineEdit(this);
+    FromDB->setPlaceholderText("from");
+    setFontToWidget(FromDB);
+    QPushButton *ToDBButton=new QPushButton("from <-|-> to",this);
+    setFontToWidget(ToDBButton);
+
+    ToDB=new QLineEdit(this);
+    ToDB->setPlaceholderText("to");
+    setFontToWidget(ToDB);
+
+    StayBDLayout->addWidget(FromDB);
+    StayBDLayout->addWidget(ToDBButton);
+    StayBDLayout->addWidget(ToDB);
     buttonLayout->addWidget(to_right_Button);
     buttonLayout->addWidget(to_left_Button);
 
@@ -63,6 +77,7 @@ ListWordDB::ListWordDB(QWidget *parent) : QWidget(parent)
     ListBDLayout->addWidget(finderTable);
     mainLayout->addLayout(ListBDLayout);
     mainLayout->addWidget(Update);
+    mainLayout->addLayout(StayBDLayout);
     this->setLayout(mainLayout);
     connect(listinBD, SIGNAL(cellDoubleClicked(int , int)), this, SLOT(connect_IN_bd_trigger(int, int)));
     connect(thenSetList, SIGNAL(cellDoubleClicked(int , int)), this, SLOT(connect_FROM_NEW_LISR_trigger(int, int)));
@@ -72,6 +87,110 @@ ListWordDB::ListWordDB(QWidget *parent) : QWidget(parent)
     connect(listinBD->horizontalHeader(), SIGNAL(sectionClicked(int)), this, SLOT(connect_SORT_list_db_trigger(int)));
     connect(to_right_Button, SIGNAL(clicked()), this, SLOT(connect_Word_shift_right()));
     connect(to_left_Button, SIGNAL(clicked()), this, SLOT(connect_Word_shift_left()));
+    connect(ToDBButton, SIGNAL(clicked()), this, SLOT(connect_NeedReplaceDB()));
+}
+void ListWordDB::connect_NeedReplaceDB(){
+    QMessageBox msgBox;
+    if(ToDB->text().size()==0){
+        msgBox.setText("Не выбрано имя файла ToDB");
+        msgBox.exec();
+        return;
+    }
+    if(FromDB->text().size()==0){
+        msgBox.setText("Не выбрано имя файла FromDB");
+        msgBox.exec();
+        return;
+    }
+    QString nameToDB=ToDB->text()+".sqlite";
+    QString nameFromDB=FromDB->text()+".sqlite";
+
+    QDir nowPath=QDir::current();
+    QStringList fileInDir=nowPath.entryList(QStringList("*.sqlite"));
+    for(QString x: fileInDir){
+        if(x==nameToDB){
+            msgBox.setText("nameToDB exist");
+            msgBox.exec();
+            return;
+        }else if(x==nameFromDB){
+            msgBox.setText("nameFromDB exist");
+            msgBox.exec();
+            return;
+        }
+    }
+
+    {
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE","FromDB");
+    db.setDatabaseName(nameFromDB);//Имя базы.
+    if (!db.open()){
+        QMessageBox msgBox;
+        msgBox.setText(db.lastError().text());
+        msgBox.exec();
+        db.close();
+        db=QSqlDatabase();
+        QSqlDatabase::removeDatabase("FromDB");
+        return;
+    }
+    QSqlQuery query(db);
+    query.exec("CREATE TABLE MainTable(eng text,ru text); ");
+    query.clear();
+    for(size_t row=0;row!=listinBD->rowCount();++row){
+        QString nextEng=listinBD->item(row,0)->text();
+        QString nextRu=listinBD->item(row,1)->text();
+        query.prepare("INSERT INTO MainTable VALUES (:eng,:ru);");
+        query.bindValue(":eng", nextEng);
+        query.bindValue(":ru", nextRu);
+        if(!query.exec()){
+            msgBox.setText(db.lastError().text()+" | "+query.lastError().text());
+            msgBox.exec();
+            db.close();
+            db=QSqlDatabase();
+            QSqlDatabase::removeDatabase("FromDB");
+            return;
+        }
+        query.clear();
+    }
+    db.commit();
+    db.close();
+    db=QSqlDatabase();
+    QSqlDatabase::removeDatabase("FromDB");
+    }
+
+    {
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE","ToDB");
+    db.setDatabaseName(nameToDB);//Имя базы.
+    if (!db.open()){
+        QMessageBox msgBox;
+        msgBox.setText(db.lastError().text());
+        msgBox.exec();
+        db.close();
+        db=QSqlDatabase();
+        QSqlDatabase::removeDatabase("ToDB");
+        return;
+    }
+    QSqlQuery query(db);
+    query.exec("CREATE TABLE MainTable(eng text,ru text); ");
+    query.clear();
+    for(size_t row=0;row!=thenSetList->rowCount();++row){
+        QString nextEng=thenSetList->item(row,0)->text();
+        QString nextRu=thenSetList->item(row,1)->text();
+        query.prepare("INSERT INTO MainTable VALUES (:eng,:ru);");
+        query.bindValue(":eng", nextEng);
+        query.bindValue(":ru", nextRu);
+        if(!query.exec()){
+            msgBox.setText(db.lastError().text()+" | "+query.lastError().text());
+            msgBox.exec();
+            db.close();
+            db=QSqlDatabase();
+            QSqlDatabase::removeDatabase("ToDB");
+            return;
+        }
+        query.clear();
+    }
+    db.commit();
+    db.close();
+    db=QSqlDatabase();
+    QSqlDatabase::removeDatabase("ToDB");
+    }
 }
 
 void ListWordDB::connect_Word_shift_right(){

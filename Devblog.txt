@@ -66,3 +66,5 @@ getFromDB: 0-все что есть. Любое другое число-брат
 "good day"-ErrorWidget работает. TrueXY настроил и отображение раунда со счетчиком.
 2018/04/16:
 "Story"-not work sqlError-driver not found. Replace statis on method. Add Round\Nomber counter in XY. Add not so bad styry.
+2018/04/19:
+"fromDB and toDB"-add create fromDB and toDB. Then can comfortable stay word to two table. And key-event 2 to oneTable-run mp3.

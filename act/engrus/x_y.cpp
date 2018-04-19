@@ -11,9 +11,10 @@ XY::XY(QWidget *parent) : QWidget(parent)
     main_Label->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
     setFontToWidget(main_Label);
     QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    main_Label->setSizePolicy(sizePolicy);
+    //main_Label->setSizePolicy(sizePolicy);
+    main_Label->setMaximumWidth(180);
     ImageLabel=new QLabel("Image",this);
-    ImageLabel->setSizePolicy(sizePolicy);
+    //ImageLabel->setSizePolicy(sizePolicy);
     ImageLabel->setMaximumHeight(180);
     ImageLabel->setMaximumWidth(180);
     QGridLayout *mainLayout=new QGridLayout(this);
@@ -80,9 +81,12 @@ void XY::connectSelectWord(){
         static bool go_next=false;
          if (!go_next){
              if(LeoConst::CONST()->All_BOOL_PARAMS["runImage"]){
+                 main_Label->setMinimumWidth(180);
                  QPixmap image("./content/"+TrueWord.eng+".png");
                  ImageLabel->setPixmap(image);
                  ImageLabel->show();
+             }else{
+                 main_Label->setMinimumWidth(0);
              }
              button->setStyleSheet(LeoConst::CONST()->All_QString_PARAMS["TRUE_ANSWER_COLOR"]);
              go_next=true;

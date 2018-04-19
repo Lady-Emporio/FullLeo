@@ -22,6 +22,8 @@ private:
     QTableWidget *finderTable;
     QTableWidget *listinBD;
     QTableWidget *thenSetList;
+    QLineEdit *FromDB;
+    QLineEdit *ToDB;
 signals:
 
 public slots:
@@ -35,6 +37,7 @@ private slots:
     void connect_SORT_list_db_trigger(int);
     void connect_Word_shift_right();
     void connect_Word_shift_left();
+    void connect_NeedReplaceDB();
 };
 
 

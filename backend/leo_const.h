@@ -17,7 +17,10 @@
 #include <QMap>
 #include <QObject>
 #include <QMessageBox>
-
+#include <QtSql>
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QSqlError>
 enum status{freely,block,wordHere};
 namespace Leo{
 enum pos{vertical,horizontal,zero};

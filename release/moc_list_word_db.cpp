@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_ListWordDB_t {
-    QByteArrayData data[11];
-    char stringdata0[231];
+    QByteArrayData data[12];
+    char stringdata0[253];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -39,7 +39,8 @@ QT_MOC_LITERAL(6, 113, 11), // "currentText"
 QT_MOC_LITERAL(7, 125, 27), // "connect_FROM_FINDER_trigger"
 QT_MOC_LITERAL(8, 153, 28), // "connect_SORT_list_db_trigger"
 QT_MOC_LITERAL(9, 182, 24), // "connect_Word_shift_right"
-QT_MOC_LITERAL(10, 207, 23) // "connect_Word_shift_left"
+QT_MOC_LITERAL(10, 207, 23), // "connect_Word_shift_left"
+QT_MOC_LITERAL(11, 231, 21) // "connect_NeedReplaceDB"
 
     },
     "ListWordDB\0connect_IN_bd_trigger\0\0"
@@ -48,7 +49,7 @@ QT_MOC_LITERAL(10, 207, 23) // "connect_Word_shift_left"
     "currentText\0connect_FROM_FINDER_trigger\0"
     "connect_SORT_list_db_trigger\0"
     "connect_Word_shift_right\0"
-    "connect_Word_shift_left"
+    "connect_Word_shift_left\0connect_NeedReplaceDB"
 };
 #undef QT_MOC_LITERAL
 
@@ -58,7 +59,7 @@ static const uint qt_meta_data_ListWordDB[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       8,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -66,14 +67,15 @@ static const uint qt_meta_data_ListWordDB[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    2,   54,    2, 0x08 /* Private */,
-       3,    2,   59,    2, 0x08 /* Private */,
-       4,    0,   64,    2, 0x08 /* Private */,
-       5,    1,   65,    2, 0x08 /* Private */,
-       7,    2,   68,    2, 0x08 /* Private */,
-       8,    1,   73,    2, 0x08 /* Private */,
-       9,    0,   76,    2, 0x08 /* Private */,
-      10,    0,   77,    2, 0x08 /* Private */,
+       1,    2,   59,    2, 0x08 /* Private */,
+       3,    2,   64,    2, 0x08 /* Private */,
+       4,    0,   69,    2, 0x08 /* Private */,
+       5,    1,   70,    2, 0x08 /* Private */,
+       7,    2,   73,    2, 0x08 /* Private */,
+       8,    1,   78,    2, 0x08 /* Private */,
+       9,    0,   81,    2, 0x08 /* Private */,
+      10,    0,   82,    2, 0x08 /* Private */,
+      11,    0,   83,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int, QMetaType::Int,    2,    2,
@@ -82,6 +84,7 @@ static const uint qt_meta_data_ListWordDB[] = {
     QMetaType::Void, QMetaType::QString,    6,
     QMetaType::Void, QMetaType::Int, QMetaType::Int,    2,    2,
     QMetaType::Void, QMetaType::Int,    2,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -102,6 +105,7 @@ void ListWordDB::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 5: _t->connect_SORT_list_db_trigger((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 6: _t->connect_Word_shift_right(); break;
         case 7: _t->connect_Word_shift_left(); break;
+        case 8: _t->connect_NeedReplaceDB(); break;
         default: ;
         }
     }
@@ -132,13 +136,13 @@ int ListWordDB::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 9;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
+        if (_id < 9)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 8;
+        _id -= 9;
     }
     return _id;
 }

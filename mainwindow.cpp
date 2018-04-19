@@ -68,6 +68,7 @@ MainWindow::MainWindow(QWidget *parent)
     windowMenu->addAction("Tabbed view",this,SLOT(on_actionTabbedView()));
 }
 
+
 void MainWindow::on_actionAddTrueEngRu_triggered(){
     XY *trueLeo=new XY(this);
     saveMdiSub *subWindow1 = new saveMdiSub;
@@ -180,6 +181,7 @@ MainWindow::~MainWindow()
 {
 
 }
+
 void MainWindow::on_actionAddInputWite_triggered(){
     InputWrite *input =new InputWrite(this);
     saveMdiSub *subWindow1 = new saveMdiSub;
@@ -188,6 +190,7 @@ void MainWindow::on_actionAddInputWite_triggered(){
     subWindow1->setAttribute(Qt::WA_DeleteOnClose);
     subWindow1->show();
 }
+
 void MainWindow::on_actionOpenSettingstriggered(){
     QList<QMdiSubWindow *>	allSub=mdiArea->subWindowList();
     for(auto x:allSub){

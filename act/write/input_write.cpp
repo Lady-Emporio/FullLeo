@@ -277,6 +277,22 @@ void OneTableOneRow::keyPressEvent(QKeyEvent * event){
             }
             break;
         }
+        case Qt::Key_2:{
+            int sum=0;
+            for(size_t i=0,textIndexNow=beginTableWord;i!=TrueWord.size();++i,++textIndexNow){
+                if(item(0,textIndexNow)->text()!=QString(TrueWord[i])){
+                    ++sum;
+                    item(0,textIndexNow)->setBackground(LeoConst::CONST()->AllQBrushdictPARAMS["FALSEQB"]);
+                }
+            }
+            if(sum==0){
+                if(LeoConst::CONST()->All_BOOL_PARAMS["runAudio"]){
+                    LeoConst::CONST()->player->setMedia(QUrl::fromLocalFile(QDir::toNativeSeparators("content\\"+TrueWord+".mp3")));
+                    LeoConst::CONST()->player->play();
+                };
+            }
+            break;
+        }
         default:{
             if(notActiveItem){
                 return;

@@ -233,7 +233,7 @@
     },
     "fontFamyle": "Times New Roman",
     "getFromDB": 0,
-    "path_bd": "Error.sqlite",
+    "path_bd": "lingualeo.sqlite",
     "runAudio": true,
-    "runImage": true
+    "runImage": false
 }
