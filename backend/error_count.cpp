@@ -26,6 +26,10 @@ ErrorCount::ErrorCount(QWidget *parent) : QWidget(parent)
     QPushButton *Update=new QPushButton("Update",this);
     QPushButton *acceptError=new QPushButton("Accept changes",this);
     view=new QTableView(this);
+    view->setContextMenuPolicy(Qt::CustomContextMenu);
+
+
+
     QGridLayout *mainLayout=new QGridLayout(this);
     mainLayout->addWidget(view,0,0);
     mainLayout->addWidget(Update,1,0);
@@ -33,6 +37,27 @@ ErrorCount::ErrorCount(QWidget *parent) : QWidget(parent)
     this->setLayout(mainLayout);
     connect(Update, SIGNAL(clicked()), this, SLOT(connectUpdate_trigger()));
     connect(acceptError, SIGNAL(clicked()), this, SLOT(connectAccept_changes_trigger()));
+    connect(view, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(slotCustomMenuRequested(QPoint)));
+}
+void ErrorCount::slotCustomMenuRequested(QPoint point){
+    QMenu * menu = new QMenu(this);
+    QAction * deleteDevice = new QAction(trUtf8("Удалить"), this);
+    menu->addAction(deleteDevice);
+    menu->popup(view->viewport()->mapToGlobal(point));
+    connect(deleteDevice, SIGNAL(triggered()), this, SLOT(slotRemoveRecord())); // Обработчик удаления записи
+}
+
+void ErrorCount::slotRemoveRecord(){
+    int row = view->selectionModel()->currentIndex().row();
+    if(!model->removeRow(row)){
+        QMessageBox msgBox;
+        msgBox.setText("Не получается удалить");
+        msgBox.exec();
+    }
+    model->submitAll();
+    model->select();
+    view->setCurrentIndex(model->index(-1, -1));
+
 }
 
 void ErrorCount::connectAccept_changes_trigger(){

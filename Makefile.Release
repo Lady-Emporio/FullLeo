@@ -11,7 +11,7 @@ MAKEFILE      = Makefile.Release
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DUNICODE -DQT_NO_DEBUG -DQT_MULTIMEDIAWIDGETS_LIB -DQT_WIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_SQL_LIB -DQT_CORE_LIB -DQT_NEEDS_QMAIN
+DEFINES       = -DUNICODE -DQT_QML_DEBUG -DQT_NO_DEBUG -DQT_MULTIMEDIAWIDGETS_LIB -DQT_WIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_SQL_LIB -DQT_CORE_LIB -DQT_NEEDS_QMAIN
 CFLAGS        = -pipe -fno-keep-inline-dllexport -O2 -Wall -Wextra $(DEFINES)
 CXXFLAGS      = -pipe -fno-keep-inline-dllexport -O2 -std=gnu++0x -frtti -Wall -Wextra -fexceptions -mthreads $(DEFINES)
 INCPATH       = -I. -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimediaWidgets -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtANGLE -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtNetwork -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore -Irelease -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/win32-g++ 
@@ -123,12 +123,12 @@ $(DESTDIR_TARGET):  $(OBJECTS)
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) object_script.FullLeo.Release  $(LIBS)
 
 qmake: FORCE
-	@$(QMAKE) -spec win32-g++ -o Makefile.Release FullLeo.pro
+	@$(QMAKE) -spec win32-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile.Release FullLeo.pro
 
 qmake_all: FORCE
 
 dist:
-	$(ZIP) FullLeo.zip $(SOURCES) $(DIST) FullLeo.pro C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/spec_pre.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/qdevice.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/device_config.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/common/angle.conf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/qconfig.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_3dcore.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_3dcore_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_3dinput.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_3dinput_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_3dlogic.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_3dlogic_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_3dquick.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_3dquick_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_3dquickinput.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_3dquickinput_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_3dquickrender.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_3dquickrender_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_3drender.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_3drender_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_axbase.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_axbase_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_axcontainer.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_axcontainer_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_axserver.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_axserver_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_bluetooth.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_bluetooth_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_bootstrap_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_clucene_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_concurrent.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_concurrent_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_core.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_core_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_dbus.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_dbus_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_designer.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_designer_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_designercomponents_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_gui.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_gui_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_help.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_help_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_labscontrols_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_labstemplates_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_location.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_location_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_multimedia.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_multimedia_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_multimediawidgets.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_multimediawidgets_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_network.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_network_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_nfc.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_nfc_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_opengl.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_opengl_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_openglextensions.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_openglextensions_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_platformsupport_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_positioning.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_positioning_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_printsupport.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_printsupport_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_qml.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_qml_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_qmldevtools_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_qmltest.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_qmltest_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_quick.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_quick_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_quickparticles_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_quickwidgets.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_quickwidgets_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_script.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_script_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_scripttools.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_scripttools_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_sensors.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_sensors_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_serialbus.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_serialbus_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_serialport.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_serialport_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_sql.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_sql_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_svg.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_svg_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_testlib.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_testlib_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_uiplugin.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_uitools.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_uitools_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_webchannel.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_webchannel_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_websockets.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_websockets_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_widgets.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_widgets_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_winextras.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_winextras_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_xml.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_xml_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_xmlpatterns.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_xmlpatterns_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/qt_functions.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/qt_config.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/win32/qt_config.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/win32-g++/qmake.conf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/spec_post.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/exclusive_builds.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/default_pre.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/win32/default_pre.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/resolve_config.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/exclusive_builds_post.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/default_post.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/build_pass.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/win32/rtti.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/precompile_header.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/warn_on.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/qt.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/resources.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/moc.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/win32/opengl.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/uic.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/file_copies.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/win32/windows.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/testcase_targets.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/exceptions.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/yacc.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/lex.prf FullLeo.pro C:/Qt/Qt5.6.3/5.6.3/mingw49_32/lib/qtmain.prl C:/Qt/Qt5.6.3/5.6.3/mingw49_32/lib/Qt5MultimediaWidgets.prl C:/Qt/Qt5.6.3/5.6.3/mingw49_32/lib/Qt5Widgets.prl C:/Qt/Qt5.6.3/5.6.3/mingw49_32/lib/Qt5Multimedia.prl C:/Qt/Qt5.6.3/5.6.3/mingw49_32/lib/Qt5Gui.prl C:/Qt/Qt5.6.3/5.6.3/mingw49_32/lib/Qt5Network.prl C:/Qt/Qt5.6.3/5.6.3/mingw49_32/lib/Qt5Sql.prl C:/Qt/Qt5.6.3/5.6.3/mingw49_32/lib/Qt5Core.prl    mainwindow.h backend/leo_const.h backend/leo_setting.h backend/word.h sqlite3.h act/crossword/crossword.h act/crossword/table.h backend/list_word_db.h act/write/input_write.h act/notvisual/not_visual_one_row.h backend/error_count.h act/engrus/eng_rus.h act/engrus/x_y.h main.cpp mainwindow.cpp backend/leo_const.cpp backend/leo_setting.cpp act/crossword/crossword.cpp act/crossword/table.cpp act/engrus/eng_rus.cpp backend/list_word_db.cpp act/write/input_write.cpp act/notvisual/not_visual_one_row.cpp backend/error_count.cpp act/engrus/x_y.cpp     
+	$(ZIP) FullLeo.zip $(SOURCES) $(DIST) FullLeo.pro C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/spec_pre.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/qdevice.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/device_config.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/common/angle.conf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/qconfig.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_3dcore.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_3dcore_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_3dinput.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_3dinput_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_3dlogic.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_3dlogic_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_3dquick.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_3dquick_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_3dquickinput.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_3dquickinput_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_3dquickrender.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_3dquickrender_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_3drender.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_3drender_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_axbase.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_axbase_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_axcontainer.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_axcontainer_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_axserver.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_axserver_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_bluetooth.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_bluetooth_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_bootstrap_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_clucene_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_concurrent.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_concurrent_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_core.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_core_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_dbus.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_dbus_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_designer.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_designer_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_designercomponents_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_gui.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_gui_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_help.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_help_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_labscontrols_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_labstemplates_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_location.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_location_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_multimedia.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_multimedia_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_multimediawidgets.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_multimediawidgets_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_network.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_network_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_nfc.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_nfc_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_opengl.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_opengl_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_openglextensions.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_openglextensions_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_platformsupport_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_positioning.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_positioning_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_printsupport.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_printsupport_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_qml.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_qml_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_qmldevtools_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_qmltest.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_qmltest_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_quick.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_quick_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_quickparticles_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_quickwidgets.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_quickwidgets_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_script.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_script_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_scripttools.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_scripttools_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_sensors.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_sensors_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_serialbus.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_serialbus_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_serialport.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_serialport_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_sql.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_sql_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_svg.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_svg_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_testlib.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_testlib_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_uiplugin.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_uitools.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_uitools_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_webchannel.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_webchannel_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_websockets.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_websockets_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_widgets.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_widgets_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_winextras.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_winextras_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_xml.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_xml_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_xmlpatterns.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/modules/qt_lib_xmlpatterns_private.pri C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/qt_functions.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/qt_config.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/win32/qt_config.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/win32-g++/qmake.conf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/spec_post.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/exclusive_builds.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/default_pre.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/win32/default_pre.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/resolve_config.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/exclusive_builds_post.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/default_post.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/build_pass.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/qml_debug.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/win32/rtti.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/precompile_header.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/warn_on.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/qt.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/resources.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/moc.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/win32/opengl.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/uic.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/file_copies.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/win32/windows.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/testcase_targets.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/exceptions.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/yacc.prf C:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/features/lex.prf FullLeo.pro C:/Qt/Qt5.6.3/5.6.3/mingw49_32/lib/qtmain.prl C:/Qt/Qt5.6.3/5.6.3/mingw49_32/lib/Qt5MultimediaWidgets.prl C:/Qt/Qt5.6.3/5.6.3/mingw49_32/lib/Qt5Widgets.prl C:/Qt/Qt5.6.3/5.6.3/mingw49_32/lib/Qt5Multimedia.prl C:/Qt/Qt5.6.3/5.6.3/mingw49_32/lib/Qt5Gui.prl C:/Qt/Qt5.6.3/5.6.3/mingw49_32/lib/Qt5Network.prl C:/Qt/Qt5.6.3/5.6.3/mingw49_32/lib/Qt5Sql.prl C:/Qt/Qt5.6.3/5.6.3/mingw49_32/lib/Qt5Core.prl    mainwindow.h backend/leo_const.h backend/leo_setting.h backend/word.h sqlite3.h act/crossword/crossword.h act/crossword/table.h backend/list_word_db.h act/write/input_write.h act/notvisual/not_visual_one_row.h backend/error_count.h act/engrus/eng_rus.h act/engrus/x_y.h main.cpp mainwindow.cpp backend/leo_const.cpp backend/leo_setting.cpp act/crossword/crossword.cpp act/crossword/table.cpp act/engrus/eng_rus.cpp backend/list_word_db.cpp act/write/input_write.cpp act/notvisual/not_visual_one_row.cpp backend/error_count.cpp act/engrus/x_y.cpp     
 
 clean: compiler_clean 
 	-$(DEL_FILE) release/main.o release/mainwindow.o release/leo_const.o release/leo_setting.o release/crossword.o release/table.o release/eng_rus.o release/list_word_db.o release/input_write.o release/not_visual_one_row.o release/error_count.o release/x_y.o release/moc_mainwindow.o release/moc_leo_setting.o release/moc_crossword.o release/moc_list_word_db.o release/moc_input_write.o release/moc_not_visual_one_row.o release/moc_error_count.o release/moc_eng_rus.o release/moc_x_y.o
@@ -446,24 +446,29 @@ release/moc_mainwindow.cpp: C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QMa
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlDatabase \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlQuery \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlError \
-		backend/leo_setting.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QPushButton \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qpushbutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QTableWidget \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtablewidget.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtableview.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLineEdit \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlineedit.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextcursor.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextformat.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpen.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextoption.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHeaderView \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qheaderview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlTableModel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QCoreApplication \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QPushButton \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qpushbutton.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractbutton.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QRadioButton \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qradiobutton.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGroupBox \
@@ -475,10 +480,8 @@ release/moc_mainwindow.cpp: C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QMa
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
+		backend/leo_setting.h \
 		act/write/input_write.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QTableWidget \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtablewidget.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtableview.h \
 		mainwindow.h
 	'C:\Qt\Qt5.6.3\5.6.3\mingw49_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/win32-g++ -IC:/Users/User/Desktop/C++/fullLeo/FullLeo -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimediaWidgets -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtANGLE -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtNetwork -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore mainwindow.h -o release/moc_mainwindow.cpp
 
@@ -935,19 +938,40 @@ release/moc_crossword.cpp: C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QTab
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlDatabase \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlQuery \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlError \
-		act/crossword/table.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHBoxLayout \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgridlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QVBoxLayout \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QPushButton \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qpushbutton.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLineEdit \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlineedit.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextcursor.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextformat.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpen.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextoption.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHeaderView \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qheaderview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlTableModel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QCoreApplication \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QRadioButton \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qradiobutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGroupBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgroupbox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QCheckBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qcheckbox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGridLayout \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
+		act/crossword/table.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHBoxLayout \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QVBoxLayout \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QKeyEvent \
 		act/crossword/crossword.h
 	'C:\Qt\Qt5.6.3\5.6.3\mingw49_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/win32-g++ -IC:/Users/User/Desktop/C++/fullLeo/FullLeo -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimediaWidgets -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtANGLE -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtNetwork -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore act/crossword/crossword.h -o release/moc_crossword.cpp
@@ -1233,18 +1257,9 @@ release/moc_list_word_db.cpp: backend/leo_const.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlDatabase \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlQuery \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlError \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QVBoxLayout \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgridlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHBoxLayout \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QPushButton \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qpushbutton.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractbutton.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QTableWidget \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtablewidget.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtableview.h \
@@ -1254,6 +1269,30 @@ release/moc_list_word_db.cpp: backend/leo_const.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextformat.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpen.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextoption.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHeaderView \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qheaderview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlTableModel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QCoreApplication \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QRadioButton \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qradiobutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGroupBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgroupbox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QCheckBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qcheckbox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGridLayout \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QVBoxLayout \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHBoxLayout \
 		backend/list_word_db.h
 	'C:\Qt\Qt5.6.3\5.6.3\mingw49_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/win32-g++ -IC:/Users/User/Desktop/C++/fullLeo/FullLeo -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimediaWidgets -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtANGLE -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtNetwork -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore backend/list_word_db.h -o release/moc_list_word_db.cpp
 
@@ -1542,8 +1581,36 @@ release/moc_input_write.cpp: C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlDatabase \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlQuery \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlError \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QPushButton \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qpushbutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLineEdit \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlineedit.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextcursor.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextformat.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpen.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextoption.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHeaderView \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qheaderview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlTableModel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QCoreApplication \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QRadioButton \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qradiobutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGroupBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgroupbox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QCheckBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qcheckbox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGridLayout \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
 		act/write/input_write.h
 	'C:\Qt\Qt5.6.3\5.6.3\mingw49_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/win32-g++ -IC:/Users/User/Desktop/C++/fullLeo/FullLeo -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimediaWidgets -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtANGLE -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtNetwork -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore act/write/input_write.h -o release/moc_input_write.cpp
 
@@ -1828,20 +1895,48 @@ release/moc_not_visual_one_row.cpp: backend/leo_const.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlDatabase \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlQuery \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlError \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QPushButton \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qpushbutton.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QTableWidget \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtablewidget.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtableview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLineEdit \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlineedit.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextcursor.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextformat.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpen.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextoption.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHeaderView \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qheaderview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlTableModel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QCoreApplication \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QRadioButton \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qradiobutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGroupBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgroupbox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QCheckBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qcheckbox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGridLayout \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QKeyEvent \
 		act/notvisual/not_visual_one_row.h
 	'C:\Qt\Qt5.6.3\5.6.3\mingw49_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/win32-g++ -IC:/Users/User/Desktop/C++/fullLeo/FullLeo -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimediaWidgets -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtANGLE -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtNetwork -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore act/notvisual/not_visual_one_row.h -o release/moc_not_visual_one_row.cpp
 
-release/moc_error_count.cpp: C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qcombobox.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qwidget.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qwindowdefs.h \
+release/moc_error_count.cpp: backend/word.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QString \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qstring.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qchar.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qglobal.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qconfig.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfeatures.h \
@@ -1871,58 +1966,77 @@ release/moc_error_count.cpp: C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QC
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qmutex.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qnumeric.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qversiontagging.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qobjectdefs.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qnamespace.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qobjectdefs_impl.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qwindowdefs_win.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qobject.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qstring.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qchar.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qbytearray.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qrefcount.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qnamespace.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qarraydata.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qstringbuilder.h \
+		backend/leo_const.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QColor \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qcolor.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qrgb.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qstringlist.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qlist.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qalgorithms.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qiterator.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qhashfunctions.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qpair.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qbytearraylist.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qstringlist.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qregexp.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qstringmatcher.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qcoreevent.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qrgba64.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QBrush \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qbrush.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qpoint.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qvector.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qscopedpointer.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qmatrix.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpolygon.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qrect.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qmargins.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qsize.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qregion.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qwindowdefs.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qobjectdefs.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qobjectdefs_impl.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qwindowdefs_win.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qdatastream.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qiodevice.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qobject.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qcoreevent.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qmetatype.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qvarlengtharray.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qcontainerfwd.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qobject_impl.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qmargins.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpaintdevice.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qrect.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qsize.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qpoint.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpalette.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qcolor.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qrgb.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qrgba64.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qbrush.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qvector.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qmatrix.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpolygon.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qregion.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qdatastream.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qiodevice.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qline.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtransform.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpainterpath.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qimage.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpaintdevice.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpixelformat.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpixmap.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qsharedpointer.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qshareddata.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qhash.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qsharedpointer_impl.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QJsonDocument \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qjsondocument.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qjsonvalue.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QJsonObject \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qjsonobject.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QJsonArray \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qjsonarray.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QFile \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfile.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfiledevice.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QListWidget \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlistwidget.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlistview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qframe.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qwidget.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpalette.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qfont.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qfontmetrics.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qfontinfo.h \
@@ -1939,10 +2053,10 @@ release/moc_error_count.cpp: C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QC
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qcontiguouscache.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qurl.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qurlquery.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfile.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfiledevice.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qvector2d.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtouchdevice.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qabstractitemmodel.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qitemselectionmodel.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractitemdelegate.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qstyleoption.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractspinbox.h \
@@ -1955,57 +2069,6 @@ release/moc_error_count.cpp: C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QC
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtabbar.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtabwidget.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qrubberband.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qframe.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qabstractitemmodel.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLineEdit \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlineedit.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextcursor.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextformat.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpen.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextoption.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QCoreApplication \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qcoreapplication.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qeventloop.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QJsonDocument \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qjsondocument.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qjsonvalue.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QJsonObject \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qjsonobject.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QJsonArray \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qjsonarray.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QFile \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QStringList \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QPushButton \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qpushbutton.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractbutton.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QRadioButton \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qradiobutton.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGroupBox \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgroupbox.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QCheckBox \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qcheckbox.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGridLayout \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgridlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QListWidget \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlistwidget.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlistview.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractitemview.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractscrollarea.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qitemselectionmodel.h \
-		backend/word.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QString \
-		backend/leo_const.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QColor \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QBrush \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QListWidgetItem \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/QMediaPlayer \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/qmediaplayer.h \
@@ -2049,6 +2112,7 @@ release/moc_error_count.cpp: C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QC
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qbuffer.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qdiriterator.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfileselector.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QStringList \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfilesystemwatcher.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qlockfile.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qloggingcategory.h \
@@ -2066,8 +2130,10 @@ release/moc_error_count.cpp: C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QC
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qsortfilterproxymodel.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qstringlistmodel.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qabstracteventdispatcher.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qeventloop.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qabstractnativeeventfilter.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qbasictimer.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qcoreapplication.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qmath.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qmimedata.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qobjectcleanuphandler.h \
@@ -2141,18 +2207,47 @@ release/moc_error_count.cpp: C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QC
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/qsqlquerymodel.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/qsqlrelationaldelegate.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qitemdelegate.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qcombobox.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/qsqlrelationaltablemodel.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/qsqltablemodel.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/qtsqlversion.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlDatabase \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlQuery \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlError \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QPushButton \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qpushbutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractbutton.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QTableWidget \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtablewidget.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtableview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLineEdit \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlineedit.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextcursor.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextformat.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpen.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextoption.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHeaderView \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qheaderview.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlTableModel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QCoreApplication \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QRadioButton \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qradiobutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGroupBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgroupbox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QCheckBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qcheckbox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGridLayout \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
 		backend/error_count.h
 	'C:\Qt\Qt5.6.3\5.6.3\mingw49_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/win32-g++ -IC:/Users/User/Desktop/C++/fullLeo/FullLeo -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimediaWidgets -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtANGLE -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtNetwork -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore backend/error_count.h -o release/moc_error_count.cpp
 
@@ -2443,6 +2538,34 @@ release/moc_eng_rus.cpp: C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidge
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlDatabase \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlQuery \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlError \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QTableWidget \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtablewidget.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtableview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLineEdit \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlineedit.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextcursor.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextformat.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpen.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextoption.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHeaderView \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qheaderview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlTableModel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QCoreApplication \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QRadioButton \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qradiobutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGroupBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgroupbox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QCheckBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qcheckbox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGridLayout \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
 		act/engrus/eng_rus.h
 	'C:\Qt\Qt5.6.3\5.6.3\mingw49_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/win32-g++ -IC:/Users/User/Desktop/C++/fullLeo/FullLeo -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimediaWidgets -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtANGLE -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtNetwork -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore act/engrus/eng_rus.h -o release/moc_eng_rus.cpp
 
@@ -2733,6 +2856,34 @@ release/moc_x_y.cpp: C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlDatabase \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlQuery \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlError \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QTableWidget \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtablewidget.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtableview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLineEdit \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlineedit.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextcursor.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextformat.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpen.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextoption.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHeaderView \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qheaderview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlTableModel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QCoreApplication \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QRadioButton \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qradiobutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGroupBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgroupbox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QCheckBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qcheckbox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGridLayout \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
 		act/engrus/x_y.h
 	'C:\Qt\Qt5.6.3\5.6.3\mingw49_32\bin\moc.exe' $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/mkspecs/win32-g++ -IC:/Users/User/Desktop/C++/fullLeo/FullLeo -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimediaWidgets -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtANGLE -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtNetwork -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql -IC:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore act/engrus/x_y.h -o release/moc_x_y.cpp
 
@@ -3047,24 +3198,29 @@ release/main.o: main.cpp mainwindow.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlDatabase \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlQuery \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlError \
-		backend/leo_setting.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QPushButton \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qpushbutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QTableWidget \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtablewidget.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtableview.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLineEdit \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlineedit.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextcursor.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextformat.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpen.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextoption.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHeaderView \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qheaderview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlTableModel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QCoreApplication \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QPushButton \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qpushbutton.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractbutton.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QRadioButton \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qradiobutton.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGroupBox \
@@ -3076,10 +3232,8 @@ release/main.o: main.cpp mainwindow.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
+		backend/leo_setting.h \
 		act/write/input_write.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QTableWidget \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtablewidget.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtableview.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QApplication \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qapplication.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qdesktopwidget.h \
@@ -3382,24 +3536,29 @@ release/mainwindow.o: mainwindow.cpp mainwindow.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlDatabase \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlQuery \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlError \
-		backend/leo_setting.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QPushButton \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qpushbutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QTableWidget \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtablewidget.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtableview.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLineEdit \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlineedit.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextcursor.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextformat.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpen.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextoption.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHeaderView \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qheaderview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlTableModel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QCoreApplication \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QPushButton \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qpushbutton.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractbutton.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QRadioButton \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qradiobutton.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGroupBox \
@@ -3411,10 +3570,8 @@ release/mainwindow.o: mainwindow.cpp mainwindow.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
+		backend/leo_setting.h \
 		act/write/input_write.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QTableWidget \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtablewidget.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtableview.h \
 		act/crossword/crossword.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QTableWidgetItem \
 		act/crossword/table.h \
@@ -3425,9 +3582,6 @@ release/mainwindow.o: mainwindow.cpp mainwindow.h \
 		backend/list_word_db.h \
 		act/notvisual/not_visual_one_row.h \
 		backend/error_count.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHeaderView \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qheaderview.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlTableModel \
 		act/engrus/x_y.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/mainwindow.o mainwindow.cpp
 
@@ -3712,6 +3866,40 @@ release/leo_const.o: backend/leo_const.cpp backend/leo_const.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlDatabase \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlQuery \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlError \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QPushButton \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qpushbutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QTableWidget \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtablewidget.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtableview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLineEdit \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlineedit.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextcursor.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextformat.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpen.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextoption.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHeaderView \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qheaderview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlTableModel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QCoreApplication \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QRadioButton \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qradiobutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGroupBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgroupbox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QCheckBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qcheckbox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGridLayout \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
 		sqlite3.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/leo_const.o backend/leo_const.cpp
 
@@ -4025,6 +4213,12 @@ release/leo_setting.o: backend/leo_setting.cpp backend/leo_setting.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlDatabase \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlQuery \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlError \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QTableWidget \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtablewidget.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtableview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHeaderView \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qheaderview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlTableModel \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QVBoxLayout \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHBoxLayout
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/leo_setting.o backend/leo_setting.cpp
@@ -4315,21 +4509,41 @@ release/crossword.o: act/crossword/crossword.cpp act/crossword/crossword.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlDatabase \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlQuery \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlError \
-		act/crossword/table.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHBoxLayout \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgridlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QVBoxLayout \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QPushButton \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qpushbutton.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractbutton.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QKeyEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLineEdit \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlineedit.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextcursor.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextformat.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpen.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextoption.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHeaderView \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qheaderview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlTableModel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QCoreApplication \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QRadioButton \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qradiobutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGroupBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgroupbox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QCheckBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qcheckbox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGridLayout \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
+		act/crossword/table.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHBoxLayout \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QVBoxLayout \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QKeyEvent \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QRegExpValidator
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/crossword.o act/crossword/crossword.cpp
 
@@ -4615,7 +4829,40 @@ release/table.o: act/crossword/table.cpp act/crossword/table.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlDatabase \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlQuery \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlError \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QPushButton \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qpushbutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QTableWidget \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtablewidget.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtableview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLineEdit \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlineedit.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextcursor.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextformat.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpen.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextoption.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHeaderView \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qheaderview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlTableModel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QCoreApplication \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QRadioButton \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qradiobutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGroupBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgroupbox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QCheckBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qcheckbox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGridLayout \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/table.o act/crossword/table.cpp
 
 release/eng_rus.o: act/engrus/eng_rus.cpp act/engrus/eng_rus.h \
@@ -4906,25 +5153,23 @@ release/eng_rus.o: act/engrus/eng_rus.cpp act/engrus/eng_rus.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlDatabase \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlQuery \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlError \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHBoxLayout \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgridlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QVBoxLayout \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QTime \
-		backend/error_count.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QTableWidget \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtablewidget.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtableview.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLineEdit \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlineedit.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextcursor.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextformat.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpen.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextoption.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHeaderView \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qheaderview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlTableModel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QCoreApplication \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QRadioButton \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qradiobutton.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGroupBox \
@@ -4932,12 +5177,14 @@ release/eng_rus.o: act/engrus/eng_rus.cpp act/engrus/eng_rus.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QCheckBox \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qcheckbox.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGridLayout \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QTableWidget \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtablewidget.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtableview.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHeaderView \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qheaderview.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlTableModel
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHBoxLayout \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QVBoxLayout \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QTime \
+		backend/error_count.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/eng_rus.o act/engrus/eng_rus.cpp
 
 release/list_word_db.o: backend/list_word_db.cpp backend/list_word_db.h \
@@ -5222,18 +5469,9 @@ release/list_word_db.o: backend/list_word_db.cpp backend/list_word_db.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlDatabase \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlQuery \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlError \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QVBoxLayout \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgridlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHBoxLayout \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QPushButton \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qpushbutton.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractbutton.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QTableWidget \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtablewidget.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtableview.h \
@@ -5243,9 +5481,30 @@ release/list_word_db.o: backend/list_word_db.cpp backend/list_word_db.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextformat.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpen.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextoption.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHeaderView \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qheaderview.h
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qheaderview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlTableModel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QCoreApplication \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QRadioButton \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qradiobutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGroupBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgroupbox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QCheckBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qcheckbox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGridLayout \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QVBoxLayout \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHBoxLayout
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/list_word_db.o backend/list_word_db.cpp
 
 release/input_write.o: act/write/input_write.cpp act/write/input_write.h \
@@ -5534,32 +5793,25 @@ release/input_write.o: act/write/input_write.cpp act/write/input_write.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlDatabase \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlQuery \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlError \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHBoxLayout \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgridlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHeaderView \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qheaderview.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QKeyEvent \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QVBoxLayout \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QPushButton \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qpushbutton.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractbutton.h \
-		backend/error_count.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLineEdit \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlineedit.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextcursor.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextformat.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpen.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextoption.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHeaderView \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qheaderview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlTableModel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QCoreApplication \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QRadioButton \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qradiobutton.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGroupBox \
@@ -5567,7 +5819,14 @@ release/input_write.o: act/write/input_write.cpp act/write/input_write.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QCheckBox \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qcheckbox.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGridLayout \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlTableModel
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHBoxLayout \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QKeyEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QVBoxLayout \
+		backend/error_count.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/input_write.o act/write/input_write.cpp
 
 release/not_visual_one_row.o: act/notvisual/not_visual_one_row.cpp act/notvisual/not_visual_one_row.h \
@@ -5852,31 +6111,27 @@ release/not_visual_one_row.o: act/notvisual/not_visual_one_row.cpp act/notvisual
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlDatabase \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlQuery \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlError \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QPushButton \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qpushbutton.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractbutton.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QKeyEvent \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGridLayout \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgridlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/QMediaPlaylist \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/qmediaplaylist.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/qmediabindableinterface.h \
-		backend/error_count.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QTableWidget \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtablewidget.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtableview.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLineEdit \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlineedit.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextcursor.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextformat.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpen.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextoption.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHeaderView \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qheaderview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlTableModel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QCoreApplication \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QRadioButton \
@@ -5885,19 +6140,23 @@ release/not_visual_one_row.o: act/notvisual/not_visual_one_row.cpp act/notvisual
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgroupbox.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QCheckBox \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qcheckbox.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QTableWidget \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtablewidget.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtableview.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHeaderView \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qheaderview.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlTableModel
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGridLayout \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QKeyEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/QMediaPlaylist \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/qmediaplaylist.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/qmediabindableinterface.h \
+		backend/error_count.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/not_visual_one_row.o act/notvisual/not_visual_one_row.cpp
 
 release/error_count.o: backend/error_count.cpp backend/error_count.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qcombobox.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qwidget.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qwindowdefs.h \
+		backend/word.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QString \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qstring.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qchar.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qglobal.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qconfig.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfeatures.h \
@@ -5927,58 +6186,77 @@ release/error_count.o: backend/error_count.cpp backend/error_count.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qmutex.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qnumeric.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qversiontagging.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qobjectdefs.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qnamespace.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qobjectdefs_impl.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qwindowdefs_win.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qobject.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qstring.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qchar.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qbytearray.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qrefcount.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qnamespace.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qarraydata.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qstringbuilder.h \
+		backend/leo_const.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QColor \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qcolor.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qrgb.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qstringlist.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qlist.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qalgorithms.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qiterator.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qhashfunctions.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qpair.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qbytearraylist.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qstringlist.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qregexp.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qstringmatcher.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qcoreevent.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qrgba64.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QBrush \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qbrush.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qpoint.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qvector.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qscopedpointer.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qmatrix.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpolygon.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qrect.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qmargins.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qsize.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qregion.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qwindowdefs.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qobjectdefs.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qobjectdefs_impl.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qwindowdefs_win.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qdatastream.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qiodevice.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qobject.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qcoreevent.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qmetatype.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qvarlengtharray.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qcontainerfwd.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qobject_impl.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qmargins.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpaintdevice.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qrect.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qsize.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qpoint.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpalette.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qcolor.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qrgb.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qrgba64.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qbrush.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qvector.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qmatrix.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpolygon.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qregion.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qdatastream.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qiodevice.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qline.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtransform.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpainterpath.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qimage.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpaintdevice.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpixelformat.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpixmap.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qsharedpointer.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qshareddata.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qhash.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qsharedpointer_impl.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QJsonDocument \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qjsondocument.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qjsonvalue.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QJsonObject \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qjsonobject.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QJsonArray \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qjsonarray.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QFile \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfile.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfiledevice.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QListWidget \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlistwidget.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlistview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qframe.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qwidget.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpalette.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qfont.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qfontmetrics.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qfontinfo.h \
@@ -5995,10 +6273,10 @@ release/error_count.o: backend/error_count.cpp backend/error_count.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qcontiguouscache.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qurl.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qurlquery.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfile.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfiledevice.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qvector2d.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtouchdevice.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qabstractitemmodel.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qitemselectionmodel.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractitemdelegate.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qstyleoption.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractspinbox.h \
@@ -6011,57 +6289,6 @@ release/error_count.o: backend/error_count.cpp backend/error_count.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtabbar.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtabwidget.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qrubberband.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qframe.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qabstractitemmodel.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLineEdit \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlineedit.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextcursor.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextformat.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpen.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextoption.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QCoreApplication \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qcoreapplication.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qeventloop.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QJsonDocument \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qjsondocument.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qjsonvalue.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QJsonObject \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qjsonobject.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QJsonArray \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qjsonarray.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QFile \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QStringList \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QPushButton \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qpushbutton.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractbutton.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QRadioButton \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qradiobutton.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGroupBox \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgroupbox.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QCheckBox \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qcheckbox.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGridLayout \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgridlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QListWidget \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlistwidget.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlistview.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractitemview.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractscrollarea.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qitemselectionmodel.h \
-		backend/word.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QString \
-		backend/leo_const.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QColor \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QBrush \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QListWidgetItem \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/QMediaPlayer \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtMultimedia/qmediaplayer.h \
@@ -6105,6 +6332,7 @@ release/error_count.o: backend/error_count.cpp backend/error_count.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qbuffer.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qdiriterator.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfileselector.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QStringList \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qfilesystemwatcher.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qlockfile.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qloggingcategory.h \
@@ -6122,8 +6350,10 @@ release/error_count.o: backend/error_count.cpp backend/error_count.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qsortfilterproxymodel.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qstringlistmodel.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qabstracteventdispatcher.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qeventloop.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qabstractnativeeventfilter.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qbasictimer.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qcoreapplication.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qmath.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qmimedata.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/qobjectcleanuphandler.h \
@@ -6197,18 +6427,47 @@ release/error_count.o: backend/error_count.cpp backend/error_count.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/qsqlquerymodel.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/qsqlrelationaldelegate.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qitemdelegate.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qcombobox.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/qsqlrelationaltablemodel.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/qsqltablemodel.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/qtsqlversion.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlDatabase \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlQuery \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlError \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QPushButton \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qpushbutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qabstractbutton.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QTableWidget \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtablewidget.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtableview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLineEdit \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlineedit.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextcursor.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextformat.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpen.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextoption.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHeaderView \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qheaderview.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlTableModel
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlTableModel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QWidget \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLabel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlabel.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QCoreApplication \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QRadioButton \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qradiobutton.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGroupBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgroupbox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QCheckBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qcheckbox.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGridLayout \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/error_count.o backend/error_count.cpp
 
 release/x_y.o: act/engrus/x_y.cpp act/engrus/x_y.h \
@@ -6499,22 +6758,21 @@ release/x_y.o: act/engrus/x_y.cpp act/engrus/x_y.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlDatabase \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlQuery \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlError \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QTime \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGridLayout \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgridlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
-		backend/error_count.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QTableWidget \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtablewidget.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtableview.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QLineEdit \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlineedit.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextcursor.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextformat.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qpen.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/qtextoption.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHeaderView \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qheaderview.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlTableModel \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QComboBox \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QEvent \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtGui/QCloseEvent \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QCoreApplication \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QDebug \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QRadioButton \
@@ -6523,12 +6781,13 @@ release/x_y.o: act/engrus/x_y.cpp act/engrus/x_y.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgroupbox.h \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QCheckBox \
 		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qcheckbox.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QTableWidget \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtablewidget.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qtableview.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QHeaderView \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qheaderview.h \
-		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtSql/QSqlTableModel
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/QGridLayout \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtWidgets/qboxlayout.h \
+		C:/Qt/Qt5.6.3/5.6.3/mingw49_32/include/QtCore/QTime \
+		backend/error_count.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/x_y.o act/engrus/x_y.cpp
 
 release/moc_mainwindow.o: release/moc_mainwindow.cpp 

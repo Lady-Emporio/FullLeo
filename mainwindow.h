@@ -1,11 +1,5 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-#include <QMainWindow>
-#include <QMdiArea>
-#include <QMenuBar>
-#include <QMenu>
-#include <QAction>
-#include "QMdiSubWindow"
 #include "backend/leo_const.h"
 #include "backend/leo_setting.h"
 #include "act/write/input_write.h"
