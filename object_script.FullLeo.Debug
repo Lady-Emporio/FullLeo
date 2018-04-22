@@ -11,6 +11,7 @@ INPUT(
 ./debug/not_visual_one_row.o
 ./debug/error_count.o
 ./debug/x_y.o
+./debug/sprint_choose.o
 ./debug/moc_mainwindow.o
 ./debug/moc_leo_setting.o
 ./debug/moc_crossword.o
@@ -20,4 +21,5 @@ INPUT(
 ./debug/moc_error_count.o
 ./debug/moc_eng_rus.o
 ./debug/moc_x_y.o
+./debug/moc_sprint_choose.o
 );

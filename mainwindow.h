@@ -28,6 +28,7 @@ public slots:
     void on_actionAddOneRow_random_triggered();
     void on_actionAddOneRow_contra_Vice_versa_triggered();
     void on_actionAdd_visual_triggered();
+    void on_actionAdd_sprint_triggered();
 private slots:
     void on_actionCascadeSubWindows();
     void on_actionTileSubWindows();

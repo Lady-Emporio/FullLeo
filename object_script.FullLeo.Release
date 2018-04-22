@@ -11,6 +11,7 @@ INPUT(
 ./release/not_visual_one_row.o
 ./release/error_count.o
 ./release/x_y.o
+./release/sprint_choose.o
 ./release/moc_mainwindow.o
 ./release/moc_leo_setting.o
 ./release/moc_crossword.o
@@ -20,4 +21,5 @@ INPUT(
 ./release/moc_error_count.o
 ./release/moc_eng_rus.o
 ./release/moc_x_y.o
+./release/moc_sprint_choose.o
 );

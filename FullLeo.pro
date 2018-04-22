@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     act/write/input_write.cpp \
     act/notvisual/not_visual_one_row.cpp \
     backend/error_count.cpp \
-    act/engrus/x_y.cpp
+    act/engrus/x_y.cpp \
+    act/sprint/sprint_choose.cpp
 
 HEADERS  += mainwindow.h \
     backend/leo_const.h \
@@ -35,6 +36,7 @@ HEADERS  += mainwindow.h \
     act/notvisual/not_visual_one_row.h \
     backend/error_count.h \
     act/engrus/eng_rus.h \
-    act/engrus/x_y.h
+    act/engrus/x_y.h \
+    act/sprint/sprint_choose.h
 
 DISTFILES +=

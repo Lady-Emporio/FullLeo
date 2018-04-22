@@ -70,3 +70,4 @@ getFromDB: 0-все что есть. Любое другое число-брат
 "fromDB and toDB"-add create fromDB and toDB. Then can comfortable stay word to two table. And key-event 2 to oneTable-run mp3.
 2018/04/22:
 "SprintChoose"-add delete row in ErrorTable from ContextMenu for right click mouse. Start add SprintChoose
+"QGraphicsItemAnimation"-best move. float move.

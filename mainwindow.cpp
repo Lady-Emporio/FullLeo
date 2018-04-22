@@ -7,6 +7,7 @@
 #include "act/notvisual/not_visual_one_row.h"
 #include "backend/error_count.h"
 #include "act/engrus/x_y.h"
+#include "act/sprint/sprint_choose.h"
 
 saveMdiSub::saveMdiSub(QWidget *parent) :QMdiSubWindow(parent){}
 void saveMdiSub::closeEvent(QCloseEvent *event){ /*work but i not know;*/}
@@ -43,10 +44,12 @@ MainWindow::MainWindow(QWidget *parent)
     QMenu*  x_vs_y_menu   = new QMenu("X vs Y");
     QMenu*  inputWrite_menu   = new QMenu("Input write");
     QMenu*  Visual_menu   = new QMenu("Visual");
+    QMenu*  SprintChoose_menu   = new QMenu("Sprint");
     addMenu->addMenu(crossword_menu);
     addMenu->addMenu(x_vs_y_menu);
     addMenu->addMenu(inputWrite_menu);
     addMenu->addMenu(Visual_menu);
+    addMenu->addMenu(SprintChoose_menu);
 
     crossword_menu->addAction("New crossword",this,SLOT(on_actionAddCrossword_triggered()));
     x_vs_y_menu->addAction("New EngRus wrong vert",this,SLOT(on_actionAddEngRus4x1_vert_triggered()));
@@ -62,12 +65,21 @@ MainWindow::MainWindow(QWidget *parent)
     inputWrite_menu->addAction("New one random",this,SLOT(on_actionAddOneRow_random_triggered()));
     inputWrite_menu->addAction("New one contra Vice versa",this,SLOT(on_actionAddOneRow_contra_Vice_versa_triggered()));
     Visual_menu->addAction("New visual",this,SLOT(on_actionAdd_visual_triggered()));
+    SprintChoose_menu->addAction("New sprint",this,SLOT(on_actionAdd_sprint_triggered()));
     windowMenu->addAction("Cascade sub windows",this,SLOT(on_actionCascadeSubWindows()));
     windowMenu->addAction("Tile sub windows",this,SLOT(on_actionTileSubWindows()));
     windowMenu->addAction("Sub window view",this,SLOT(on_actionSubWindowView()));
     windowMenu->addAction("Tabbed view",this,SLOT(on_actionTabbedView()));
 }
-
+void MainWindow::on_actionAdd_sprint_triggered(){
+    SprintChoose *NextSprint=new SprintChoose(this);
+    saveMdiSub *subWindow1 = new saveMdiSub;
+    subWindow1->setWindowTitle("This is Sprint");
+    subWindow1->setWidget(NextSprint);
+    mdiArea->addSubWindow(subWindow1);
+    subWindow1->setAttribute(Qt::WA_DeleteOnClose);
+    subWindow1->show();
+}
 
 void MainWindow::on_actionAddTrueEngRu_triggered(){
     XY *trueLeo=new XY(this);
